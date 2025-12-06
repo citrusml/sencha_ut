@@ -1,0 +1,25 @@
+---
+layout: default
+title: Blog
+---
+
+<h1>活動ブログ</h1>
+
+<div class="blog-grid">
+  {% for post in site.posts %}
+    <div class="blog-card">
+      <a href="{{ post.url }}">
+        {% if post.thumbnail %}
+          <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="blog-thumbnail">
+        {% else %}
+          <img src="https://placehold.jp/300x200.png?text=No+Image" class="blog-thumbnail">
+        {% endif %}
+      </a>
+      <div class="blog-info">
+        <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+        <a href="{{ post.url }}" class="blog-title">{{ post.title }}</a>
+        <p>{{ post.excerpt | strip_html | truncate: 50 }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>

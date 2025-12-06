@@ -1,0 +1,65 @@
+/* 基本設定 */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+}
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ナビゲーションバー */
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 15px 0;
+  position: sticky; /* スクロールしても上についてくる */
+  top: 0;
+  z-index: 1000;
+}
+.site-nav a {
+  text-decoration: none;
+  color: #333;
+  margin-left: 20px;
+  font-weight: bold;
+}
+.site-nav a:hover {
+  color: #2a7ae2; /* ホバー時の色 */
+}
+
+/* ブログ一覧（グリッド表示） */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.blog-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.blog-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.blog-thumbnail {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background-color: #eee;
+}
+.blog-info {
+  padding: 15px;
+}
+.blog-title {
+  font-size: 1.1em;
+  margin: 0 0 10px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
