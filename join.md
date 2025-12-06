@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 煎茶道について
+title: Join Us!
 ---
 
-# 煎茶道とは
+# Join Us!
 
 ここに説明文を書きます。抹茶との違いや、歴史について記述します。
 
