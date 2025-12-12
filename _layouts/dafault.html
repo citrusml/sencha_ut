@@ -1,4 +1,5 @@
-<!DOCTYPE html> <html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +14,7 @@
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="/">{{ site.title }}</a>
+      <a class="navbar-brand fw-bold" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,16 +23,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/about">煎茶道について</a>
+            <a class="nav-link" href="{{ site.baseurl }}/about">煎茶道について</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/activities">活動内容</a>
+            <a class="nav-link" href="{{ site.baseurl }}/activities">活動内容</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/blog">Blog</a>
+            <a class="nav-link" href="{{ site.baseurl }}/blog">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-primary text-white ms-lg-2 px-3" href="/join">Join us</a>
+            <a class="nav-link btn btn-primary text-white ms-lg-2 px-3" href="{{ site.baseurl }}/join">Join us</a>
           </li>
         </ul>
       </div>
