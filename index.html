@@ -69,18 +69,18 @@ slides:
 <script>
 let slideIndex = 1;
 showSlides(slideIndex);
-let slideTimer = setInterval(function(){ plusSlides(1) }, 2000); // 5秒ごとに切り替え
+let slideTimer = setInterval(function(){ plusSlides(1) }, 4000); // 5秒ごとに切り替え
 
 function plusSlides(n) {
   clearInterval(slideTimer);
   showSlides(slideIndex += n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 2000);
+  slideTimer = setInterval(function(){ plusSlides(1) }, 4000);
 }
 
 function currentSlide(n) {
   clearInterval(slideTimer);
   showSlides(slideIndex = n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 2000);
+  slideTimer = setInterval(function(){ plusSlides(1) }, 4000);
 }
 
 function showSlides(n) {
