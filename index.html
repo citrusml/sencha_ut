@@ -1,13 +1,55 @@
-<div class="container my-5">
-  <div class="row"> <div class="col-lg-4 mb-4"> <aside class="sidebar p-3 bg-light rounded border">
-        <h3 class="h5 mb-3">📢 Latest News</h3>
-        
-    <div class="twitter-container" style="max-width: 600px; margin: 0 auto;">
-      <h2>📢 Latest News</h2>
+---
+layout: default
+title: Home
+---
 
-      <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ほうじ茶のお稽古が始まりました。すっかり冬ですね❄️<br>このお手前では、自分で茶葉を焙じます。茶葉を煎る際の音やふわりと立つ香りで焙じ具合を見極めます。<br>部屋いっぱいに広がる香ばしい香りに、とても幸せな気分になりました🍵【A. N. 】 <a href="https://t.co/qacqhX5Agw">pic.twitter.com/qacqhX5Agw</a></p>&mdash; 東京大学薫風流煎茶同好会 (@sencha_ut) <a href="https://twitter.com/sencha_ut/status/1997507813820727519?ref_src=twsrc%5Etfw">December 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class="container my-4">
+  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ site.baseurl }}/assets/images/slide/slide01.jpg" class="d-block w-100" alt="活動風景1">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>薫風流煎茶同好会へようこそ</h5>
+          <p>和の心を学び、楽しむサークルです。</p>
+        </div>
       </div>
-        
+      <div class="carousel-item">
+        <img src="{{ site.baseurl }}/assets/images/slide/slide02.jpg" class="d-block w-100" alt="活動風景2">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ site.baseurl }}/assets/images/slide/slide03.jpg" class="d-block w-100" alt="活動風景3">
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+<div class="container my-5">
+  <div class="row">
+
+    <div class="col-lg-4 mb-4">
+      <aside class="sidebar p-3 bg-light rounded border">
+        <h3 class="h5 mb-3">Latest News</h3>
+        <div class="twitter-container">
+           <a class="twitter-timeline" data-height="600" data-theme="light" href="https://twitter.com/sencha_ut?ref_src=twsrc%5Etfw">Tweets by sencha_ut</a> 
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
       </aside>
     </div>
 
@@ -17,7 +59,7 @@
         <p class="lead">私たちは煎茶道を通じて和の心を学ぶサークルです。</p>
         
         <h2 class="mt-4">同好会について</h2>
-        <p>ここに同好会の詳しい紹介文を書きます。いつ設立されたか、どんな雰囲気か、普段は何をしているかなどを記述してください。</p>
+        <p>ここに同好会の詳しい紹介文を書きます。</p>
         <p>煎茶道は抹茶道とは異なり、急須を使ってお茶を淹れる形式です。形式にとらわれすぎず、美味しいお茶を楽しみながら交流することを大切にしています。</p>
 
         <h2 class="mt-4">新入会員募集中！</h2>
@@ -26,4 +68,5 @@
       </section>
     </div>
 
-  </div> </div>
+  </div>
+</div>
