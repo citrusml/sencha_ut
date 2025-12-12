@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "ja" }}">
-
+<html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
+  <title>{{ page.title }} | {{ site.title }}</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -23,18 +20,21 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      margin: 0; /* 余計な隙間を消す */
     }
     
-    /* === ヘッダー(メニューバー) === */
-.navbar {
-      background-color: #fcfaf2 !important;
+    /* === ナビゲーションバー (修正済み) === */
+    .navbar {
+      background-color: #fcfaf2 !important; /* 背景色を強制適用 */
       border-bottom: 1px solid #e0dcd0 !important;
       padding: 1rem 0;
       
-      /* ▼▼▼ 追加：これで一番手前に来ます ▼▼▼ */
-      position: sticky; /* または relative */
-      z-index: 9999;    /* とにかく大きな数字を指定 */
+      /* ★ここがポイント：メニューを最前面に固定する設定 */
+      position: sticky;
+      top: 0;
+      z-index: 9999; /* スライドショーより手前に表示！ */
     }
+
     .navbar-brand {
       font-family: "Shippori Mincho", serif;
       font-weight: bold;
@@ -48,27 +48,32 @@
       margin-left: 15px;
     }
     .nav-link:hover {
-      color: #6e8e59 !important; /* ホバーで抹茶色 */
+      color: #6e8e59 !important;
+    }
+    
+    /* === ハンバーガーメニューの中身 === */
+    .navbar-collapse {
+      background-color: #fcfaf2; /* スマホで開いたときの背景色 */
     }
 
     /* === メインコンテンツ === */
-    /* ここが重要！制限を取り払って中身をそのまま出します */
     main {
       flex: 1;
+      width: 100%; /* 幅いっぱい使う */
     }
 
     /* === フッター === */
     footer {
-      background-color: #3d4c38;
-      color: #fff;
+      background-color: #3d4c38 !important;
+      color: #fff !important;
       padding: 20px 0;
-      text-align: center;
-      margin-top: auto; /* 常に一番下に */
       font-family: "Shippori Mincho", serif;
+      margin-top: auto;
+      text-align: center;
     }
-    footer a { color: #ddd; text-decoration: none; }
+    footer p { margin-bottom: 0; }
 
-    /* === 以前追加したCSSもここに統合 === */
+    /* === デザインパーツ === */
     h1, h2, h3, h4, h5, h6, .display-6, .h4, .h5 {
       font-family: "Shippori Mincho", serif;
       color: #3d4c38;
@@ -79,7 +84,7 @@
       border-color: #6e8e59;
       font-family: "Shippori Mincho", serif;
       border-radius: 50px;
-      padding-left: 30px; padding-right: 30px;
+      padding: 10px 30px;
       transition: all 0.3s ease;
     }
     .btn-primary:hover {
@@ -87,6 +92,7 @@
       border-color: #4e663f;
       transform: translateY(-2px);
     }
+    /* サイドバー等の白い箱 */
     .bg-light {
       background-color: #fff !important;
       border: 1px solid #e0dcd0 !important;
@@ -99,21 +105,27 @@
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-4 px-lg-5" style="max-width: 1400px;">
-      <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title | escape }}</a>
       
+      <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          {% for my_page in site.pages %}
-            {% if my_page.title %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-            </li>
-            {% endif %}
-          {% endfor %}
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ site.baseurl }}/about">煎茶道について</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ site.baseurl }}/activities">活動内容</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ site.baseurl }}/blog">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary text-white ms-lg-2 mt-2 mt-lg-0" href="{{ site.baseurl }}/join">Join us</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -125,7 +137,7 @@
 
   <footer>
     <div class="container">
-      <p class="mb-0">&copy; {{ site.time | date: '%Y' }} {{ site.title | escape }}</p>
+      <p>&copy; 2025 {{ site.title }}</p>
     </div>
   </footer>
 
