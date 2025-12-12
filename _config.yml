@@ -3,5 +3,5 @@ email: your-email@example.com
 description: >- # サイトの説明
   煎茶道サークルの公式サイトです。活動内容やブログを発信しています。
 baseurl: "sencha_ut" 
-url: "" 
+url: "https://citrusml.github.io"
 theme: minima 
