@@ -1,15 +1,17 @@
-/* 基本設定 */
+/* === 全体設定 === */
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
-  line-height: 1.6;
+  background-color: #fcfaf2; /* 生成り色 */
+  color: #4a4a4a;
+  font-family: "Zen Maru Gothic", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0; /* 余計な隙間を消す */
 }
 .wrapper {
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
 }
 
 /* ブログ一覧（グリッド表示） */
@@ -48,7 +50,7 @@ body {
 /* --- トップページの背景写真エリア (Hero Section) --- */
 .hero-section {
   /* 1. 背景写真の指定 */
-  background-image: url('/assets/images/top-bg.jpg');
+  background-image: url('/assets/images/slide/slide01.jpg');
   /* 写真が見つからない時の色（お茶っぽい色） */
   background-color: #556b2f;
 
@@ -74,25 +76,35 @@ body {
   background-color: rgba(0, 0, 0, 0.4); /* 黒色で透明度40% */
 }
 
-/* 文字のデザイン */
-.hero-content {
-  text-align: center;
-  color: #ffffff;           /* 写真の上なので白文字にする */
-  position: relative;       /* フィルターより手前に表示する */
-  z-index: 1;               /* 優先順位を上げる */
-  padding: 20px;
-}
-.hero-content h1 {
-  margin-top: 0;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 文字に影をつけて読みやすく */
-}
-.hero-content p {
-  font-size: 1.1em;
-  margin: 10px 0;
+/* === ナビゲーションバー (修正済み) === */
+.navbar {
+  background-color: #fcfaf2 !important; /* 背景色を強制適用 */
+  border-bottom: 1px solid #e0dcd0 !important;
+  padding: 1rem 0;
+  
+  /* ★ここがポイント：メニューを最前面に固定する設定 */
+  position: sticky;
+  top: 0;
+  z-index: 9999; /* スライドショーより手前に表示！ */
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.navbar-brand {
+  font-family: "Shippori Mincho", serif;
+  font-weight: bold;
+  color: #3d4c38 !important; /* 抹茶色 */
+  font-size: 1.5rem;
+}
+.nav-link {
+  font-family: "Shippori Mincho", serif;
+  color: #4a4a4a !important;
+  font-weight: 500;
+  margin-left: 15px;
+}
+.nav-link:hover {
+  color: #6e8e59 !important;
+}
+
+/* === ハンバーガーメニューの中身 === */
+.navbar-collapse {
+  background-color: #fcfaf2; /* スマホで開いたときの背景色 */
 }
