@@ -133,3 +133,87 @@ img {
 .navbar-collapse {
   background-color: #fcfaf2; /* スマホで開いたときの背景色 */
 }
+
+/* === ボタンの色を抹茶色にする === */
+.btn-primary {
+  background-color: #3d4c38; /* 濃い抹茶色 */
+  border-color: #3d4c38;
+}
+
+/* マウスを乗せたときの色 */
+.btn-primary:hover {
+  background-color: #6e8e59; /* 明るい緑 */
+  border-color: #6e8e59;
+}
+
+/* スライドショーのスタイル */
+.slideshow-container {
+  max-width: 100%;
+  width: 95%;
+  position: relative;
+  margin: auto;
+}
+.mySlides { display: none; }
+.mySlides img {
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0,0,0,0.3);
+}
+.next { right: 0; border-radius: 3px 0 0 3px; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 12px;             /* パディングを少し調整 */
+  position: absolute;
+  bottom: 0;                 /* ★画像の下端にぴったり合わせる */
+  left: 0;                   /* ★左端もきっちり揃える */
+  width: 100%;               /* 幅を横いっぱいにする */
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6); /* 少しだけ濃くして文字を見やすく */
+  box-sizing: border-box;    /* ★パディングを含めて幅を計算させる */
+
+  /* ★画像の角丸に合わせて、キャプションの下側の角も丸くする */
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active, .dot:hover { background-color: #717171; }
+.fade-animation { animation-name: fade; animation-duration: 1.5s; }
+@keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+/* スマホ対応 */
+@media only screen and (max-width: 300px) {
+  .prev, .next, .text {font-size: 11px}
+}
