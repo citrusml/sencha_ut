@@ -2,59 +2,78 @@
 layout: default
 # title: Home
 slides:
-  - image: /assets/images/slide/slide01.jpg
+  - image: /assets/images/mount1.jpg
     caption: "夏合宿の様子"
-  - image: /assets/images/slide/slide02.jpg
+  - image: /assets/images/mount2.jpg
     caption: "山頂からの景色"
-  - image: /assets/images/slide/slide03.jpg
+  - image: /assets/images/mount3.jpg
     caption: "紅葉の季節"
 ---
 
-<div class="slideshow-container">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<div class="slideshow-container mb-5">
   {% for slide in page.slides %}
-    <div class="mySlides fade">
+    <div class="mySlides fade-animation">
       <div class="numbertext">{{ forloop.index }} / {{ page.slides.size }}</div>
-      
       <img src="{{ slide.image | relative_url }}" style="width:100%">
-      
       {% if slide.caption %}
         <div class="text">{{ slide.caption }}</div>
       {% endif %}
     </div>
   {% endfor %}
-
   <a class="prev" onclick="plusSlides(-1)">❮</a>
   <a class="next" onclick="plusSlides(1)">❯</a>
+  
+  <div style="text-align:center; margin-top:10px;">
+    {% for slide in page.slides %}
+      <span class="dot" onclick="currentSlide({{ forloop.index }})"></span>
+    {% endfor %}
+  </div>
 </div>
-<br>
 
-<div style="text-align:center">
-  {% for slide in page.slides %}
-    <span class="dot" onclick="currentSlide({{ forloop.index }})"></span>
-  {% endfor %}
-</div>
+<div class="container pb-5">
+  
+  <div class="row">
+    
+    <div class="col-lg-8">
+      <section>
+        <h1 class="mb-4">東京大学薫風流煎茶同好会</h1>
+        <p class="lead">私たちは煎茶道を通じて和の心を学ぶサークルです。</p>
+        
+        <h2 class="mt-4">同好会について</h2>
+        <p>煎茶道は抹茶道とは異なり、急須を使ってお茶を淹れる形式です。形式にとらわれすぎず、美味しいお茶を楽しみながら交流することを大切にしています。</p>
+
+        <h2 class="mt-4">新入会員募集中！</h2>
+        <p>学年を問わず、いつでも入会を歓迎しています。興味のある方はぜひ一度、活動を見学しに来てください。</p>
+        <a href="{{ site.baseurl }}/join" class="btn btn-primary mt-2">Join Us</a>
+      </section>
+    </div>
+
+    <div class="col-lg-4 mt-5 mt-lg-0">
+      <div class="p-3 bg-light rounded border">
+        <h3 class="h5 mb-3">📢 Latest News</h3>
+        <div class="twitter-container">
+          <blockquote class="twitter-tweet" data-height="600"><p lang="ja" dir="ltr">ほうじ茶のお稽古が始まりました。すっかり冬ですね❄️<br>このお手前では、自分で茶葉を焙じます。茶葉を煎る際の音やふわりと立つ香りで焙じ具合を見極めます。<br>部屋いっぱいに広がる香ばしい香りに、とても幸せな気分になりました🍵【A. N. 】 <a href="https://t.co/qacqhX5Agw">pic.twitter.com/qacqhX5Agw</a></p>&mdash; 東京大学薫風流煎茶同好会 (@sencha_ut) <a href="https://twitter.com/sencha_ut/status/1997507813820727519?ref_src=twsrc%5Etfw">December 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+    </div>
+    
+  </div> </div>
 
 <style>
-/* スライドショーの枠 */
+/* スライドショーのスタイル */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
-
-/* 画像ごとのブロック（初期は非表示） */
-.mySlides {
-  display: none;
-}
-
-/* 画像 */
+.mySlides { display: none; }
 .mySlides img {
-  height: 400px; /* ★ここで高さを固定するとガタつきません */
-  object-fit: cover; /* 枠に合わせてトリミング */
+  height: 400px;
+  object-fit: cover;
   border-radius: 8px;
 }
-
-/* 前へ・次へボタン */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -68,17 +87,10 @@ slides:
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
-  background-color: rgba(0,0,0,0.3); /* 背景を少し暗く */
+  background-color: rgba(0,0,0,0.3);
 }
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-/* キャプションテキスト */
+.next { right: 0; border-radius: 3px 0 0 3px; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
 .text {
   color: #f2f2f2;
   font-size: 15px;
@@ -87,10 +99,8 @@ slides:
   bottom: 8px;
   width: 100%;
   text-align: center;
-  background: rgba(0, 0, 0, 0.5); /* 文字の背景を半透明の黒に */
+  background: rgba(0, 0, 0, 0.5);
 }
-
-/* 番号テキスト (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
   font-size: 12px;
@@ -98,8 +108,6 @@ slides:
   position: absolute;
   top: 0;
 }
-
-/* ドットインジケーター */
 .dot {
   cursor: pointer;
   height: 15px;
@@ -110,20 +118,9 @@ slides:
   display: inline-block;
   transition: background-color 0.6s ease;
 }
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* フェードインアニメーション */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
+.active, .dot:hover { background-color: #717171; }
+.fade-animation { animation-name: fade; animation-duration: 1.5s; }
+@keyframes fade { from {opacity: .4} to {opacity: 1} }
 
 /* スマホ対応 */
 @media only screen and (max-width: 300px) {
@@ -134,67 +131,31 @@ slides:
 <script>
 let slideIndex = 1;
 showSlides(slideIndex);
-
-// 自動スライドショー用タイマー (5秒ごとに切り替え)
 let slideTimer = setInterval(function(){ plusSlides(1) }, 5000);
 
-// 前へ・次へボタンの操作
 function plusSlides(n) {
-  clearInterval(slideTimer); // 手動操作したらタイマーをリセット
+  clearInterval(slideTimer);
   showSlides(slideIndex += n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 5000); // 再開
+  slideTimer = setInterval(function(){ plusSlides(1) }, 5000);
 }
-
-// ドットをクリックした時の操作
 function currentSlide(n) {
   clearInterval(slideTimer);
   showSlides(slideIndex = n);
   slideTimer = setInterval(function(){ plusSlides(1) }, 5000);
 }
-
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("dot");
-  
   if (n > slides.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = slides.length}
-  
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";  
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
 }
 </script>
-
-
-<div class="container my-5">
-  <section>
-    <h1 class="mb-4">東京大学薫風流煎茶同好会</h1>
-    <p class="lead">私たちは煎茶道を通じて和の心を学ぶサークルです。</p>
-    
-    <h2 class="mt-4">同好会について</h2>
-    <p>ここに同好会の詳しい紹介文を書きます。</p>
-    <p>煎茶道は抹茶道とは異なり、急須を使ってお茶を淹れる形式です。形式にとらわれすぎず、美味しいお茶を楽しみながら交流することを大切にしています。</p>
-
-    <h2 class="mt-4">新入会員募集中！</h2>
-    <p>学年を問わず、いつでも入会を歓迎しています。興味のある方はぜひ一度、活動を見学しに来てください。</p>
-    <a href="{{ site.baseurl }}/join" class="btn btn-primary mt-2">Join Us</a>
-  </section>
-</div>
-
-
-<div class="container my-5 pb-5">
-  <div class="p-4 bg-light rounded border text-center">
-    <h3 class="h5 mb-3">📢 Latest News</h3>
-    
-    <div class="twitter-container mx-auto" style="max-width: 600px;">
-      <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ほうじ茶のお稽古が始まりました。すっかり冬ですね❄️<br>このお手前では、自分で茶葉を焙じます。茶葉を煎る際の音やふわりと立つ香りで焙じ具合を見極めます。<br>部屋いっぱいに広がる香ばしい香りに、とても幸せな気分になりました🍵【A. N. 】 <a href="https://t.co/qacqhX5Agw">pic.twitter.com/qacqhX5Agw</a></p>&mdash; 東京大学薫風流煎茶同好会 (@sencha_ut) <a href="https://twitter.com/sencha_ut/status/1997507813820727519?ref_src=twsrc%5Etfw">December 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
-  </div>
-</div>
