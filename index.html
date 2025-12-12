@@ -30,7 +30,7 @@ slides:
   </div>
 </div>
 
-<div class="container my-5 px-4" style="max-width: 1200px;">
+<div class="container my-5 px-4" style="max-width: 1400px;">
   <div class="row">
     
     <div class="col-lg-8 mb-5">
@@ -74,18 +74,18 @@ slides:
 <script>
 let slideIndex = 1;
 showSlides(slideIndex);
-let slideTimer = setInterval(function(){ plusSlides(1) }, 5000); // 5秒ごとに切り替え
+let slideTimer = setInterval(function(){ plusSlides(1) }, 2000); // 5秒ごとに切り替え
 
 function plusSlides(n) {
   clearInterval(slideTimer);
   showSlides(slideIndex += n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 5000);
+  slideTimer = setInterval(function(){ plusSlides(1) }, 2000);
 }
 
 function currentSlide(n) {
   clearInterval(slideTimer);
   showSlides(slideIndex = n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 5000);
+  slideTimer = setInterval(function(){ plusSlides(1) }, 2000);
 }
 
 function showSlides(n) {
