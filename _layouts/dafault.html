@@ -26,10 +26,14 @@
     }
     
     /* === ヘッダー(メニューバー) === */
-    .navbar {
-      background-color: #fcfaf2; /* 背景色と同じに */
-      border-bottom: 1px solid #e0dcd0; /* 下にうっすら線 */
+.navbar {
+      background-color: #fcfaf2 !important;
+      border-bottom: 1px solid #e0dcd0 !important;
       padding: 1rem 0;
+      
+      /* ▼▼▼ 追加：これで一番手前に来ます ▼▼▼ */
+      position: sticky; /* または relative */
+      z-index: 9999;    /* とにかく大きな数字を指定 */
     }
     .navbar-brand {
       font-family: "Shippori Mincho", serif;
