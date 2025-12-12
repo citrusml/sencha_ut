@@ -3,27 +3,168 @@ layout: default
 title: Blog
 ---
 
-<div class="container my-5">
-  <h1 class="mb-4">活動ブログ</h1>
+<div class="tag-container">
+  <button class="tag-filter-btn active" onclick="filterBy('all')">All</button>
+  {% for tag in site.tags %}
+    {% assign tag_name = tag[0] %}
+    <button class="tag-filter-btn" onclick="filterBy('{{ tag_name }}')">
+      #{{ tag_name }}
+    </button>
+  {% endfor %}
+</div>
 
-  <div class="blog-grid row"> {% for post in site.posts %}
-      <div class="col-md-6 col-lg-4 mb-4"> <div class="card h-100">
-          <a href="{{ site.baseurl }}{{ post.url }}">
-            {% if post.thumbnail %}
-              <img src="{{ site.baseurl }}{{ post.thumbnail }}" alt="{{ post.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-            {% else %}
-              <img src="https://placehold.jp/300x200.png?text=No+Image" class="card-img-top" style="height: 200px; object-fit: cover;">
-            {% endif %}
-          </a>
-          <div class="card-body">
-            <small class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</small>
-            <h5 class="card-title mt-2">
-              <a href="{{ site.baseurl }}{{ post.url }}" class="text-decoration-none text-dark">{{ post.title }}</a>
-            </h5>
-            <p class="card-text">{{ post.excerpt | strip_html | truncate: 50 }}</p>
-          </div>
+<div class="blog-posts">
+  {% for post in site.posts %}
+    <div class="post-item" data-tags="{{ post.tags | join: ',' }}">
+      
+      {% if post.image %}
+      <div class="post-thumbnail">
+        <a href="{{ post.url | relative_url }}">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+        </a>
+      </div>
+      {% endif %}
+
+      <div class="post-content">
+        <div class="post-meta">
+          <span class="post-date">{{ post.date | date: "%Y/%m/%d" }}</span>
+          <span class="post-tags-display">
+            {% for tag in post.tags %} #{{ tag }} {% endfor %}
+          </span>
+        </div>
+
+        <h3 class="post-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+        
+        <div class="post-excerpt">
+          {{ post.excerpt | strip_html | truncate: 100 }}
         </div>
       </div>
-    {% endfor %}
-  </div>
+      
+    </div>
+  {% endfor %}
 </div>
+
+<style>
+  /* タグボタンエリア */
+  .tag-container {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag-filter-btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    transition: all 0.2s;
+  }
+  .tag-filter-btn:hover, .tag-filter-btn.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+  /* 記事リスト全体 */
+  .post-item {
+    display: flex;       /* 横並びにする */
+    gap: 20px;           /* 画像と文字の間隔 */
+    padding: 25px 0;
+    border-bottom: 1px solid #eee;
+    align-items: flex-start;
+  }
+
+  /* サムネイル画像エリア */
+  .post-thumbnail {
+    flex-shrink: 0;      /* 画像が潰れないようにする */
+    width: 180px;        /* 画像の幅（お好みで変更可） */
+  }
+  .post-thumbnail img {
+    width: 100%;
+    height: 120px;       /* 画像の高さ */
+    object-fit: cover;   /* 枠に合わせてトリミング */
+    border-radius: 8px;  /* 角丸 */
+    border: 1px solid #f0f0f0;
+  }
+
+  /* テキストエリア */
+  .post-content {
+    flex-grow: 1;
+  }
+  .post-meta {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  .post-tags-display {
+    margin-left: 10px;
+    color: #007bff;
+    font-weight: bold;
+  }
+  .post-title {
+    margin: 5px 0 8px;
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+  .post-title a {
+    text-decoration: none;
+    color: #333;
+  }
+  .post-title a:hover {
+    color: #007bff;
+  }
+  .post-excerpt {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* スマホ対応（画面が狭いときは縦並びにする） */
+  @media (max-width: 600px) {
+    .post-item {
+      flex-direction: column;
+    }
+    .post-thumbnail {
+      width: 100%;
+    }
+    .post-thumbnail img {
+      height: 180px;
+    }
+  }
+</style>
+
+<script>
+  function filterBy(tagName) {
+    const posts = document.getElementsByClassName('post-item');
+    const buttons = document.getElementsByClassName('tag-filter-btn');
+
+    // ボタンの色切替
+    for (let btn of buttons) {
+      btn.classList.remove('active');
+      if (tagName === 'all' && btn.innerText === 'All') {
+        btn.classList.add('active');
+      } else if (btn.innerText.includes(tagName)) {
+        btn.classList.add('active');
+      }
+    }
+
+    // 記事の表示切替
+    for (let post of posts) {
+      if (tagName === 'all') {
+        post.style.display = 'flex'; // flexに戻す
+      } else {
+        const postTags = post.getAttribute('data-tags').split(',');
+        if (postTags.includes(tagName)) {
+          post.style.display = 'flex'; // flexに戻す
+        } else {
+          post.style.display = 'none';
+        }
+      }
+    }
+  }
+</script>
