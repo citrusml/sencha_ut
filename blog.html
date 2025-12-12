@@ -3,23 +3,27 @@ layout: default
 title: Blog
 ---
 
-<h1>活動ブログ</h1>
+<div class="container my-5">
+  <h1 class="mb-4">活動ブログ</h1>
 
-<div class="blog-grid">
-  {% for post in site.posts %}
-    <div class="blog-card">
-      <a href="{{ post.url }}">
-        {% if post.thumbnail %}
-          <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="blog-thumbnail">
-        {% else %}
-          <img src="https://placehold.jp/300x200.png?text=No+Image" class="blog-thumbnail">
-        {% endif %}
-      </a>
-      <div class="blog-info">
-        <small>{{ post.date | date: "%Y-%m-%d" }}</small>
-        <a href="{{ post.url }}" class="blog-title">{{ post.title }}</a>
-        <p>{{ post.excerpt | strip_html | truncate: 50 }}</p>
+  <div class="blog-grid row"> {% for post in site.posts %}
+      <div class="col-md-6 col-lg-4 mb-4"> <div class="card h-100">
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            {% if post.thumbnail %}
+              <img src="{{ site.baseurl }}{{ post.thumbnail }}" alt="{{ post.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+            {% else %}
+              <img src="https://placehold.jp/300x200.png?text=No+Image" class="card-img-top" style="height: 200px; object-fit: cover;">
+            {% endif %}
+          </a>
+          <div class="card-body">
+            <small class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</small>
+            <h5 class="card-title mt-2">
+              <a href="{{ site.baseurl }}{{ post.url }}" class="text-decoration-none text-dark">{{ post.title }}</a>
+            </h5>
+            <p class="card-text">{{ post.excerpt | strip_html | truncate: 50 }}</p>
+          </div>
+        </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
