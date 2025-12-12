@@ -61,9 +61,50 @@ slides:
     
   </div> </div>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
 <style>
 
 
+/* === ベースデザイン（背景と文字） === */
+  body {
+    background-color: #fcfaf2; /* 生成り色（和紙のような白） */
+    color: #4a4a4a; /* 真っ黒ではなく、濃いグレーで柔らかく */
+    font-family: "Zen Maru Gothic", sans-serif; /* 本文は少し丸みのあるゴシック */
+  }
+
+  /* === 見出し（タイトル） === */
+  h1, h2, h3, h4, h5, h6, .display-6, .h4, .h5 {
+    font-family: "Shippori Mincho", serif; /* 見出しは明朝体で上品に */
+    color: #3d4c38; /* 深い抹茶色 */
+    letter-spacing: 0.05em; /* 文字の間隔を少し広げて優雅に */
+  }
+
+  /* === ボタンのデザイン（Bootstrapの青を上書き） === */
+  .btn-primary {
+    background-color: #6e8e59; /* 抹茶色 */
+    border-color: #6e8e59;
+    font-family: "Shippori Mincho", serif;
+    border-radius: 50px; /* 角を丸くして優しく */
+    padding-left: 30px;
+    padding-right: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #4e663f; /* ホバー時は少し濃く */
+    border-color: #4e663f;
+    transform: translateY(-2px); /* ふわっと浮く動き */
+  }
+  
+  /* サイドバーの箱を少し和風に */
+  .bg-light {
+    background-color: #fff !important; /* 真っ白にして */
+    border: 1px solid #e0dcd0 !important; /* 枠線をベージュに */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* ほんのり影をつける */
+  }
+  
 /* スライドショーのスタイル */
 .slideshow-container {
   max-width: 100%;
