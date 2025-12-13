@@ -113,6 +113,13 @@ img {
   z-index: 9999; /* スライドショーより手前に表示！ */
 }
 
+/* === ナビゲーションバーのロゴ設定 === */
+.navbar-logo {
+  height: 40px;        /* メニューの高さに合わせて調整してください */
+  width: auto;         /* 横幅は自動で調整 */
+  margin-right: 10px;  /* 文字との間に少し隙間を空ける */
+  vertical-align: middle; /* 文字と高さを真ん中に揃える */
+}
 
 .navbar-brand {
   font-family: "Shippori Mincho", serif;
