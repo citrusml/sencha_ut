@@ -307,12 +307,13 @@ img {
   transform: translateX(-50%);
   text-align: center;
   z-index: 4;
+  user-select: none;
 }
 
 .dot {
   cursor: pointer;
-  height: 6px;
-  width: 6px;
+  height: 10px;
+  width: 10px;
   margin: 0 5px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;

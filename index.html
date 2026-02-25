@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay = document.querySelector('.fade-overlay');
   if (!slides.length) return;
   slides.forEach((s, i) => { s.style.display = 'block'; if (i === 0) s.classList.add('active'); });
+  dots[0].classList.add('active');
   overlay && (overlay.style.opacity = '0', overlay.style.transition = `opacity ${HALF}ms ease-in-out`);
   slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
 });
@@ -86,6 +87,7 @@ function gotoSlide(target) {
   if (target === slideIndex) return;
   animating = true;
   clearInterval(slideTimer);
+  dots.forEach((d, i) => d.classList.toggle('active', i === target - 1));
   const old = slides[slideIndex - 1], neu = slides[target - 1];
   neu.style.display = 'block';
   neu.style.opacity = '0';
@@ -100,7 +102,6 @@ function gotoSlide(target) {
     slides.forEach(s => s.classList.remove('active'));
     neu.classList.add('active');
     slideIndex = target;
-    dots.forEach((d, i) => d.classList.toggle('active', i === target - 1));
     animating = false;
     slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
   }, TRANS);
