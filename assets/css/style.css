@@ -329,3 +329,22 @@ img {
 @media only screen and (max-width: 300px) {
   .prev, .next, .text {font-size: 11px}
 }
+
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 50vh; /* スマホでは高さを控えめにする（写真の左右切れを軽減） */
+    background-color: var(--color-bg); /* 背景を生成り色に */
+  }
+
+  .mySlides img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain; /* 写真全体を表示（背景が出る）か、お好みで cover のまま高さを調整 */
+  }
+
+  .caption-text {
+    font-size: 1.1rem; /* スマホに合わせて文字を少し小さく */
+    width: 90%;
+    bottom: 5%;
+  }
+}
