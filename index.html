@@ -2,11 +2,11 @@
 layout: default
 slides:
   - image: /assets/images/slide/slide01.jpg
-    caption: "caption: slide1"
+    caption: "caption: slide1 / スライド１の説明文が入ります。"
   - image: /assets/images/slide/slide02.jpg
-    caption: "caption: slide2"
+    caption: "caption: slide2 / スライド２の説明文が入ります。"
   - image: /assets/images/slide/slide03.jpg
-    caption: "caption: slide3"
+    caption: "caption: slide3 / スライド３の説明文が入ります。"
 ---
 
 <div class="slideshow-container">
@@ -26,6 +26,7 @@ slides:
       <span class="dot" onclick="currentSlide({{ forloop.index }})"></span>
     {% endfor %}
   </div>
+  <div class="fade-overlay" aria-hidden="true"></div>
 </div>
 
 <div class="container my-5 px-4" style="max-width: 1400px;">
@@ -71,40 +72,46 @@ let slideIndex = 1; // 1-based
 let slideTimer = null;
 let slides = [];
 let dots = [];
+let overlay = null;
 let animating = false;
+const transitionDuration = 1500; // ms
+const halfDuration = transitionDuration / 2;
+const intervalDuration = 8000; // 8s
 
 document.addEventListener('DOMContentLoaded', function() {
   slides = Array.from(document.querySelectorAll('.mySlides'));
   dots = Array.from(document.querySelectorAll('.dot'));
+  overlay = document.querySelector('.fade-overlay');
   if (slides.length === 0) return;
 
   // 初期表示の準備
-  slides.forEach((s) => { s.style.display = 'block'; });
-  slides.forEach((s) => s.classList.remove('active','enter-right','enter-left','exit-left','exit-right'));
+  slides.forEach(s => { s.style.display = 'block'; s.classList.remove('active'); });
   slides[0].classList.add('active');
+  if (overlay) {
+    overlay.style.opacity = 0;
+    overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
+  }
   updateDots(1);
-
-  slideTimer = setInterval(function(){ plusSlides(1); }, 5000); // 5秒ごと
+  slideTimer = setInterval(() => plusSlides(1), intervalDuration);
 });
 
 function plusSlides(n) {
   if (animating) return;
   clearInterval(slideTimer);
-  gotoSlide(slideIndex + n, n > 0 ? 'next' : 'prev');
-  slideTimer = setInterval(function(){ plusSlides(1); }, 5000);
+  gotoSlide(slideIndex + n);
+  slideTimer = setInterval(() => plusSlides(1), intervalDuration);
 }
 
 function currentSlide(n) {
   if (animating) return;
   clearInterval(slideTimer);
-  const dir = (n - slideIndex) >= 0 ? 'next' : 'prev';
-  gotoSlide(n, dir);
-  slideTimer = setInterval(function(){ plusSlides(1); }, 5000);
+  gotoSlide(n);
+  slideTimer = setInterval(() => plusSlides(1), intervalDuration);
 }
 
-function gotoSlide(target, direction) {
+function gotoSlide(target) {
   if (slides.length === 0) return;
-  let max = slides.length;
+  const max = slides.length;
   if (target > max) target = 1;
   if (target < 1) target = max;
   if (target === slideIndex) return;
@@ -115,28 +122,31 @@ function gotoSlide(target, direction) {
   const oldSlide = slides[oldIdx];
   const newSlide = slides[newIdx];
 
-  // リセットクラス
-  [oldSlide, newSlide].forEach(s => s.classList.remove('enter-right','enter-left','exit-left','exit-right','active'));
-
-  // アニメーション方向
-  if (direction === 'next') {
-    newSlide.classList.add('enter-right');
-    oldSlide.classList.add('exit-left');
+  // フェードアウト→入れ替え→フェードイン（黒を経由）
+  if (overlay) {
+    overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
+    overlay.style.opacity = 1; // 黒へ
   } else {
-    newSlide.classList.add('enter-left');
-    oldSlide.classList.add('exit-right');
+    // フォールバック: 古いスライドを一旦非表示
+    oldSlide.classList.remove('active');
   }
 
-  // アニメーション完了後のクリーンアップ
-  const duration = 800; // CSS のトランジションと合わせる
   setTimeout(() => {
-    oldSlide.classList.remove('enter-right','enter-left','active','exit-left','exit-right');
-    newSlide.classList.remove('enter-right','enter-left','exit-left','exit-right');
+    // 画面が黒くなっているのでスライドを切替
+    oldSlide.classList.remove('active');
     newSlide.classList.add('active');
-    slideIndex = target;
-    updateDots(slideIndex);
-    animating = false;
-  }, duration);
+    updateDots(target);
+
+    if (overlay) {
+      overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
+      overlay.style.opacity = 0; // 黒を戻す
+    }
+
+    setTimeout(() => {
+      slideIndex = target;
+      animating = false;
+    }, halfDuration);
+  }, halfDuration);
 }
 
 function updateDots(index) {

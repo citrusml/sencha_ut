@@ -250,10 +250,8 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  transform: translateX(100%);
   opacity: 0;
-  transition: transform 0.8s cubic-bezier(.2,.8,.2,1), opacity 0.8s cubic-bezier(.2,.8,.2,1);
-  will-change: transform, opacity;
+  z-index: 1;
 }
 
 .mySlides img {
@@ -265,20 +263,22 @@ img {
 
 /* 表示中スライド */
 .mySlides.active {
-  transform: translateX(0);
   opacity: 1;
   z-index: 2;
 }
 
-/* 新しいスライドが右から入る */
-.mySlides.enter-right { transform: translateX(0); opacity: 1; z-index: 3; }
-/* 古いスライドが左へ抜ける */
-.mySlides.exit-left { transform: translateX(-100%); opacity: 0; z-index: 1; }
-
-/* 新しいスライドが左から入る（逆方向） */
-.mySlides.enter-left { transform: translateX(0); opacity: 1; z-index: 3; }
-/* 古いスライドが右へ抜ける（逆方向） */
-.mySlides.exit-right { transform: translateX(100%); opacity: 0; z-index: 1; }
+/* 黒へのクロスディゾルブ用オーバーレイ */
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 5;
+}
 
 /* キャプション：中央下部に控えめに配置 */
 .slide-caption {
