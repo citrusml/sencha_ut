@@ -223,10 +223,45 @@ img {
 .post-title { font-family: "Shippori Mincho", serif; font-weight: bold; font-size: 1.1rem; }
 .post-tags-display { margin-left: 0; }
 
-/* 既存のボタン等の色調整 */
-.tag-filter-btn.active, .pagination-btn:hover {
+/* 既存のボタン等の色調整 (タグフィルターをバッジ風に統一、ページ遷移は簡素化) */
+.tag-filter-btn {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--tag-bg);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 6px 12px;
+  margin: 0 6px 6px 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.tag-filter-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.tag-filter-btn.active {
   background-color: var(--accent-dark) !important;
   border-color: var(--accent-dark) !important;
+  color: #fff !important;
+}
+
+/* ページ遷移ボタンは簡素でアニメーションなし */
+.pagination-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: none;
+}
+.pagination-btn:hover {
+  background: rgba(0,0,0,0.03);
+}
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 /* ユーティリティ */
