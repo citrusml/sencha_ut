@@ -252,6 +252,7 @@ img {
   height: 100%;
   opacity: 0;
   z-index: 1;
+  transition: opacity 1500ms ease-in-out; /* 写真同士のクロスディゾルブ */
 }
 
 .mySlides img {

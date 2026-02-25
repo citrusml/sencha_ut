@@ -11,7 +11,7 @@ slides:
 
 <div class="slideshow-container">
   {% for slide in page.slides %}
-    <div class="mySlides fade-animation">
+    <div class="mySlides">
       <img src="{{ slide.image | relative_url }}" alt="{{ slide.caption }}">
       {% if slide.caption %}
         <div class="slide-caption">
@@ -20,10 +20,9 @@ slides:
       {% endif %}
     </div>
   {% endfor %}
-
   <div class="dot-container">
     {% for slide in page.slides %}
-      <span class="dot" onclick="currentSlide({{ forloop.index }})"></span>
+      <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
     {% endfor %}
   </div>
   <div class="fade-overlay" aria-hidden="true"></div>
@@ -68,91 +67,44 @@ slides:
 </div>
 
 <script>
-let slideIndex = 1; // 1-based
-let slideTimer = null;
-let slides = [];
-let dots = [];
-let overlay = null;
-let animating = false;
-const transitionDuration = 1500; // ms
-const halfDuration = transitionDuration / 2;
-const intervalDuration = 8000; // 8s
+const TRANS = 1500, HALF = TRANS / 2, INTERVAL = 8000;
+let slideIndex = 1, slideTimer, slides, dots, overlay, animating = false;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   slides = Array.from(document.querySelectorAll('.mySlides'));
   dots = Array.from(document.querySelectorAll('.dot'));
   overlay = document.querySelector('.fade-overlay');
-  if (slides.length === 0) return;
-
-  // 初期表示の準備
-  slides.forEach(s => { s.style.display = 'block'; s.classList.remove('active'); });
-  slides[0].classList.add('active');
-  if (overlay) {
-    overlay.style.opacity = 0;
-    overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
-  }
-  updateDots(1);
-  slideTimer = setInterval(() => plusSlides(1), intervalDuration);
+  if (!slides.length) return;
+  slides.forEach((s, i) => { s.style.display = 'block'; if (i === 0) s.classList.add('active'); });
+  overlay && (overlay.style.opacity = '0', overlay.style.transition = `opacity ${HALF}ms ease-in-out`);
+  slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
 });
 
-function plusSlides(n) {
-  if (animating) return;
-  clearInterval(slideTimer);
-  gotoSlide(slideIndex + n);
-  slideTimer = setInterval(() => plusSlides(1), intervalDuration);
-}
-
-function currentSlide(n) {
-  if (animating) return;
-  clearInterval(slideTimer);
-  gotoSlide(n);
-  slideTimer = setInterval(() => plusSlides(1), intervalDuration);
-}
-
 function gotoSlide(target) {
-  if (slides.length === 0) return;
-  const max = slides.length;
-  if (target > max) target = 1;
-  if (target < 1) target = max;
+  if (animating || !slides.length) return;
+  target = ((target - 1) % slides.length) + 1;
   if (target === slideIndex) return;
-
   animating = true;
-  const oldIdx = slideIndex - 1;
-  const newIdx = target - 1;
-  const oldSlide = slides[oldIdx];
-  const newSlide = slides[newIdx];
-
-  // フェードアウト→入れ替え→フェードイン（黒を経由）
-  if (overlay) {
-    overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
-    overlay.style.opacity = 0.3; // サイト背景色を30%で被せる
-  } else {
-    // フォールバック: 古いスライドを一旦非表示
-    oldSlide.classList.remove('active');
-  }
-
+  clearInterval(slideTimer);
+  const old = slides[slideIndex - 1], neu = slides[target - 1];
+  neu.style.display = 'block';
+  neu.style.opacity = '0';
+  [old, neu].forEach(s => s.style.transition = `opacity ${TRANS}ms ease-in-out`);
+  neu.getBoundingClientRect();
+  overlay && (overlay.style.transition = `opacity ${HALF}ms ease-in-out`, overlay.style.opacity = '0.3');
+  requestAnimationFrame(() => { old.style.opacity = '0'; neu.style.opacity = '1'; });
+  setTimeout(() => overlay && (overlay.style.opacity = '0'), HALF);
   setTimeout(() => {
-    // 画面が黒くなっているのでスライドを切替
-    oldSlide.classList.remove('active');
-    newSlide.classList.add('active');
-    updateDots(target);
-
-    if (overlay) {
-      overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
-      overlay.style.opacity = 0; // 黒を戻す
-    }
-
-    setTimeout(() => {
-      slideIndex = target;
-      animating = false;
-    }, halfDuration);
-  }, halfDuration);
+    old.style.display = 'none';
+    [old, neu].forEach(s => { s.style.transition = s.style.opacity = ''; });
+    slides.forEach(s => s.classList.remove('active'));
+    neu.classList.add('active');
+    slideIndex = target;
+    dots.forEach((d, i) => d.classList.toggle('active', i === target - 1));
+    animating = false;
+    slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
+  }, TRANS);
 }
 
-function updateDots(index) {
-  if (!dots || dots.length === 0) return;
-  dots.forEach(d => d.classList.remove('active'));
-  const idx = (index - 1 + dots.length) % dots.length;
-  dots[idx].classList.add('active');
-}
+window.currentSlide = (val) => gotoSlide(typeof val === 'string' ? parseInt(val, 10) : val);
 </script>
