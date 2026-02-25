@@ -12,14 +12,17 @@ slides:
 <div class="slideshow-container">
   {% for slide in page.slides %}
     <div class="mySlides fade-animation">
-      <div class="numbertext">{{ forloop.index }} / {{ page.slides.size }}</div>
       <img src="{{ slide.image | relative_url }}" alt="{{ slide.caption }}">
       {% if slide.caption %}
-        <div class="text">{{ slide.caption }}</div>
+        <div class="slide-caption">
+          <span class="caption-text">{{ slide.caption }}</span>
+        </div>
       {% endif %}
     </div>
   {% endfor %}
 
+  <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
 
   <div class="dot-container">
     {% for slide in page.slides %}
@@ -69,7 +72,7 @@ slides:
 <script>
 let slideIndex = 1;
 showSlides(slideIndex);
-let slideTimer = setInterval(function(){ plusSlides(1) }, 4000); // 5秒ごとに切り替え
+let slideTimer = setInterval(function(){ plusSlides(1) }, 4000);
 
 function plusSlides(n) {
   clearInterval(slideTimer);
@@ -87,15 +90,16 @@ function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
+  if (slides.length === 0) return;
+  if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+    slides[i].style.display = "none";
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+  slides[slideIndex-1].style.display = "block";
+  if (dots.length > 0) dots[slideIndex-1].className += " active";
 }
 </script>

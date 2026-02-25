@@ -233,73 +233,96 @@ img {
 /* ユーティリティ */
 .max-width-1200 { max-width: 1200px; }
 
-/* スライドショーのスタイル */
+/* === スライドショー全体の洗練 === */
 .slideshow-container {
-  max-width: 100%;
-  width: 95%;
   position: relative;
-  margin: auto;
+  max-width: 100%;
+  height: 70vh; /* 画面の7割程度 */
+  margin: 0;
+  overflow: hidden;
+  background-color: #000; /* 画像読み込み前のチラつき防止 */
 }
-.mySlides { display: none; }
+
+.mySlides {
+  display: none;
+  height: 100%;
+}
+
 .mySlides img {
-  width:100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 枠いっぱいに広げる */
+  filter: brightness(0.9); /* 少し暗くして文字を浮かせる */
 }
-.prev, .next {
+
+/* キャプション：中央下部に控えめに配置 */
+.slide-caption {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 80%;
+}
+
+.caption-text {
+  color: #fff;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* 矢印：普段は控えめ、ホバーで強調 */
+.prev-slide, .next-slide {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  font-size: 2rem;
+  transition: 0.3s;
   user-select: none;
-  background-color: rgba(0,0,0,0.3);
+  text-decoration: none;
+  transform: translateY(-50%);
 }
-.next { right: 0; border-radius: 3px 0 0 3px; }
-.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 12px;             /* パディングを少し調整 */
-  position: absolute;
-  bottom: 0;                 /* ★画像の下端にぴったり合わせる */
-  left: 0;                   /* ★左端もきっちり揃える */
-  width: 100%;               /* 幅を横いっぱいにする */
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6); /* 少しだけ濃くして文字を見やすく */
-  box-sizing: border-box;    /* ★パディングを含めて幅を計算させる */
+.next-slide { right: 0; }
+.prev-slide:hover, .next-slide:hover {
+  color: #fff;
+  background: rgba(0,0,0,0.1);
+}
 
-  /* ★画像の角丸に合わせて、キャプションの下側の角も丸くする */
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
+/* ドット：さらに小さく、主張を抑える */
+.dot-container {
   position: absolute;
-  top: 0;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
 }
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
+  height: 6px;
+  width: 6px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 0.6s ease;
+  transition: 0.3s;
 }
-.active, .dot:hover { background-color: #717171; }
-.fade-animation { animation-name: fade; animation-duration: 1.5s; }
-@keyframes fade { from {opacity: .4} to {opacity: 1} }
+.dot.active, .dot:hover {
+  background-color: #fff;
+  transform: scale(1.2);
+}
+
+/* フェードアニメーション */
+.fade-animation {
+  animation: fadeEffect 1.5s ease-in-out;
+}
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
 
 /* スマホ対応 */
 @media only screen and (max-width: 300px) {
