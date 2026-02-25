@@ -241,8 +241,8 @@ img {
   color: #fff;
 }
 .tag-filter-btn.active {
-  background-color: var(--accent-dark) !important;
-  border-color: var(--accent-dark) !important;
+  background-color: var(--hero-fallback) !important;
+  border-color: var(--hero-fallback) !important;
   color: #fff !important;
 }
 
