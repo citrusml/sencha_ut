@@ -16,15 +16,14 @@ slides:
     </div>
   {% endfor %}
   <div class="fade-overlay" aria-hidden="true"></div>
-</div>
-
-<div class="caption-band">
-  <div class="dot-container">
-    {% for slide in page.slides %}
-      <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
-    {% endfor %}
+  <div class="caption-band">
+    <div class="dot-container">
+      {% for slide in page.slides %}
+        <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
+      {% endfor %}
+    </div>
+    <span class="caption-text"></span>
   </div>
-  <span class="caption-text"></span>
 </div>
 
 <div class="container my-5 px-4" style="max-width: 1400px;">

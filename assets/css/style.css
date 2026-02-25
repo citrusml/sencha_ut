@@ -11,6 +11,7 @@
   --card-bg: #ffffff;
   --tag-bg: #f8fcf7;
   --hero-fallback: #556b2f;
+  --white: #ffffff;
 }
 body {
   background-color: var(--color-bg);
@@ -284,10 +285,14 @@ img {
 
 /* キャプション帯 */
 .caption-band {
-  background-color: rgba(252, 250, 242, 0.8); /* 半透明な生成り色 */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(var(--color-bg), 0.8); /* 半透明な生成り色 */
   padding: 40px 20px 10px;
   text-align: center;
-  position: relative;
+  z-index: 3;
 }
 
 .caption-text {
@@ -314,16 +319,15 @@ img {
   height: 10px;
   width: 10px;
   margin: 0 5px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(var(--white), 0.3);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.1s, transform 0.1s;
 }
 
 .dot.active, .dot:hover {
-  background-color: var(--color-bg);
+  background-color: var(--white);
   transform: scale(1.2);
-  opacity: 0.8;
 }
 
 /* スマホ対応 */
