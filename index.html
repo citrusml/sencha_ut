@@ -125,7 +125,7 @@ function gotoSlide(target) {
   // フェードアウト→入れ替え→フェードイン（黒を経由）
   if (overlay) {
     overlay.style.transition = `opacity ${halfDuration}ms ease-in-out`;
-    overlay.style.opacity = 1; // 黒へ
+    overlay.style.opacity = 0.3; // サイト背景色を30%で被せる
   } else {
     // フォールバック: 古いスライドを一旦非表示
     oldSlide.classList.remove('active');
