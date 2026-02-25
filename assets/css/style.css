@@ -289,9 +289,12 @@ img {
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   background-color: rgba(var(--color-bg), 0.8); /* 半透明な生成り色 */
-  padding: 40px 20px 10px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   z-index: 3;
 }
 
@@ -301,15 +304,12 @@ img {
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   display: block;
+  margin-bottom: 10px;
 }
 
 /* ドット：中央下側に控えめに配置 */
 .dot-container {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+  margin-bottom: 10px;
   z-index: 4;
   user-select: none;
 }
