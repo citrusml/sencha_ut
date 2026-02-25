@@ -301,7 +301,7 @@ img {
 /* ドット：中央下側に控えめに配置 */
 .dot-container {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;

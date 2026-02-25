@@ -15,7 +15,10 @@ slides:
       <img src="{{ slide.image | relative_url }}" alt="{{ slide.caption }}">
     </div>
   {% endfor %}
-  <div class="caption-band">
+  <div class="fade-overlay" aria-hidden="true"></div>
+</div>
+
+<div class="caption-band">
   <div class="dot-container">
     {% for slide in page.slides %}
       <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
