@@ -299,33 +299,16 @@ img {
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* 矢印：普段は控えめ、ホバーで強調 */
-.prev-slide, .next-slide {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 20px;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
-  font-size: 2rem;
-  transition: 0.3s;
-  user-select: none;
-  text-decoration: none;
-  transform: translateY(-50%);
-}
-.next-slide { right: 0; }
-.prev-slide:hover, .next-slide:hover {
-  color: #fff;
-  background: rgba(0,0,0,0.1);
-}
-
-/* ドット：さらに小さく、主張を抑える */
+/* ドット：中央下側に控えめに配置 */
 .dot-container {
   position: absolute;
   bottom: 20px;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  z-index: 4;
 }
+
 .dot {
   cursor: pointer;
   height: 6px;
@@ -334,8 +317,9 @@ img {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: inline-block;
-  transition: 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
+
 .dot.active, .dot:hover {
   background-color: #fff;
   transform: scale(1.2);
