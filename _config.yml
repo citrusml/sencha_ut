@@ -1,0 +1,7 @@
+title: 東京大学薫風流煎茶同好会
+email: your-email@example.com
+description: >- # サイトの説明
+  煎茶道サークルの公式サイトです。活動内容やブログを発信しています。
+baseurl: "/sencha_ut" 
+url: "https://citrusml.github.io"
+theme: minima 
