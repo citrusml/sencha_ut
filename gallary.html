@@ -118,7 +118,7 @@ title: Gallery
       prevBtn.disabled = nextBtn.disabled = true;
       return;
     }
-    indicator.innerText = `Page ${currentPage} / ${maxPage}`;
+    indicator.innerText = `${currentPage} / ${maxPage}`;
     prevBtn.disabled = (currentPage === 1);
     nextBtn.disabled = (currentPage === maxPage);
   }
