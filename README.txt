@@ -13,5 +13,5 @@ my-circle-site/
 ├── index.html           # ⑤ Home（Twitter埋め込み）
 ├── about.md             # ⑥ 煎茶道について
 ├── activities.md        # ⑦ 活動内容
-├── blog.html            # ⑧ Blog一覧（サムネイル表示）
+├── gallary.html         # ⑧ gallary
 └── join.md              # ⑨ Join us

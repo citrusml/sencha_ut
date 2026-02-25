@@ -1,0 +1,125 @@
+---
+layout: default
+title: Gallery
+---
+
+<div class="container my-5 max-width-1200">
+  <div class="tag-container mb-5 text-center">
+    <button class="tag-filter-btn active" onclick="filterBy('all')">All</button>
+    {% for tag in site.tags %}
+      {% assign tag_name = tag[0] %}
+      <button class="tag-filter-btn" onclick="filterBy('{{ tag_name }}')">
+        #{{ tag_name }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4" id="blog-posts">
+    {% for post in site.posts %}
+      <div class="col post-item" data-tags="{{ post.tags | join: ',' }}">
+        <div class="card h-100 border-0 shadow-sm custom-gallery-card">
+          
+          {% if post.image %}
+          <div class="gallery-thumbnail">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+          </div>
+          {% endif %}
+
+          <div class="card-body">
+            <div class="post-tags-display mb-2">
+              {% for tag in post.tags %}
+                <span class="tag-badge" onclick="event.stopPropagation(); filterBy('{{ tag }}')">#{{ tag }}</span>
+              {% endfor %}
+            </div>
+
+            <div class="post-meta small text-muted mb-1">
+              {{ post.date | date: "%Y.%m.%d" }}
+            </div>
+
+            <h5 class="post-title">{{ post.title }}</h5>
+            
+            <div class="post-excerpt small text-secondary">
+              {{ post.content | strip_html | truncate: 150 }}
+            </div>
+            
+            <a href="{{ post.url | relative_url }}" class="stretched-link"></a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div id="pagination-controls" class="mt-5 text-center">
+    <button id="prevBtn" class="pagination-btn" onclick="changePage(-1)">❮ Prev</button>
+    <span id="pageIndicator" class="mx-3">Page 1</span>
+    <button id="nextBtn" class="pagination-btn" onclick="changePage(1)">Next ❯</button>
+  </div>
+</div>
+
+
+<script>
+  /* JS部分は元のblog.htmlのロジックを100%継承 */
+  const itemsPerPage = 6; // ギャラリーなので1ページ6〜9枚が見やすいです
+  let currentPage = 1;
+  let currentFilteredPosts = [];
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const allPosts = Array.from(document.getElementsByClassName('post-item'));
+    currentFilteredPosts = allPosts;
+    renderPage();
+  });
+
+  function filterBy(tagName) {
+    const allPosts = Array.from(document.getElementsByClassName('post-item'));
+    const buttons = document.getElementsByClassName('tag-filter-btn');
+
+    for (let btn of buttons) {
+      btn.classList.remove('active');
+      if (tagName === 'all' && btn.innerText === 'All') btn.classList.add('active');
+      else if (btn.innerText.includes(tagName)) btn.classList.add('active');
+    }
+
+    currentFilteredPosts = (tagName === 'all') 
+      ? allPosts 
+      : allPosts.filter(post => post.getAttribute('data-tags').split(',').includes(tagName));
+
+    currentPage = 1;
+    renderPage();
+  }
+
+  function changePage(direction) {
+    const maxPage = Math.ceil(currentFilteredPosts.length / itemsPerPage);
+    if (currentPage + direction >= 1 && currentPage + direction <= maxPage) {
+      currentPage += direction;
+      renderPage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function renderPage() {
+    const allPosts = Array.from(document.getElementsByClassName('post-item'));
+    allPosts.forEach(post => post.style.display = 'none');
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const postsToShow = currentFilteredPosts.slice(startIndex, startIndex + itemsPerPage);
+    postsToShow.forEach(post => post.style.display = 'block'); // FlexからBlockに変更（Bootstrap Grid用）
+
+    updatePaginationControls();
+  }
+
+  function updatePaginationControls() {
+    const maxPage = Math.ceil(currentFilteredPosts.length / itemsPerPage);
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicator = document.getElementById('pageIndicator');
+
+    if (maxPage === 0) {
+      indicator.innerText = "記事がありません";
+      prevBtn.disabled = nextBtn.disabled = true;
+      return;
+    }
+    indicator.innerText = `${currentPage} / ${maxPage}`;
+    prevBtn.disabled = (currentPage === 1);
+    nextBtn.disabled = (currentPage === maxPage);
+  }
+</script>
