@@ -237,7 +237,7 @@ img {
 .slideshow-container {
   position: relative;
   max-width: 100%;
-  height: 70vh; /* 画面の7割程度 */
+  height: 65vh; /* スクロール誘発のため中途半端に */
   margin: 0;
   overflow: hidden;
   background-color: var(--color-bg); /* サイトの背景色 */
@@ -259,6 +259,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* 枠いっぱいに広げる */
+  object-position: center center;
   filter: brightness(0.9); /* 少し暗くして文字を浮かせる */
 }
 
@@ -281,22 +282,20 @@ img {
   z-index: 5;
 }
 
-/* キャプション：中央下部に控えめに配置 */
-.slide-caption {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+/* キャプション帯 */
+.caption-band {
+  background-color: rgba(252, 250, 242, 0.8); /* 半透明な生成り色 */
+  padding: 40px 20px 10px;
   text-align: center;
-  width: 80%;
+  position: relative;
 }
 
 .caption-text {
-  color: #fff;
+  color: var(--color-text);
   font-family: "Shippori Mincho", serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.15em;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  display: block;
 }
 
 /* ドット：中央下側に控えめに配置 */
@@ -333,19 +332,20 @@ img {
 
 @media (max-width: 768px) {
   .slideshow-container {
-    height: 50vh; /* スマホでは高さを控えめにする（写真の左右切れを軽減） */
+    height: 55vh; /* スマホでは高さを控えめにする（写真の左右切れを軽減） */
     background-color: var(--color-bg); /* 背景を生成り色に */
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .mySlides img {
     height: 100%;
     width: 100%;
-    object-fit: contain; /* 写真全体を表示（背景が出る）か、お好みで cover のまま高さを調整 */
+    object-fit: cover; /* 写真全体を表示（背景が出る）か、お好みで cover のまま高さを調整 */
+    object-position: center center;
   }
 
   .caption-text {
     font-size: 1.1rem; /* スマホに合わせて文字を少し小さく */
-    width: 90%;
-    bottom: 5%;
   }
 }

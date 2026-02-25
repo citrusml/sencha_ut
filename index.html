@@ -13,19 +13,15 @@ slides:
   {% for slide in page.slides %}
     <div class="mySlides">
       <img src="{{ slide.image | relative_url }}" alt="{{ slide.caption }}">
-      {% if slide.caption %}
-        <div class="slide-caption">
-          <span class="caption-text">{{ slide.caption }}</span>
-        </div>
-      {% endif %}
     </div>
   {% endfor %}
+  <div class="caption-band">
   <div class="dot-container">
     {% for slide in page.slides %}
       <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
     {% endfor %}
   </div>
-  <div class="fade-overlay" aria-hidden="true"></div>
+  <span class="caption-text"></span>
 </div>
 
 <div class="container my-5 px-4" style="max-width: 1400px;">
@@ -74,9 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
   slides = Array.from(document.querySelectorAll('.mySlides'));
   dots = Array.from(document.querySelectorAll('.dot'));
   overlay = document.querySelector('.fade-overlay');
+  const captionText = document.querySelector('.caption-text');
   if (!slides.length) return;
   slides.forEach((s, i) => { s.style.display = 'block'; if (i === 0) s.classList.add('active'); });
   dots[0].classList.add('active');
+  captionText.innerText = slides[0].querySelector('img').alt;
   overlay && (overlay.style.opacity = '0', overlay.style.transition = `opacity ${HALF}ms ease-in-out`);
   slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
 });
@@ -102,6 +100,8 @@ function gotoSlide(target) {
     slides.forEach(s => s.classList.remove('active'));
     neu.classList.add('active');
     slideIndex = target;
+    const captionText = document.querySelector('.caption-text');
+    captionText.innerText = neu.querySelector('img').alt;
     animating = false;
     slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
   }, TRANS);
