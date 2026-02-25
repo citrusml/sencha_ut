@@ -321,8 +321,9 @@ img {
 }
 
 .dot.active, .dot:hover {
-  background-color: #fff;
+  background-color: var(--color-bg);
   transform: scale(1.2);
+  opacity: 0.8;
 }
 
 /* スマホ対応 */
