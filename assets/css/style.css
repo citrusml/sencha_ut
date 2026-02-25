@@ -233,7 +233,7 @@ img {
 /* ユーティリティ */
 .max-width-1200 { max-width: 1200px; }
 
-/* === スライドショー全体の洗練 === */
+/* === スライドショー全体 === */
 .slideshow-container {
   position: relative;
   max-width: 100%;
@@ -243,9 +243,17 @@ img {
   background-color: #000; /* 画像読み込み前のチラつき防止 */
 }
 
+/* スライド（重ねて配置し、transformで動かす） */
 .mySlides {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(.2,.8,.2,1), opacity 0.8s cubic-bezier(.2,.8,.2,1);
+  will-change: transform, opacity;
 }
 
 .mySlides img {
@@ -254,6 +262,23 @@ img {
   object-fit: cover; /* 枠いっぱいに広げる */
   filter: brightness(0.9); /* 少し暗くして文字を浮かせる */
 }
+
+/* 表示中スライド */
+.mySlides.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* 新しいスライドが右から入る */
+.mySlides.enter-right { transform: translateX(0); opacity: 1; z-index: 3; }
+/* 古いスライドが左へ抜ける */
+.mySlides.exit-left { transform: translateX(-100%); opacity: 0; z-index: 1; }
+
+/* 新しいスライドが左から入る（逆方向） */
+.mySlides.enter-left { transform: translateX(0); opacity: 1; z-index: 3; }
+/* 古いスライドが右へ抜ける（逆方向） */
+.mySlides.exit-right { transform: translateX(100%); opacity: 0; z-index: 1; }
 
 /* キャプション：中央下部に控えめに配置 */
 .slide-caption {
@@ -314,14 +339,6 @@ img {
   background-color: #fff;
   transform: scale(1.2);
 }
-
-/* フェードアニメーション */
-.fade-animation {
-  animation: fadeEffect 1.5s ease-in-out;
-}
-@keyframes fadeEffect {
-  from { opacity: 0.4; }
-  to { opacity: 1; }
 }
 
 /* スマホ対応 */
