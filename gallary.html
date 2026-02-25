@@ -3,8 +3,11 @@ layout: default
 title: Gallery
 ---
 
-<div class="container my-5 max-width-1200">
-  <div class="tag-container mb-5 text-center">
+<div class="container my-5" style="max-width: 1200px;">
+  <h1 class="mb-5">{{ page.title }}</h1>
+
+  <div class="container max-width-1200">
+    <div class="tag-container mb-5 text-center">
     <button class="tag-filter-btn active" onclick="filterBy('all')">All</button>
     {% for tag in site.tags %}
       {% assign tag_name = tag[0] %}
@@ -49,10 +52,11 @@ title: Gallery
     {% endfor %}
   </div>
 
-  <div id="pagination-controls" class="mt-5 text-center">
-    <button id="prevBtn" class="pagination-btn" onclick="changePage(-1)">❮ 前</button>
-    <span id="pageIndicator" class="mx-3">1</span>
-    <button id="nextBtn" class="pagination-btn" onclick="changePage(1)">後 ❯</button>
+    <div id="pagination-controls" class="mt-5 text-center">
+      <button id="prevBtn" class="pagination-btn" onclick="changePage(-1)">❮ 前</button>
+      <span id="pageIndicator" class="mx-3">1</span>
+      <button id="nextBtn" class="pagination-btn" onclick="changePage(1)">後 ❯</button>
+    </div>
   </div>
 </div>
 
