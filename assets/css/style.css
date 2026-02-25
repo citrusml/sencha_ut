@@ -317,7 +317,7 @@ img {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.1s, transform 0.1s;
 }
 
 .dot.active, .dot:hover {
