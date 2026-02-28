@@ -44,55 +44,6 @@ img {
   height: auto;
 }
 
-/* --- トップページの背景写真エリア (Hero Section) --- */
-.hero-section {
-  /* 1. 背景写真の指定 */
-  background-image: url('/assets/images/slide/slide01.jpg');
-  /* 写真が見つからない時の色（お茶っぽい色） */
-  background-color: var(--hero-fallback);
-
-  /* 2. 写真の表示設定 */
-  background-size: cover;   /* 枠に合わせて写真を拡大縮小（隙間なく埋める） */
-  background-position: center center; /* 写真の中央を表示 */
-  background-repeat: no-repeat;
-
-  /* 3. 高さの設定 */
-  height: 400px;            /* お好みで調整してください */
-  display: flex;            /* 中身（文字）を配置しやすくする */
-  align-items: center;      /* 上下中央揃え */
-  justify-content: center;  /* 左右中央揃え */
-  position: relative;       /* 文字の下にフィルターを敷くための準備 */
-}
-
-/* 写真の上にフィルター（暗い幕）をかけて文字を見やすくする */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* fallback for older browsers */
-  background-color: color-mix(in srgb, black 40%, transparent); /* 黒色で透明度40% */
-}
-
-/* 写真の上の文字を「白」にして読みやすくする設定 */
-.hero-content {
-  text-align: center;
-  color: #ffffff; /* 白文字 */
-  position: relative;
-  z-index: 1;
-  padding: 20px;
-}
-.hero-content h1 {
-  margin-top: 0;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* fallback */
-  text-shadow: 2px 2px 4px color-mix(in srgb, black 50%, transparent);
-}
-.hero-content p {
-  font-size: 1.1em;
-  margin: 10px 0;
-}
-
 /* === 共通ユーティリティ（可読性・一貫性を重視） === */
 /* 最小限のユーティリティのみを定義。命名は短く、既存変数を利用。 */
 .max-width-1400 { max-width: 1400px; }
@@ -127,7 +78,7 @@ img {
 .navbar-brand {
   font-family: "Shippori Mincho", serif;
   font-weight: bold;
-  color: var(--accent-dark) !important; /* 抹茶色 */
+  color: var(--accent-dark) !important;
   font-size: 1.5rem;
 }
 .nav-link {
@@ -142,7 +93,7 @@ img {
 
 /* === ハンバーガーメニューの中身 === */
 .navbar-collapse {
-  background-color: #fcfaf2; /* スマホで開いたときの背景色 */
+  background-color: var(--color-bg);
 }
 
 /* === ボタンの色を抹茶色にする === */
@@ -207,7 +158,7 @@ img {
 }
 .tag-badge:hover {
   background: var(--accent);
-  color: #fff;
+  color: var(--white);
 }
 
 /* 元のBlogのスタイルとの競合調整 */
@@ -230,12 +181,12 @@ img {
 }
 .tag-filter-btn:hover {
   background: var(--accent);
-  color: #fff;
+  color: var(--white);
 }
 .tag-filter-btn.active {
   background-color: var(--hero-fallback) !important;
   border-color: var(--hero-fallback) !important;
-  color: #fff !important;
+  color: var(--white) !important;
 }
 
 /* ページ遷移ボタンは簡素でアニメーションなし */
@@ -316,8 +267,8 @@ img {
   padding: 12px 16px;
   box-sizing: border-box;
   /* 背景（fallback + modern）: 生成り色を半透明にする */
-  background-color: rgba(252, 250, 242, 0.8); /* fallback */
-  background-color: color-mix(in srgb, #fcfaf2 80%, transparent);
+  background-color: rgba(252, 250, 242, 0.6); /* fallback */
+  background-color: color-mix(in srgb, var(--color-bg) 60%, transparent);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -353,7 +304,7 @@ img {
   width: 6px;
   margin: 3px;
   background-color: rgba(255, 255, 255, 0.3); /* fallback */
-  background-color: color-mix(in srgb, white 30%, transparent);
+  background-color: color-mix(in srgb, var(--white) 30%, transparent);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.1s, transform 0.1s;
@@ -361,7 +312,7 @@ img {
 
 .dot.active, .dot:hover {
   background-color: rgba(255, 255, 255, 0.7); /* fallback */
-  background-color: color-mix(in srgb, white 70%, transparent);
+  background-color: color-mix(in srgb, var(--white) 70%, transparent);
   transform: scale(1.2);
 }
 
