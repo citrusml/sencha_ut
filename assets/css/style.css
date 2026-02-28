@@ -1,3 +1,13 @@
+  /* === style.css 目次 === */
+  /*
+    Sections:
+      1. 全体設定 (variables)
+      2. レイアウト / 基本 (body, wrapper, img)
+      3. コンポーネント (hero, navbar, cards)
+      4. ユーティリティ (短い helper クラス)
+      5. ページ固有の補助スタイル
+  */
+
 /* === 全体設定 === */
 :root {
   /* カラーパレット */
@@ -81,15 +91,16 @@ img {
   margin: 10px 0;
 }
 
-/* === ナビゲーションバー === */
-
-/* === ユーティリティクラス（インラインスタイルの代替） === */
-/* 既存のCSS変数を活用して色や幅を統一 */
+/* === 共通ユーティリティ（可読性・一貫性を重視） === */
+/* 最小限のユーティリティのみを定義。命名は短く、既存変数を利用。 */
 .max-width-1400 { max-width: 1400px; }
 .max-width-1200 { max-width: 1200px; }
 .font-shippori { font-family: 'Shippori Mincho', serif; }
 .color-accent-dark { color: var(--accent-dark) !important; }
 .border-color-default { border-color: var(--color-border) !important; }
+
+/* 追加の軽量ユーティリティ（将来的に増やす場合はここへ） */
+.text-muted-soft { color: var(--muted); }
 
 /* === ナビゲーションバー === */
 .navbar {
@@ -241,9 +252,6 @@ img {
   cursor: default;
 }
 
-/* ユーティリティ */
-.max-width-1200 { max-width: 1200px; }
-
 /* === スライドショー全体 === */
 .slideshow-container {
   position: relative;
@@ -329,14 +337,14 @@ img {
   height: 10px;
   width: 10px;
   margin: 0 5px;
-  background-color: rgba(var(--white), 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.1s, transform 0.1s;
 }
 
 .dot.active, .dot:hover {
-  background-color: rgba(var(--white), 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   transform: scale(1.2);
 }
 
