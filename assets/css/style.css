@@ -315,6 +315,8 @@ img {
   height: auto;
   padding: 12px 16px;
   box-sizing: border-box;
+  background-color: rgba(252, 250, 242, 0.5); /* fallback */
+  background-color: color-mix(in srgb, #fcfaf2 50%, transparent);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -327,8 +329,6 @@ img {
   font-family: "Shippori Mincho", serif;
   font-size: 1.2rem;
   letter-spacing: 0.1em;
-  background-color: rgba(252, 250, 242, 0.5); /* fallback */
-  background-color: color-mix(in srgb, #fcfaf2 50%, transparent);
   display: block;
   margin-bottom: 10px;
 }
@@ -344,7 +344,7 @@ img {
   cursor: pointer;
   height: 6px;
   width: 6px;
-  margin: 0 5px;
+  margin: 3px;
   background-color: rgba(255, 255, 255, 0.3); /* fallback */
   background-color: color-mix(in srgb, white 30%, transparent);
   border-radius: 50%;
