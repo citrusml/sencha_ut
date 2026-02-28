@@ -13,11 +13,9 @@
   /* カラーパレット */
   --color-bg: #fcfaf2; /* 生成り色 */
   --color-text: #4a4a4a;
-  --color-heading: #333333;
   --color-border: #e0dcd0;
   --accent-dark: #3d4c38; /* 濃い抹茶色 */
   --accent: #6e8e59; /* 明るい緑 */
-  --muted: #717171;
   --hero-fallback: #556b2f;
   --white: #ffffff;
 }
@@ -50,9 +48,6 @@ img {
 .color-accent-dark { color: var(--accent-dark) !important; }
 .border-color-default { border-color: var(--color-border) !important; }
 
-/* 追加の軽量ユーティリティ（将来的に増やす場合はここへ） */
-.text-muted-soft { color: var(--muted); }
-
 /* === ナビゲーションバー === */
 .navbar {
   background-color: var(--color-bg) !important; /* 背景色を強制適用 */
@@ -83,8 +78,8 @@ img {
   font-family: "Shippori Mincho", serif;
   color: var(--color-text) !important;
   font-weight: 500;
-  font-size: 1.3rem;
-  margin-left: 10px;
+  font-size: 1.1rem;
+  text-align: right;
 }
 .nav-link:hover {
   color: var(--accent) !important;
@@ -103,8 +98,8 @@ img {
 
 /* マウスを乗せたときの色 */
 .btn-primary:hover {
-  background-color: var(--accent-dark);
-  border-color: var(--accent-dark);
+  background-color: var(--hero-fallback);
+  border-color: var(--hero-fallback);
 }
 
 /* === ギャラリー専用追加スタイル === */
