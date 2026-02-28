@@ -311,7 +311,7 @@ img {
   position: absolute;
   left: 0;
   width: 100%;
-  bottom: 40px; /* ドットより上に表示 */
+  bottom: 0px; 
   height: auto;
   padding: 12px 16px;
   box-sizing: border-box;
@@ -331,7 +331,7 @@ img {
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 /* ドット：中央下側に控えめに配置 */
@@ -339,9 +339,10 @@ img {
   position: absolute;
   left: 0;
   width: 100%;
-  bottom: 10px; /* ページ最下部にドットを表示 */
-  text-align: center; /* ドットを中央揃え */
-  background: transparent; /* 背景なし */
+  bottom: 60px;
+  text-align: left;
+  padding-left: 16px;
+  background: transparent;
   z-index: 6; /* キャプションより下だがオーバーレイより前面 */
   user-select: none;
 }
