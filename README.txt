@@ -10,8 +10,8 @@ my-circle-site/
 │   ├── css/
 │   │   └── style.css    # ④ デザイン（見た目）の指定
 │   └── images/          # 画像置き場（後で自分で作ってください）
-├── index.html           # ⑤ Home（Twitter埋め込み）
+├── index.html           # ⑤ トップページ（Twitter埋め込み）
 ├── about.md             # ⑥ 煎茶道について
 ├── activities.md        # ⑦ 活動内容
-├── gallary.html         # ⑧ gallary
-└── join.md              # ⑨ Join us
+├── gallary.html         # ⑧ 投稿
+└── join.md              # ⑨ 入会

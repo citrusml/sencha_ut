@@ -2,100 +2,108 @@
 layout: default
 slides:
   - image: /assets/images/slide/slide01.jpg
-    caption: "slide1"
+    caption: "caption: slide1 / スライド１の説明文が入ります。"
   - image: /assets/images/slide/slide02.jpg
-    caption: "slide2"
+    caption: "caption: slide2 / スライド２の説明文が入ります。"
   - image: /assets/images/slide/slide03.jpg
-    caption: "slide3"
+    caption: "caption: slide3 / スライド３の説明文が入ります。"
 ---
 
 <div class="slideshow-container">
   {% for slide in page.slides %}
-    <div class="mySlides fade-animation">
-      <div class="numbertext">{{ forloop.index }} / {{ page.slides.size }}</div>
+    <div class="mySlides">
       <img src="{{ slide.image | relative_url }}" alt="{{ slide.caption }}">
-      {% if slide.caption %}
-        <div class="text">{{ slide.caption }}</div>
-      {% endif %}
     </div>
   {% endfor %}
-
-
+  <div class="fade-overlay" aria-hidden="true"></div>
   <div class="dot-container">
     {% for slide in page.slides %}
-      <span class="dot" onclick="currentSlide({{ forloop.index }})"></span>
+      <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
     {% endfor %}
+  </div>
+  <div class="caption-band">
+    <span class="caption-text"></span>
   </div>
 </div>
 
-<div class="container my-5 px-4" style="max-width: 1400px;">
+<div class="container my-5 px-4 max-width-1400">
   <div class="row">
-    
     <div class="col-lg-8 mb-5">
       <section>
-        <h1 class="mb-4" style="font-family: 'Shippori Mincho', serif; color: #3d4c38;">
+        <h1 class="mb-4 font-shippori color-accent-dark">
           東京大学薫風流煎茶同好会
         </h1>
         <p class="lead">私たちは煎茶道を通じて和の心を学ぶサークルです。</p>
         
-        <h2 class="mt-5 h4 border-bottom pb-2" style="border-color: #e0dcd0 !important;">
+        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default">
           同好会について
         </h2>
         <p>煎茶道は抹茶道とは異なり、急須を使ってお茶を淹れる形式です。形式にとらわれすぎず、美味しいお茶を楽しみながら交流することを大切にしています。</p>
 
-        <h2 class="mt-5 h4 border-bottom pb-2" style="border-color: #e0dcd0 !important;">
+        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default">
           新入会員募集中！
         </h2>
         <p>学年を問わず、いつでも入会を歓迎しています。興味のある方はぜひ一度、活動を見学しに来てください。</p>
         
-        <a href="{{ site.baseurl }}/join" class="btn btn-primary mt-3 px-4 py-2">
-          Join Us
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDgwt1NRr3VjFQWRRHcoDHQk0cEfMALcyW85fdFETo_kzOKA/viewform" target="_blank" class="btn btn-primary mt-3 px-4 py-2">
+          見学希望フォーム(26年度版)
         </a>
       </section>
     </div>
-
-    <div class="col-lg-4">
-      <div class="p-4 bg-white rounded shadow-sm border" style="border-color: #e0dcd0 !important;">
-        <h3 class="h5 mb-3 text-center" style="color: #3d4c38;">📢 Latest News</h3>
-        <div class="twitter-container">
-          <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ほうじ茶のお稽古が始まりました。すっかり冬ですね❄️<br>このお手前では、自分で茶葉を焙じます。茶葉を煎る際の音やふわりと立つ香りで焙じ具合を見極めます。<br>部屋いっぱいに広がる香ばしい香りに、とても幸せな気分になりました🍵【A. N. 】 <a href="https://t.co/qacqhX5Agw">pic.twitter.com/qacqhX5Agw</a></p>&mdash; 東京大学薫風流煎茶同好会 (@sencha_ut) <a href="https://twitter.com/sencha_ut/status/1997507813820727519?ref_src=twsrc%5Etfw">December 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-      </div>
-    </div>
+    <div class="col-lg-4 twitter-container">
+    <!-- 最新のツイートを自動取得する仕組みにしたい。 -->
+    <a class="twitter-timeline" data-tweet-limit="1" href="https://twitter.com/sencha_ut?ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">Tweets by @sencha_ut</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- <div class="twitter-container">
+      <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ほうじ茶のお稽古が始まりました。すっかり冬ですね❄️<br>このお手前では、自分で茶葉を焙じます。茶葉を煎る際の音やふわりと立つ香りで焙じ具合を見極めます。<br>部屋いっぱいに広がる香ばしい香りに、とても幸せな気分になりました🍵【A. N. 】 <a href="https://t.co/qacqhX5Agw" target="_blank" rel="noopener noreferrer">pic.twitter.com/qacqhX5Agw</a></p>&mdash; 東京大学薫風流煎茶同好会 (@sencha_ut) <a href="https://twitter.com/sencha_ut/status/1997507813820727519?ref_src=twsrc%5Etfw">December 7, 2025</a></blockquote>
+    </div>   -->
   </div>
 </div>
 
 <script>
-let slideIndex = 1;
-showSlides(slideIndex);
-let slideTimer = setInterval(function(){ plusSlides(1) }, 4000); // 5秒ごとに切り替え
+const TRANS = 1500, HALF = TRANS / 2, INTERVAL = 8000;
+let slideIndex = 1, slideTimer, slides, dots, overlay, animating = false;
 
-function plusSlides(n) {
+document.addEventListener('DOMContentLoaded', () => {
+  slides = Array.from(document.querySelectorAll('.mySlides'));
+  dots = Array.from(document.querySelectorAll('.dot'));
+  overlay = document.querySelector('.fade-overlay');
+  const captionText = document.querySelector('.caption-text');
+  if (!slides.length) return;
+  slides.forEach((s, i) => { s.style.display = 'block'; if (i === 0) s.classList.add('active'); });
+  dots[0].classList.add('active');
+  captionText.innerText = slides[0].querySelector('img').alt;
+  overlay && (overlay.style.opacity = '0', overlay.style.transition = `opacity ${HALF}ms ease-in-out`);
+  slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
+});
+
+function gotoSlide(target) {
+  if (animating || !slides.length) return;
+  target = ((target - 1) % slides.length) + 1;
+  if (target === slideIndex) return;
+  animating = true;
   clearInterval(slideTimer);
-  showSlides(slideIndex += n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 4000);
+  dots.forEach((d, i) => d.classList.toggle('active', i === target - 1));
+  const old = slides[slideIndex - 1], neu = slides[target - 1];
+  neu.style.display = 'block';
+  neu.style.opacity = '0';
+  [old, neu].forEach(s => s.style.transition = `opacity ${TRANS}ms ease-in-out`);
+  neu.getBoundingClientRect();
+  overlay && (overlay.style.transition = `opacity ${HALF}ms ease-in-out`, overlay.style.opacity = '0.3');
+  requestAnimationFrame(() => { old.style.opacity = '0'; neu.style.opacity = '1'; });
+  setTimeout(() => overlay && (overlay.style.opacity = '0'), HALF);
+  setTimeout(() => {
+    old.style.display = 'none';
+    [old, neu].forEach(s => { s.style.transition = s.style.opacity = ''; });
+    slides.forEach(s => s.classList.remove('active'));
+    neu.classList.add('active');
+    slideIndex = target;
+    const captionText = document.querySelector('.caption-text');
+    captionText.innerText = neu.querySelector('img').alt;
+    animating = false;
+    slideTimer = setInterval(() => gotoSlide(slideIndex + 1), INTERVAL);
+  }, TRANS);
 }
 
-function currentSlide(n) {
-  clearInterval(slideTimer);
-  showSlides(slideIndex = n);
-  slideTimer = setInterval(function(){ plusSlides(1) }, 4000);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
+window.currentSlide = (val) => gotoSlide(typeof val === 'string' ? parseInt(val, 10) : val);
 </script>

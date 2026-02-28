@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Join Us!
+title: 入会
 ---
 
-# Join Us!
+# 入会
 
 ここに説明文を書きます。抹茶との違いや、歴史について記述します。
 

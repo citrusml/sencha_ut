@@ -16,10 +16,10 @@
 <body>
 
   <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid px-4 px-lg-5" style="max-width: 1400px;">
+    <div class="container-fluid px-4 px-lg-5 max-width-1400">
       
       <a class="navbar-brand" href="{{ site.baseurl }}/">
-        <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="ロゴ" class="navbar-logo">
+        <img src="{{ 'assets/images/doukoukai_logo_nobg.png' | relative_url }}" alt="ロゴ" class="navbar-logo">
         {{ site.title }}
       </a>
 
@@ -30,19 +30,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.baseurl }}/">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{{ site.baseurl }}/about">煎茶道について</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ site.baseurl }}/activities">活動内容</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.baseurl }}/gallary">Gallery</a>
+            <a class="nav-link" href="{{ site.baseurl }}/gallary">投稿</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.baseurl }}/join">Join us</a>
+            <a class="nav-link" href="{{ site.baseurl }}/join">入会</a>
           </li>
         </ul>
       </div>
