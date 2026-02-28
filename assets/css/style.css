@@ -82,6 +82,16 @@ img {
 }
 
 /* === ナビゲーションバー === */
+
+/* === ユーティリティクラス（インラインスタイルの代替） === */
+/* 既存のCSS変数を活用して色や幅を統一 */
+.max-width-1400 { max-width: 1400px; }
+.max-width-1200 { max-width: 1200px; }
+.font-shippori { font-family: 'Shippori Mincho', serif; }
+.color-accent-dark { color: var(--accent-dark) !important; }
+.border-color-default { border-color: var(--color-border) !important; }
+
+/* === ナビゲーションバー === */
 .navbar {
   background-color: var(--color-bg) !important; /* 背景色を強制適用 */
   border-bottom: 1px solid var(--color-border) !important;
