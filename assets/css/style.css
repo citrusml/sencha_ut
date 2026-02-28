@@ -326,7 +326,7 @@ img {
 }
 
 .dot.active, .dot:hover {
-  background-color: var(--white);
+  background-color: rgba(var(--white), 0.7);
   transform: scale(1.2);
 }
 
