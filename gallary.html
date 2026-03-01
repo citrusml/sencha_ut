@@ -24,7 +24,7 @@ title: 投稿
           
           {% if post.image %}
           <div class="gallery-thumbnail">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
           </div>
           {% endif %}
 
