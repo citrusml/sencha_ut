@@ -1,11 +1,11 @@
 title: 東京大学薫風流煎茶同好会
 description: 東京大学で活動するサークル「薫風流煎茶同好会」の公式サイトです。急須で淹れる「煎茶道」を学んでみませんか？玉露の味わいや、四季折々のお茶を楽しみながら、楽しくお稽古に励んでいます。
-url: "https://citrusml.github.io/" # ※実際の公開URLに変更してください
-baseurl: "sencha_ut/" 
+url: "https://citrusml.github.io" # ※実際の公開URLに変更してください
+baseurl: "/sencha_ut" 
 lang: ja
 author: 東京大学薫風流煎茶同好会
-logo: "assets/images/doukoukai_logo_nobg.png"
-image: "assets/images/hanakuiryu.jpg"
+logo: "/assets/images/doukoukai_logo_nobg.png"
+image: "/assets/images/hanakuiryu.jpg"
 email: "sencha.shinkan@gmail.com"
 twitter:
   username: sencha_ut
@@ -13,8 +13,8 @@ twitter:
 social:
   name: 東京大学薫風流煎茶同好会
   links:
-    - https://twitter.com/sencha_ut/
-    - https://instagram.com/sencha_ut/
+    - https://twitter.com/sencha_ut
+    - https://instagram.com/sencha_ut
 theme: minima
 plugins:
   - jekyll-seo-tag
