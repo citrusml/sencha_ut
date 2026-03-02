@@ -464,7 +464,7 @@ img {
   max-width: 500px;
   /* when ratio calculation fails, fallback to min-height */
   /*aspect-ratio: 16/9;*/
-  min-height: 180px; /* ensure visible even if ratio collapses */
+  min-height: 300px; /* increase base height to match other images */
   background-color: #000;
   border-radius: 8px;
 }
@@ -515,7 +515,7 @@ img {
     max-width: 100%;
     width: 100%;
     aspect-ratio: auto;
-    min-height: 200px; /* ensure some height so slide is visible */
+    min-height: 250px; /* keep taller on mobile too */
   }
   .local-slideshow .local-slide img { object-fit: cover; }
 }
