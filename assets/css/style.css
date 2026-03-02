@@ -427,3 +427,56 @@ img {
     min-width: auto;
   }
 }
+
+/* === ローカルスライドショー（各セクション内） === */
+.local-slideshow {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  max-width: 500px;
+}
+
+.local-slide {
+  display: none;
+}
+
+.local-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.local-prev, .local-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 3;
+}
+
+.local-prev { left: 0.6rem; }
+.local-next { right: 0.6rem; }
+
+.local-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.6rem;
+  z-index: 3;
+}
+
+.local-dots .dot { display: inline-block; width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; margin: 0 4px; cursor: pointer; }
+.local-dots .dot.active { background: #fff; }
+
+/* 小さい画面ではスライドの幅を柔軟に */
+@media (max-width: 480px) {
+  .local-slideshow { max-width: 100%; }
+  .local-prev, .local-next { padding: 0.2rem 0.4rem; font-size: 1rem; }
+}
