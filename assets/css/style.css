@@ -27,6 +27,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
+  padding-left: 16px;
+  padding-right: 16px;
   line-height: 1.6;
 }
 .wrapper {
@@ -198,7 +200,7 @@ img {
   max-width: 100%;
   height: 55vh; /* default smaller for mobile */
   min-height: 300px;
-  margin: 0;
+  margin: 0 auto;
   overflow: hidden;
   background-color: var(--color-bg); /* サイトの背景色 */
 }
@@ -228,6 +230,7 @@ img {
   height: 100%;
   object-fit: cover; /* 枠いっぱいに広げる */
   object-position: center center;
+  display: block;
   filter: brightness(0.9); /* 少し暗くして文字を浮かせる */
 }
 

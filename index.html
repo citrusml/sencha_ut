@@ -194,7 +194,8 @@ function gotoSlide(target) {
   requestAnimationFrame(() => { old.style.opacity = '0'; neu.style.opacity = '1'; });
   setTimeout(() => overlay && (overlay.style.opacity = '0'), HALF);
   setTimeout(() => {
-    old.style.display = 'none';
+    slides.forEach(s => s.style.display = 'none');
+    neu.style.display = 'block';
     [old, neu].forEach(s => { s.style.transition = s.style.opacity = ''; });
     slides.forEach(s => s.classList.remove('active'));
     neu.classList.add('active');
