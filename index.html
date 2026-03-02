@@ -196,7 +196,7 @@ function gotoSlide(target) {
   setTimeout(() => {
     slides.forEach(s => s.style.display = 'none');
     neu.style.display = 'block';
-    [old, neu].forEach(s => { s.style.transition = s.style.opacity = ''; });
+    slides.forEach(s => { s.style.transition = ''; s.style.opacity = '0'; });
     slides.forEach(s => s.classList.remove('active'));
     neu.classList.add('active');
     slideIndex = target;
