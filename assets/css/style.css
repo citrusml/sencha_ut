@@ -453,6 +453,7 @@ img {
   width: 100%;        /* fill parent container */
   max-width: 500px;
   aspect-ratio: 16/9;
+  min-height: 200px; /* ensure visible even if ratio collapses */
   background-color: #000;
   border-radius: 8px;
 }
@@ -496,7 +497,8 @@ img {
   .local-slideshow {
     max-width: 100%;
     width: 100%;
-    min-height: 220px; /* ensure some height so slide is visible */
+    aspect-ratio: auto;
+    min-height: 200px; /* ensure some height so slide is visible */
   }
   .local-slideshow .local-slide img { object-fit: cover; }
 }
