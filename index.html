@@ -13,7 +13,7 @@ slides:
 <div class="slideshow-container">
   {% for slide in page.slides %}
     <div class="mySlides">
-      <img src="{{ slide.image | relative_url }}" alt="{{ slide.caption }}">
+      <img src="{{ slide.image | relative_url }}">
     </div>
   {% endfor %}
   <div class="fade-overlay" aria-hidden="true"></div>
