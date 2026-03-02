@@ -68,11 +68,9 @@ slides:
           <div class="responsive-image">
             <h3 class="image-overlay">お稽古</h3>
             <div class="local-slideshow" data-interval="5000">
-              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子.png" | relative_url }}" alt="普段のお稽古の様子"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/IMG_2576.JPG" | relative_url }}" alt="お稽古の様子2"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/IMG_2577.JPG" | relative_url }}" alt="お稽古の様子3"></div>
-              <button class="local-prev" aria-label="前の画像">‹</button>
-              <button class="local-next" aria-label="次の画像">›</button>
+              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子2.png" | relative_url }}" alt="普段のお稽古の様子"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子3.jpg" | relative_url }}" alt="お稽古の様子2"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子1.jpg" | relative_url }}" alt="お稽古の様子3"></div>
               <div class="local-dots"></div>
             </div>
           </div>
@@ -89,11 +87,9 @@ slides:
           <div class="responsive-image">
             <h3 class="image-overlay">お茶摘み・製茶体験</h3>
             <div class="local-slideshow" data-interval="6000">
-              <div class="local-slide"><img src="{{ "/assets/images/製茶体験.jpg" | relative_url }}" alt="お茶摘み・製茶体験"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/IMG_2578.JPG" | relative_url }}" alt="製茶体験2"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/sample_thumb.jpg" | relative_url }}" alt="製茶体験3"></div>
-              <button class="local-prev" aria-label="前の画像">‹</button>
-              <button class="local-next" aria-label="次の画像">›</button>
+              <div class="local-slide"><img src="{{ "/assets/images/製茶体験3.jpg" | relative_url }}" alt="お茶摘み・製茶体験"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/製茶体験2.png" | relative_url }}" alt="製茶体験2"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/製茶体験.png" | relative_url }}" alt="製茶体験3"></div>
               <div class="local-dots"></div>
             </div>
           </div>
@@ -108,7 +104,12 @@ slides:
         <div class="responsive-section mt-5">
           <div class="responsive-image">
             <h3 class="image-overlay">全国煎茶道大会</h3>
-            <img src="{{ "/assets/images/黄檗.png" | relative_url}}" alt="全国線茶道大会">
+            <div class="local-slideshow" data-interval="6000">
+              <div class="local-slide"><img src="{{ "/assets/images/黄檗3.jpg" | relative_url }}" alt="黄檗"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/黄檗2.jpg" | relative_url }}" alt="黄檗2"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/黄檗3.jpg" | relative_url }}" alt="黄檗3"></div>
+              <div class="local-dots"></div>
+            </div>
           </div>
           <div class="responsive-text">
             <p>毎年5月下旬に、京都府宇治市の黄檗山万福寺で開催される全国煎茶道大会に参加します。</p>
@@ -134,7 +135,12 @@ slides:
         <div class="responsive-section mt-5">
           <div class="responsive-image">
             <h3 class="image-overlay">東京大煎茶会</h3>
-            <img src="{{ "/assets/images/駒場祭茶会.png" | relative_url}}" alt="東京大煎茶会">
+            <div class="local-slideshow" data-interval="6000">
+              <div class="local-slide"><img src="{{ "/assets/images/大煎茶4.jpg" | relative_url }}" alt="東京大煎茶会"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/大煎茶3.jpg" | relative_url }}" alt="東京大煎茶会2"></div>
+              <div class="local-slide"><img src="{{ "/assets/images/大煎茶1.jpg" | relative_url }}" alt="東京大煎茶会3"></div>
+              <div class="local-dots"></div>
+            </div>
           </div>
           <div class="responsive-text">
             <p>
@@ -209,53 +215,46 @@ window.currentSlide = (val) => gotoSlide(typeof val === 'string' ? parseInt(val,
 document.addEventListener('DOMContentLoaded', () => {
   const slideshows = Array.from(document.querySelectorAll('.local-slideshow'));
   slideshows.forEach((slideshow) => {
-    const slides = Array.from(slideshow.querySelectorAll('.local-slide'));
-    if (!slides.length) return;
-    const dotsContainer = slideshow.querySelector('.local-dots');
-    const prev = slideshow.querySelector('.local-prev');
-    const next = slideshow.querySelector('.local-next');
-    let idx = 0;
-    let timer = null;
-    const interval = parseInt(slideshow.dataset.interval || '5000', 10);
+      const slides = Array.from(slideshow.querySelectorAll('.local-slide'));
+      if (!slides.length) return;
+      const dotsContainer = slideshow.querySelector('.local-dots');
+      let idx = 0;
+      let timer = null;
+      const interval = parseInt(slideshow.dataset.interval || '5000', 10);
 
-    // create dots
-    slides.forEach((_, i) => {
-      const d = document.createElement('span');
-      d.className = 'dot';
-      if (i === 0) d.classList.add('active');
-      d.addEventListener('click', () => show(i));
-      dotsContainer.appendChild(d);
-    });
-
-    const dotEls = Array.from(dotsContainer.querySelectorAll('.dot'));
-
-    function show(n) {
-      slides.forEach((s, i) => {
-        s.style.display = (i === n) ? 'block' : 'none';
+      // create dots
+      slides.forEach((_, i) => {
+        const d = document.createElement('span');
+        d.className = 'dot';
+        if (i === 0) d.classList.add('active');
+        d.addEventListener('click', () => { show(i); resetTimer(); });
+        dotsContainer.appendChild(d);
       });
-      dotEls.forEach((d, i) => d.classList.toggle('active', i === n));
-      idx = n;
-    }
 
-    function nextSlide() { show((idx + 1) % slides.length); }
-    function prevSlide() { show((idx - 1 + slides.length) % slides.length); }
+      const dotEls = Array.from(dotsContainer.querySelectorAll('.dot'));
 
-    // attach controls
-    next && next.addEventListener('click', () => { nextSlide(); resetTimer(); });
-    prev && prev.addEventListener('click', () => { prevSlide(); resetTimer(); });
+      function show(n) {
+        slides.forEach((s, i) => {
+          s.classList.toggle('active', i === n);
+        });
+        dotEls.forEach((d, i) => d.classList.toggle('active', i === n));
+        idx = n;
+      }
 
-    function resetTimer() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(nextSlide, interval);
-    }
+      function nextSlide() { show((idx + 1) % slides.length); }
 
-    // pause on hover
-    slideshow.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
-    slideshow.addEventListener('mouseleave', () => { resetTimer(); });
+      function resetTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(nextSlide, interval);
+      }
 
-    // initial
-    show(0);
-    resetTimer();
+      // pause on hover
+      slideshow.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+      slideshow.addEventListener('mouseleave', () => { resetTimer(); });
+
+      // initial
+      show(0);
+      resetTimer();
   });
 });
 </script>

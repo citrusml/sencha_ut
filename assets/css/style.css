@@ -436,33 +436,39 @@ img {
   max-width: 500px;
 }
 
-.local-slide {
-  display: none;
-}
-
-.local-slide img {
+/* local slideshow: overlap slides and cross-fade (like top slideshow) */
+.local-slideshow {
+  position: relative;
+  overflow: hidden;
   display: block;
-  width: 100%;
-  height: auto;
+  max-width: 500px;
+  aspect-ratio: 16/9;
+  background-color: #000;
   border-radius: 8px;
 }
 
-.local-prev, .local-next {
+.local-slide {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-  border: none;
-  padding: 0.4rem 0.6rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 4px;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 1500ms ease-in-out;
 }
 
-.local-prev { left: 0.6rem; }
-.local-next { right: 0.6rem; }
+.local-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.local-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
 
 .local-dots {
   position: absolute;
@@ -477,6 +483,5 @@ img {
 
 /* 小さい画面ではスライドの幅を柔軟に */
 @media (max-width: 480px) {
-  .local-slideshow { max-width: 100%; }
-  .local-prev, .local-next { padding: 0.2rem 0.4rem; font-size: 1rem; }
+  .local-slideshow { max-width: 100%; aspect-ratio: 4/3; }
 }
