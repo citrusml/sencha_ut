@@ -196,10 +196,19 @@ img {
 .slideshow-container {
   position: relative;
   max-width: 100%;
-  height: 65vh; /* スクロール誘発のため中途半端に */
+  height: 55vh; /* default smaller for mobile */
+  min-height: 300px;
   margin: 0;
   overflow: hidden;
   background-color: var(--color-bg); /* サイトの背景色 */
+}
+
+/* デスクトップではもう少し高さを確保 */
+@media (min-width: 992px) {
+  .slideshow-container {
+    height: 75vh;
+    min-height: 450px;
+  }
 }
 
 /* スライド（重ねて配置し、transformで動かす） */
