@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay = document.querySelector('.fade-overlay');
   const captionText = document.querySelector('.caption-text');
   if (!slides.length) return;
-  slides.forEach((s, i) => { s.style.display = 'block'; if (i === 0) s.classList.add('active'); });
+  slides.forEach((s, i) => { s.style.display = i === 0 ? 'block' : 'none'; if (i === 0) s.classList.add('active'); });
   dots[0].classList.add('active');
   captionText.innerText = slides[0].querySelector('img').alt;
   overlay && (overlay.style.opacity = '0', overlay.style.transition = `opacity ${HALF}ms ease-in-out`);
