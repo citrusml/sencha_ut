@@ -206,8 +206,8 @@ img {
 /* デスクトップではもう少し高さを確保 */
 @media (min-width: 992px) {
   .slideshow-container {
-    height: 75vh;
-    min-height: 450px;
+    height: 85vh; /* larger for desktop */
+    min-height: 600px; /* ensure enough height even on shorter windows */
   }
 }
 
@@ -492,7 +492,8 @@ img {
 
 /* 小さい画面ではスライドの幅を柔軟に */
 @media (max-width: 480px) {
-  .local-slideshow { max-width: 100%; aspect-ratio: 4/3; }
+  .local-slideshow { max-width: 100%; aspect-ratio: auto; }
+  .local-slideshow .local-slide img { object-fit: contain; }
 }
 
 /* 横並び画像用 */

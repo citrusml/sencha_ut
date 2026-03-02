@@ -21,6 +21,6 @@ title: 煎茶道・薫風流について
 薫風流のお手前では、煎茶道の基本である煎茶と玉露の他にも、<strong>四季のめぐり</strong>に合わせて幅広い種類のお茶を扱います。春には桜花で煎茶を彩った<strong>桜茶</strong>、夏にはガラス茶器との取り合わせが涼しげな水出しの<strong>冷茶</strong>、秋には焙じ茶に菊花を咲かせた<strong>菊茶</strong>、冬には焙じ茶を梅干しと結び昆布で味わい深くした<strong>大福茶</strong>といった具合に、四季それぞれに時候の風雅を取り入れたお茶を頂きます。茶道具やお茶菓子、飾り物は勿論のこと、お茶そのものにまで<strong>四季の趣向</strong>を大切にすることも薫風流の大きな魅力です。
 
 <div class="img-row">
-  <img src="{{ "/assets/images/お茶の種類1.jpg" | relative_url }}" alt="お茶の種類1">
-  <img src="{{ "/assets/images/お茶の種類2.jpg" | relative_url }}" alt="お茶の種類2">
+  <img src="{{ "/assets/images/お茶の種類1.png" | relative_url }}" alt="お茶の種類1">
+  <img src="{{ "/assets/images/お茶の種類2.png" | relative_url }}" alt="お茶の種類2">
 </div>
