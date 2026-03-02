@@ -492,8 +492,11 @@ img {
 
 /* 小さい画面ではスライドの幅を柔軟に */
 @media (max-width: 480px) {
-  .local-slideshow { max-width: 100%; aspect-ratio: auto; }
-  .local-slideshow .local-slide img { object-fit: contain; }
+  .local-slideshow {
+    max-width: 100%;
+    min-height: 180px; /* ensure some height so slide is visible */
+  }
+  .local-slideshow .local-slide img { object-fit: cover; }
 }
 
 /* 横並び画像用 */
@@ -520,8 +523,11 @@ footer {
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem; /* リンク間のスペースを拡大 */
   flex-wrap: wrap;
+}
+.footer-links a {
+  padding: 0.2rem 0.4rem; /* 各リンクに余白を追加 */
 }
 
 .footer-links a {
