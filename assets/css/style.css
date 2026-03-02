@@ -485,3 +485,20 @@ img {
 @media (max-width: 480px) {
   .local-slideshow { max-width: 100%; aspect-ratio: 4/3; }
 }
+
+/* 横並び画像用 */
+.img-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.img-row img {
+  max-width: 48%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .img-row img { max-width: 100%; }
+}
