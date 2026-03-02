@@ -371,7 +371,7 @@ img {
 /* === レスポンシブな写真と文章のレイアウト === */
 .responsive-section {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* prevent wrapping, switch via media query */
   gap: 2rem;
   align-items: flex-start;
 }
