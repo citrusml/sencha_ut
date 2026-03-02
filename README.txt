@@ -12,6 +12,6 @@ my-circle-site/
 │   └── images/          # 画像置き場（後で自分で作ってください）
 ├── index.html           # ⑤ トップページ（Twitter埋め込み）
 ├── about.md             # ⑥ 煎茶道について
-├── activities.md        # ⑦ 活動内容
+├── activities.md        # ⑦ 活動内容 <- なしにする
 ├── gallary.html         # ⑧ 投稿
 └── join.md              # ⑨ 入会
