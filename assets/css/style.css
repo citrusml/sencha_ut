@@ -379,6 +379,8 @@ img {
 /* タイトルを画像上に重ねる */
 .responsive-image {
   position: relative;
+  flex: 1 1 300px; /* allow shrinking but not below 300px ideally */
+  min-width: 0; /* allow flex items to shrink smaller than content */
 }
 
 .image-overlay {
@@ -409,8 +411,8 @@ img {
 }
 
 .responsive-text {
-  flex: 1;
-  min-width: 300px;
+  flex: 1 1 300px;
+  min-width: 0;
   order: 2; /* パソコンでは右に表示 */
 }
 
@@ -421,7 +423,7 @@ img {
 }
 
 /* スマホ対応：上に写真、下に文章 */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .responsive-section {
     flex-direction: column;
   }
@@ -429,6 +431,7 @@ img {
   .responsive-image {
     order: 1;
     min-width: auto;
+    width: 100%; /* ensure image container stretches */
   }
 
   .responsive-text {
@@ -452,8 +455,9 @@ img {
   display: block;
   width: 100%;        /* fill parent container */
   max-width: 500px;
-  aspect-ratio: 16/9;
-  min-height: 200px; /* ensure visible even if ratio collapses */
+  /* when ratio calculation fails, fallback to min-height */
+  /*aspect-ratio: 16/9;*/
+  min-height: 180px; /* ensure visible even if ratio collapses */
   background-color: #000;
   border-radius: 8px;
 }
@@ -469,6 +473,12 @@ img {
   transition: opacity 1500ms ease-in-out;
 }
 
+/* ensure at least first image is visible if JS fails/hides slides */
+.local-slide:first-child {
+  display: block;
+  opacity: 1;
+  z-index: 2;
+}
 .local-slide.active {
   opacity: 1;
   z-index: 2;
