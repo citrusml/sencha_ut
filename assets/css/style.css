@@ -450,6 +450,7 @@ img {
   position: relative;
   overflow: hidden;
   display: block;
+  width: 100%;        /* fill parent container */
   max-width: 500px;
   aspect-ratio: 16/9;
   background-color: #000;
@@ -494,7 +495,8 @@ img {
 @media (max-width: 480px) {
   .local-slideshow {
     max-width: 100%;
-    min-height: 180px; /* ensure some height so slide is visible */
+    width: 100%;
+    min-height: 220px; /* ensure some height so slide is visible */
   }
   .local-slideshow .local-slide img { object-fit: cover; }
 }
@@ -522,9 +524,12 @@ footer {
 
 .footer-links {
   display: flex;
-  justify-content: center;
-  gap: 2rem; /* リンク間のスペースを拡大 */
-  flex-wrap: wrap;
+  flex-direction: column; /* 縦並び */
+  align-items: center;
+  gap: 0.5rem; /* 各行の間隔 */
+}
+.footer-links > div {
+  margin: 0.2rem 0;
 }
 .footer-links a {
   padding: 0.2rem 0.4rem; /* 各リンクに余白を追加 */
