@@ -405,7 +405,7 @@ img {
 }
 
 .responsive-image {
-  aspect-ratio: 16/9; /* maintain fixed ratio */
+  aspect-ratio: 16/10; /* maintain fixed ratio (changed from 16/9) */
   overflow: hidden; /* clip overflowing image */
 }
 
@@ -440,7 +440,7 @@ img {
     order: 1;
     min-width: auto;
     width: 100%; /* ensure image container stretches */
-    aspect-ratio: 16/9; /* keep ratio on mobile */
+    aspect-ratio: 16/10; /* keep ratio on mobile */
   }
 
   .responsive-text {
@@ -464,7 +464,7 @@ img {
   display: block;
   width: 100%;        /* fill parent container */
   max-width: 800px;   /* allow larger slides on desktop */
-  aspect-ratio: 16/9; /* maintain consistent aspect ratio */
+  aspect-ratio: 16/10; /* maintain consistent aspect ratio */
   background-color: #000;
   border-radius: 8px;
 }
