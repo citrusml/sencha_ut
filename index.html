@@ -225,7 +225,19 @@ image: "/assets/images/hanakuiryu.jpg"
 
         function show(n) {
           slides.forEach((s, i) => {
-            s.classList.toggle('active', i === n);
+            const isActive = i === n;
+            s.classList.toggle('active', isActive);
+            // CSS の :first-child ルールが1枚目に常時 opacity:1/z-index:2 を与えるため、
+            // 非アクティブ時はインラインスタイルで上書きしてフラッシュを防ぐ
+            if (i === 0) {
+              if (!isActive) {
+                s.style.opacity = '0';
+                s.style.zIndex = '1';
+              } else {
+                s.style.removeProperty('opacity');
+                s.style.removeProperty('z-index');
+              }
+            }
           });
           dotEls.forEach((d, i) => d.classList.toggle('active', i === n));
           idx = n;
