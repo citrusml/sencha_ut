@@ -464,9 +464,7 @@ img {
   display: block;
   width: 100%;        /* fill parent container */
   max-width: 800px;   /* allow larger slides on desktop */
-  /* when ratio calculation fails, fallback to min-height */
-  /*aspect-ratio: 16/9;*/
-  min-height: 300px; /* increase base height to match other images */
+  aspect-ratio: 16/9; /* maintain consistent aspect ratio */
   background-color: #000;
   border-radius: 8px;
 }
