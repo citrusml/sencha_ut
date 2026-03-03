@@ -41,5 +41,5 @@ title: 入会・新歓
 入会を迷っている方は何度でもご見学いただけますので、お気軽にお越しください。
 
 気になる点がございましたらお気軽にお問い合わせください。
-お問い合わせ先 sencha.shinkan@gmail.com
+お問い合わせ先 sencha.shinkan[at]gmail.com
 
