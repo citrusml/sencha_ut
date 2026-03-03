@@ -480,12 +480,7 @@ img {
   transition: opacity 1500ms ease-in-out;
 }
 
-/* ensure at least first image is visible if JS fails/hides slides */
-.local-slide:first-child {
-  display: block;
-  opacity: 1;
-  z-index: 2;
-}
+
 .local-slide.active {
   opacity: 1;
   z-index: 2;
