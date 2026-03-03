@@ -1,27 +1,13 @@
 ---
 layout: default
 image: "/assets/images/hanakuiryu.jpg"
-slides:
-  - image: /assets/images/slide/slide01.jpg
-    caption: "caption: slide1 / スライド１の説明文が入ります。"
-  - image: /assets/images/slide/slide02.jpg
-    caption: "caption: slide2 / スライド２の説明文が入ります。"
-  - image: /assets/images/slide/slide03.jpg
-    caption: "caption: slide3 / スライド３の説明文が入ります。"
 ---
 
 <div class="slideshow-container">
-  {% for slide in page.slides %}
-    <div class="mySlides">
-      <img src="{{ slide.image | relative_url }}">
-    </div>
-  {% endfor %}
-  <div class="fade-overlay" aria-hidden="true"></div>
-  <div class="dot-container">
-    {% for slide in page.slides %}
-      <span class="dot" data-slide="{{ forloop.index }}" onclick="window.currentSlide(this.dataset.slide)"></span>
-    {% endfor %}
+  <div class="mySlides active">
+    <img src="/assets/images/slide/slide01.jpg" alt="スライド１">
   </div>
+  <div class="fade-overlay" aria-hidden="true"></div>
   <div class="caption-band">
     <span class="caption-text"></span>
   </div>
