@@ -3,7 +3,7 @@ layout: default
 image: "/assets/images/hanakuiryu.jpg"
 ---
 
-<div class="top-image text-center mt-2 mb-5 px-3">
+<div class="top-image text-center mt-2 mb-5 px-3" style="opacity: 0; transition: opacity 2.0s ease-in-out;">
   <img src="{{ '/assets/images/slide/slide01.jpg' | relative_url }}" alt="東京大学薫風流煎茶同好会" class="img-fluid shadow-sm" style="width: 100%; max-width: 1100px; height: 85vh; min-height: 400px; object-fit: cover; object-position: center; border-radius: 8px;" />
 </div>
 
@@ -193,6 +193,13 @@ image: "/assets/images/hanakuiryu.jpg"
       </div>
     </div>
   </div>  
+
+<!-- top-imageのフェードイン -->
+<script>
+  window.addEventListener('load', function() {
+    document.querySelector('.top-image').style.opacity = '1';
+  });
+</script>
 
   <script>
     const TRANS = 1500, HALF = TRANS / 2, INTERVAL = 8000;
