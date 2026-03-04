@@ -68,6 +68,15 @@
     border-color: var(--color-border) !important;
   }
 
+ /* 品のある写真表示用の共通クラス */
+.photo-item {
+  max-width: 700px;
+  width: 100%; /* 画面が狭いスマホでは自動で縮むようにする */
+  height: auto;
+  border-radius: 8px; /* ほんのり優しい角丸 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 上品で控えめな影 */
+}
+
   /* === ナビゲーションバー === */
   .navbar {
     background-color: var(--color-bg) !important;
