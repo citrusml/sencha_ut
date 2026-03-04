@@ -3,141 +3,184 @@ layout: default
 image: "/assets/images/hanakuiryu.jpg"
 ---
 
-<div class="hero-image">
-  <img src="{{ "/assets/images/slide/slide01.jpg" | relative_url }}" alt="工事中" class="w-100" />
+<div class="top-image text-center mt-2 mb-5 px-3" style="opacity: 0; transition: opacity 2.0s ease-in-out;">
+  <img src="{{ '/assets/images/slide/slide01.jpg' | relative_url }}" alt="東京大学薫風流煎茶同好会" class="img-fluid shadow-sm" style="width: 100%; max-width: 1100px; height: 85vh; min-height: 400px; object-fit: cover; object-position: center; border-radius: 8px;" />
 </div>
 
 <div class="container my-5 px-4 max-width-1400">
   <div class="row">
     <div class="col-lg-8 mb-5">
       <section>
-        <h1 class="mb-4 font-shippori color-accent-dark">
+        <h1 class="mb-5 font-shippori color-accent-dark border-bottom pb-3 border-color-default">
           東京大学薫風流煎茶同好会
         </h1>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default">
+        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default font-shippori">
           同好会について
         </h2>
-        <p>東京大学薫風流煎茶同好会は東大を中心としたインカレサークルです。</p>
+        <p class="mb-2">東京大学薫風流煎茶同好会は東大を中心としたインカレサークルです。</p>
         <p>
           煎茶道は、急須でお茶を淹れる茶道です。茶道と聞くと堅苦しいイメージを持つ人も多いかもしれませんが、普段のお稽古は和気あいあいと楽しく行っています。<br>
           美味しくお茶を淹れることは日常の様々な場面で活用できる一生の趣味になります。実際、薫風流煎茶同好会には、学部生はもちろん、大学院生まで幅広い学年の人が所属しています。
         </p>
+        <div class="text-end mt-2 mb-4">
+          <a href="{{ '/about/' | relative_url }}" class="text-decoration-none color-accent-dark border-bottom border-accent pb-1">
+            > 煎茶道・薫風流について <i class="fas fa-chevron-right ms-1" style="font-size: 0.8em;"></i>
+          </a>
+        </div>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default">
-          新歓情報
-        </h2>
-        <p>当同好会はサークルオリエンテーション(4/3(金), 4/5(日))に参加します。<br>
-        サークルオリエンテーションでは春ならではの桜茶を提供する予定ですので、ぜひお越しください！</p>
+        <div class="bg-accent-soft p-4 my-0 rounded shadow-sm">
+          <h2 class="mt-2 h4 border-bottom border-color-default font-shippori">
+            新歓情報
+          </h2>
+          <p class="mb-2">当同好会はサークルオリエンテーション(4/3(金)、4/5(日))に参加します。</p>
+          <p class="mb-0">
+              サークルオリエンテーションでは春ならではの桜茶を提供する予定ですので、ぜひお越しください！
+          </p>
+          <div class="text-end mt-3 mb-1">
+            <a href="{{ '/join/' | relative_url }}" class="text-decoration-none color-accent-dark border-bottom border-accent pb-1">
+              > 会費・入会までの詳しい流れはこちら <i class="fas fa-chevron-right ms-1" style="font-size: 0.8em;"></i>
+            </a>
+          </div>
+        </div>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default">
+        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default font-shippori">
           入会
         </h2>
-        <p><strong>ご入会は学年・時期を問わず受け付けています！</strong></p>
-        <p>会員の多くは大学から茶道を始めており、初心者の方も薫風流の先生や先輩が丁寧に指導します。<br>
-          どの部員も半年が過ぎるころには一人でお手前ができるようになります。<br>
+        <p class="lead text-center my-4 color-accent-dark font-shippori" style="font-size: 1.2rem;">
+          ご入会は学年・時期を問わず受け付けております！
         </p>
-        <p>また、新歓期を逃がしてしまった方や、1年生ではない方の入会も歓迎しております。<br>
-          まずはぜひ、普段のお稽古を見学しにいらしてください！
+        <p>
+          会員の多くは大学から茶道を始めており、初心者の方も薫風流の先生や先輩が丁寧に指導します。<br>
+          どの部員も半年が過ぎるころには一人でお手前ができるようになります。
         </p>
-        <p>お稽古の見学は以下のフォームからいつでも受け付けております！</p>
+        <p>
+          また、新歓期を逃がしてしまった方や、1年生ではない方の入会も歓迎しております。<br>
+          まずはぜひ、普段のお稽古を見学しにいらしてください！<br>
+          お稽古の見学は以下のフォームからいつでも受け付けております。
+        </p>
+        <div class="text-end mt-3 mb-5">
+          <a href="{{ '/join/' | relative_url }}" class="text-decoration-none color-accent-dark border-bottom border-accent pb-1">
+            > 会費・入会までの詳しい流れはこちら <i class="fas fa-chevron-right ms-1" style="font-size: 0.8em;"></i>
+          </a>
+        </div>
 
-        <a href="https://forms.gle/eUJz89aFUpFzQWmS8" target="_blank" class="btn btn-primary mt-0 px-4" aria-label="見学希望フォーム(26年度版)" rel="noopener noreferrer">
-          見学希望フォーム(26年度版)
-        </a>
+        <div class="text-center my-4">
+          <a href="https://forms.gle/eUJz89aFUpFzQWmS8" target="_blank" class="btn btn-primary px-5 py-3 rounded-pill shadow-sm" aria-label="見学希望フォーム(26年度版)" rel="noopener noreferrer">
+            見学希望フォーム(26年度版)
+          </a>
+        </div>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default">
+        <h2 class="mt-5 h4 border-bottom pb-2 border-color-default font-shippori">
           活動内容
         </h2>
-        <p>全て任意参加です。</p>
-
-        <!-- レスポンシブな写真と文章のレイアウト -->
-        <div class="responsive-section mt-5">
-          <div class="responsive-image">
-            <div class="local-slideshow" data-interval="3000">
-              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子2.jpg" | relative_url }}" alt="煎茶道1">
+        <p class="text-muted small mb-4">※全て任意参加です。</p>
+        
+        <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
+          <div class="responsive-section align-items-center">
+            <div class="responsive-image rounded overflow-hidden">
+              <div class="local-slideshow" data-interval="3000">
+                <div class="local-slide"><img src="{{ "/assets/images/slide/お稽古の様子2.jpg" | relative_url }}" alt="普段のお稽古1"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/お稽古の様子3.jpg" | relative_url }}" alt="普段のお稽古2"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/お稽古の様子.png" | relative_url }}" alt="普段のお稽古3"></div>
+                <div class="local-dots"></div>
               </div>
-              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子3.jpg" | relative_url }}" alt="煎茶道2">
+            </div>
+            <div class="responsive-text">
+              <h3 class="h5 font-shippori color-accent-dark mb-3">普段のお稽古</h3>
+              <p class="small text-muted mb-2">
+                お稽古は通常、木曜日の5限後(18時50分〜21時)と土曜日(9時〜17時)に行っております。
+              </p>
+              <p class="small text-muted mb-2">
+                先生をお招きし、煎茶や玉露を中心としながら、季節に応じて様々なお手前を練習しています。お菓子と共に、和気あいあいと楽しくお茶を淹れています。
+              </p>
+              <p class="small text-muted mb-0">
+                長期休暇中のお稽古はお休みですが、休暇明け直前に3日程度の集中稽古を行います。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
+          <div class="responsive-section align-items-center">
+            <div class="responsive-image rounded overflow-hidden">
+              <div class="local-slideshow" data-interval="3000">
+                <div class="local-slide"><img src="{{ "/assets/images/slide/製茶体験3.png" | relative_url }}" alt="お茶摘み・製茶体験1"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/製茶体験2.png" | relative_url }}" alt="お茶摘み・製茶体験2"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/製茶体験.jpg" | relative_url }}" alt="お茶摘み・製茶体験3"></div>
+                <div class="local-dots"></div>
               </div>
-              <div class="local-slide"><img src="{{ "/assets/images/お稽古の様子.png" | relative_url }}" alt="煎茶道3"></div>
-              <div class="local-dots"></div>
             </div>
-          </div>
-          <div class="responsive-text">
-            <h3>普段のお稽古</h3>
-            <p>
-              お稽古は通常、木曜日の5限後(18時50分〜21時)と土曜日(9時〜17時)に行っております。<br>
-              先生をお招きし、煎茶や玉露を中心としながら、季節に応じて様々なお手前を練習しています。お菓子と共に、和気あいあいと楽しくお茶を淹れています。<br>
-              長期休暇中のお稽古はお休みですが、休暇明け直前に3日程度の集中稽古を行います。
-            </p>
+            <div class="responsive-text">
+              <h3 class="h5 font-shippori color-accent-dark mb-3">お茶摘み・製茶体験</h3>
+              <p class="small text-muted mb-2">
+                ゴールデンウィーク頃に、お茶摘みと製茶の体験を行います。
+              </p>
+              <p class="small text-muted mb-0">
+                普段飲んでいるお茶がどのようにして出来上がるのかを身をもって実感します。自分で製茶したお茶と普段使っているお茶との味の違いに驚くこともあります。
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="responsive-section mt-5">
-          <div class="responsive-image">
-            <div class="local-slideshow" data-interval="3000">
-              <div class="local-slide"><img src="{{ "/assets/images/製茶体験3.png" | relative_url }}" alt="お茶摘み・製茶体験">
+        <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
+          <div class="responsive-section align-items-center">
+            <div class="responsive-image rounded overflow-hidden">
+              <div class="local-slideshow" data-interval="3000">
+                <div class="local-slide"><img src="{{ "/assets/images/slide/黄檗4.jpg" | relative_url }}" alt="全国煎茶道大会1"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/黄檗3.jpg" | relative_url }}" alt="全国煎茶道大会2"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/黄檗2.jpg" | relative_url }}" alt="全国煎茶道大会3"></div>
+                <div class="local-dots"></div>
               </div>
-              <div class="local-slide"><img src="{{ "/assets/images/製茶体験2.png" | relative_url }}" alt="製茶体験2"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/製茶体験.jpg" | relative_url }}" alt="製茶体験3"></div>
-              <div class="local-dots"></div>
             </div>
-          </div>
-          <div class="responsive-text">
-            <h3>お茶摘み・製茶体験</h3>
-            <p>
-              ゴールデンウィーク頃に、お茶摘みと製茶の体験を行います。<br>
-              普段飲んでいるお茶がどのようにして出来上がるのかを身をもって実感します。自分で製茶したお茶と普段使っているお茶との味の違いに驚くこともあります。
-            </p>
+            <div class="responsive-text">
+              <h3 class="h5 font-shippori color-accent-dark mb-3">全国煎茶道大会</h3>
+              <p class="small text-muted mb-2">
+                5月下旬に、京都府宇治市の黄檗山万福寺で開催される全国煎茶道大会に参加します。
+              </p>
+              <p class="small text-muted mb-0">
+                他の流派のお手前を知る貴重な機会です。京都への遠征となるため、同好会での旅行として楽しむことも兼ねています。
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="responsive-section mt-5">
-          <div class="responsive-image">
-            <div class="local-slideshow" data-interval="3000">
-              <div class="local-slide"><img src="{{ "/assets/images/黄檗4.jpg" | relative_url }}" alt="黄檗"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/黄檗3.jpg" | relative_url }}" alt="黄檗2"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/黄檗2.jpg" | relative_url }}" alt="黄檗3"></div>
-              <div class="local-dots"></div>
+        <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
+          <div class="responsive-section align-items-center">
+            <div class="responsive-image rounded overflow-hidden">
+              <img src="{{ "/assets/images/slide/駒場祭茶会.png" | relative_url}}" alt="駒場祭茶会">
             </div>
-          </div>
-          <div class="responsive-text">
-            <h3>全国煎茶道大会</h3>
-            <p>
-              5月下旬に、京都府宇治市の黄檗山万福寺で開催される全国煎茶道大会に参加します。<br>
-              他の流派のお手前を知る貴重な機会です。京都への遠征となるため、同好会での旅行として楽しむことも兼ねています。
-            </p>
+            <div class="responsive-text">
+              <h3 class="h5 font-shippori color-accent-dark mb-3">駒場祭茶会</h3>
+              <p class="small text-muted mb-2">
+                11月下旬に、東京大学駒場キャンパスで行われる駒場祭でお茶会を開催します。
+              </p>
+              <p class="small text-muted mb-0">
+                1年生が人前で初めてお手前を披露する機会でもあり、初年度は駒場祭茶会を目標としてお稽古を行います。
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="responsive-section mt-5">
-          <div class="responsive-image">
-            <img src="{{ "/assets/images/駒場祭茶会.png" | relative_url}}" alt="駒場祭茶会">
-          </div>
-          <div class="responsive-text">
-            <h3>駒場祭茶会</h3>
-            <p>
-              11月下旬に、東京大学駒場キャンパスで行われる駒場祭でお茶会を開催します。<br>
-              1年生が人前で初めてお手前を披露する機会でもあり、初年度は駒場祭茶会を目標としてお稽古を行います。
-            </p>
-          </div>
-        </div>
-
-        <div class="responsive-section mt-5">
-          <div class="responsive-image">
-            <div class="local-slideshow" data-interval="3000">
-              <div class="local-slide"><img src="{{ "/assets/images/大煎茶4.png" | relative_url }}" alt="東京大煎茶会"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/大煎茶3.jpg" | relative_url }}" alt="東京大煎茶会2"></div>
-              <div class="local-slide"><img src="{{ "/assets/images/大煎茶1.jpg" | relative_url }}" alt="東京大煎茶会3"></div>
-              <div class="local-dots"></div>
+        <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
+          <div class="responsive-section align-items-center">
+            <div class="responsive-image rounded overflow-hidden">
+              <div class="local-slideshow" data-interval="3000">
+                <div class="local-slide"><img src="{{ "/assets/images/slide/大煎茶4.png" | relative_url }}" alt="東京大煎茶会1"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/大煎茶3.jpg" | relative_url }}" alt="東京大煎茶会2"></div>
+                <div class="local-slide"><img src="{{ "/assets/images/slide/大煎茶1.jpg" | relative_url }}" alt="東京大煎茶会3"></div>
+                <div class="local-dots"></div>
+              </div>
             </div>
-          </div>
-          <div class="responsive-text">
-            <h3>東京大煎茶会</h3>
-            <p>
-              11月下旬に、東京都新橋で開催される東京大煎茶会に参加します。<br>
-              全国煎茶道大会と同様に、他の流派のお手前を知る貴重な機会です。ここで新しくお道具を購入する1年生もいます。
-            </p>
+            <div class="responsive-text">
+              <h3 class="h5 font-shippori color-accent-dark mb-3">東京大煎茶会</h3>
+              <p class="small text-muted mb-2">
+                11月下旬に、東京都新橋で開催される東京大煎茶会に参加します。
+              </p>
+              <p class="small text-muted mb-0">
+                全国煎茶道大会と同様に、他の流派のお手前を知る貴重な機会です。ここで新しくお道具を購入する1年生もいます。
+              </p>
+            </div>
           </div>
         </div>
 
@@ -150,6 +193,13 @@ image: "/assets/images/hanakuiryu.jpg"
       </div>
     </div>
   </div>  
+
+<!-- top-imageのフェードイン -->
+<script>
+  window.addEventListener('load', function() {
+    document.querySelector('.top-image').style.opacity = '1';
+  });
+</script>
 
   <script>
     const TRANS = 1500, HALF = TRANS / 2, INTERVAL = 8000;

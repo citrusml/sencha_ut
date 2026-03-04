@@ -51,23 +51,23 @@
   .max-width-1400 {
     max-width: 1400px;
   }
-
   .max-width-1200 {
     max-width: 1200px;
   }
-
   .font-shippori {
     font-family: 'Shippori Mincho', serif;
   }
-
   .color-accent-dark {
     color: var(--accent-dark) !important;
   }
-
   .border-color-default {
     border-color: var(--color-border) !important;
   }
 
+/* カード風淡いお茶色（アクセントカラーの20%）の背景 */
+.bg-accent-soft {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent 20%);
+}
  /* 品のある写真表示用の共通クラス */
 .photo-item {
   max-width: 700px;
@@ -75,6 +75,7 @@
   height: auto;
   border-radius: 8px; /* ほんのり優しい角丸 */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 上品で控えめな影 */
+  user-select: none; /* 写真のテキスト選択を防止 */
 }
 
   /* === ナビゲーションバー === */
@@ -126,6 +127,43 @@
   .navbar-collapse {
     background-color: var(--color-bg);
   }
+/* === フェードで切り替わるハンバーガーアイコン === */
+  .custom-fade-toggler {
+    position: relative;
+    width: 34px;  /* タップしやすいように少しだけ枠に余裕を持たせる */
+    height: 34px;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* 2つのアイコンを全く同じ位置（ど真ん中）に重ねる */
+  .fade-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 18px;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.1s ease; /* ふわっとフェードさせる魔法 */
+  }
+
+  /* 線の基本デザイン */
+  .toggler-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-dark);
+    border-radius: 2px;
+  }
+
+  /* ーーー ここから入れ替え ーーー */
+  /* 初期状態：3本線は見えて、×は透明 */
+  .icon-menu { opacity: 1; }
+  .icon-close { opacity: 0; }
+  /* 展開時（aria-expanded="true"）：3本線が透明になり、×が浮かび上がる */
+  .navbar-toggler[aria-expanded="true"] .icon-menu { opacity: 0; }
+  .navbar-toggler[aria-expanded="true"] .icon-close { opacity: 1; }
 
   /* === ボタン === */
   .btn-primary {
@@ -426,8 +464,8 @@
     /* === スマホ向け：ナビゲーションバーを1行に収める調整 === */
     /* 1. ブランド名（文字とロゴ）のエリアが幅を取りすぎないようにする */
     .navbar-brand {
-      font-size: 1.1rem;
-      /* スマホでは文字を少し小さく（1.5rem → 1.1rem） */
+      font-size: 1.3rem;
+      /* スマホでは文字を少し小さく（1.5rem → 1.3rem） */
       white-space: nowrap;
       /* 画面が狭くても文字を絶対に改行させない */
       max-width: calc(100% - 65px);
@@ -558,6 +596,7 @@
     }
 
     .responsive-text {
+      flex: 1 1 auto;
       order: 2;
       min-width: auto;
     }

@@ -23,12 +23,21 @@
         {{ site.title }}
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <button class="navbar-toggler p-2 border-0 shadow-none custom-fade-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fade-icon icon-menu">
+          <span class="toggler-line" style="top: 0px;"></span>
+          <span class="toggler-line" style="top: 8px;"></span>
+          <span class="toggler-line" style="top: 16px;"></span>
+        </span>
 
+        <span class="fade-icon icon-close">
+          <span class="toggler-line" style="top: 8px; transform: rotate(45deg);"></span>
+          <span class="toggler-line" style="top: 8px; transform: rotate(-45deg);"></span>
+        </span>
+
+      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pt-2">
           <li class="nav-item">
             <a class="nav-link" href="{{ site.baseurl }}/about">煎茶道・薫風流について</a>
           </li>
