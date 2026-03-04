@@ -18,10 +18,10 @@ image: "/assets/images/hanakuiryu.jpg"
 
 <div class="row my-3 g-2 text-center">
   <div class="col-md-6">
-    <img src="{{ '/assets/images/お稽古の様子2.jpg' | relative_url }}" alt="お稽古の様子（急須）" class="photo-item">
+    <img src="{{ '/assets/images/slide/お稽古の様子2.jpg' | relative_url }}" alt="お稽古の様子（急須）" class="photo-item">
   </div>
   <div class="col-md-6">
-    <img src="{{ '/assets/images/お稽古の様子3.jpg' | relative_url }}" alt="お稽古の様子（茶碗）" class="photo-item">
+    <img src="{{ '/assets/images/slide/お稽古の様子3.jpg' | relative_url }}" alt="お稽古の様子（茶碗）" class="photo-item">
   </div>
 </div>
 
