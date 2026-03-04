@@ -77,6 +77,16 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 上品で控えめな影 */
   user-select: none; /* 写真のテキスト選択を防止 */
 }
+/* === トップページのメイン画像（レスポンシブ対応） === */
+  .custom-top-img {
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh; /* 基本（PCなど）は85vh */
+    min-height: 400px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+  }
 
   /* === ナビゲーションバー === */
   .navbar {
@@ -439,6 +449,10 @@
 
   /* スマホ対応 */
   @media (max-width: 768px) {
+    .custom-top-img {
+      height: 80vh; /* スマホの時だけ80vhに縮める！ */
+    }
+    
     .slideshow-container {
       height: 55vh;
       /* スマホでは高さを控えめにする（写真の左右切れを軽減） */
