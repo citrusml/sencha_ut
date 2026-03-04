@@ -75,6 +75,7 @@
   height: auto;
   border-radius: 8px; /* ほんのり優しい角丸 */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 上品で控えめな影 */
+  user-select: none; /* 写真のテキスト選択を防止 */
 }
 
   /* === ナビゲーションバー === */
