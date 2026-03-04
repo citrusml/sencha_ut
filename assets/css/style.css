@@ -127,6 +127,43 @@
   .navbar-collapse {
     background-color: var(--color-bg);
   }
+/* === フェードで切り替わるハンバーガーアイコン === */
+  .custom-fade-toggler {
+    position: relative;
+    width: 34px;  /* タップしやすいように少しだけ枠に余裕を持たせる */
+    height: 34px;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* 2つのアイコンを全く同じ位置（ど真ん中）に重ねる */
+  .fade-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 18px;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.1s ease; /* ふわっとフェードさせる魔法 */
+  }
+
+  /* 線の基本デザイン */
+  .toggler-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-dark);
+    border-radius: 2px;
+  }
+
+  /* ーーー ここから入れ替え ーーー */
+  /* 初期状態：3本線は見えて、×は透明 */
+  .icon-menu { opacity: 1; }
+  .icon-close { opacity: 0; }
+  /* 展開時（aria-expanded="true"）：3本線が透明になり、×が浮かび上がる */
+  .navbar-toggler[aria-expanded="true"] .icon-menu { opacity: 0; }
+  .navbar-toggler[aria-expanded="true"] .icon-close { opacity: 1; }
 
   /* === ボタン === */
   .btn-primary {
@@ -427,8 +464,8 @@
     /* === スマホ向け：ナビゲーションバーを1行に収める調整 === */
     /* 1. ブランド名（文字とロゴ）のエリアが幅を取りすぎないようにする */
     .navbar-brand {
-      font-size: 1.1rem;
-      /* スマホでは文字を少し小さく（1.5rem → 1.1rem） */
+      font-size: 1.3rem;
+      /* スマホでは文字を少し小さく（1.5rem → 1.3rem） */
       white-space: nowrap;
       /* 画面が狭くても文字を絶対に改行させない */
       max-width: calc(100% - 65px);
