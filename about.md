@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 煎茶道・薫風流について
+image: "/assets/images/hanakuiryu.jpg"
 ---
 
 ## 「煎茶道」とは

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 入会
+title: 入会・新歓
+image: "/assets/images/hanakuiryu.jpg"
 ---
 
 東京大学薫風流煎茶同好会は東大を中心としたインカレサークルです。
