@@ -254,6 +254,13 @@
     color: var(--white);
   }
 
+  @media (max-width: 768px) {
+    .tag-badge:hover {
+      background: var(--white) !important;
+      color: var(--accent) !important;
+    }
+  }
+
   /* 絞り込み中のタグ色付け */
  .active-tag {
     background-color: var(--accent);
