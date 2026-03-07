@@ -15,6 +15,7 @@ social:
   links:
     - https://twitter.com/sencha_ut
     - https://instagram.com/sencha_ut
+formurl: "https://forms.gle/eUJz89aFUpFzQWmS8"
 theme: minima
 plugins:
   - jekyll-seo-tag

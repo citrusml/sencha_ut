@@ -46,7 +46,7 @@ image: "/assets/images/hanakuiryu.jpg"
 新歓の時期には、サークルオリエンテーションでお出しします桜茶に加えて、新入会員が最初に習得する煎茶と玉露を味わっていただけます。
 
 <div class="text-center my-5">
-  <a href="https://forms.gle/nJv1PbJoYjtz5vow5" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm" target="_blank" rel="noopener noreferrer">
+  <a href="{{ site.formurl }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm" target="_blank" rel="noopener noreferrer">
     見学フォームはこちら
   </a>
   <p class="text-muted small mt-3">
