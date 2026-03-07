@@ -254,6 +254,13 @@
     color: var(--white);
   }
 
+  /* 絞り込み中のタグ色付け */
+ .active-tag {
+    background-color: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+
   /* 元のBlogのスタイルとの競合調整 */
   .post-item {
     border-bottom: none;

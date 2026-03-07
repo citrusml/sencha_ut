@@ -9,13 +9,12 @@ image: "/assets/images/hanakuiryu.jpg"
 
   <div class="container max-width-1200">
     <div class="tag-container mb-5 text-center">
-    <button class="tag-filter-btn active" onclick="filterBy('all')">All</button>
-    {% for tag in site.tags %}
-      {% assign tag_name = tag[0] %}
-      <button class="tag-filter-btn" onclick="filterBy('{{ tag_name }}')">
-        #{{ tag_name }}
-      </button>
-    {% endfor %}
+      {% for tag in site.tags %}
+        {% assign tag_name = tag[0] %}
+        <button class="tag-filter-btn" onclick="filterBy('{{ tag_name }}')">
+          #{{ tag_name }}
+        </button>
+      {% endfor %}
   </div>
 
   <div class="row row-cols-1 row-cols-md-3 g-4" id="blog-posts">
@@ -31,9 +30,9 @@ image: "/assets/images/hanakuiryu.jpg"
 
           <div class="card-body">
             <div class="post-tags-display mb-2">
-              {% for tag in post.tags %}
-                <span class="tag-badge" onclick="event.stopPropagation(); filterBy('{{ tag }}')">#{{ tag }}</span>
-              {% endfor %}
+                {% for tag in post.tags %}
+                  <span class="tag-badge" data-tag="{{ tag }}" onclick="event.stopPropagation(); filterBy('{{ tag }}')">#{{ tag }}</span>
+                {% endfor %}
             </div>
 
             <div class="post-meta small text-muted mb-1">
@@ -68,29 +67,55 @@ image: "/assets/images/hanakuiryu.jpg"
   let currentPage = 1;
   let currentFilteredPosts = [];
 
+  function filterBy(tagName) {
+      const allPosts = Array.from(document.getElementsByClassName('post-item'));
+      const buttons = document.getElementsByClassName('tag-filter-btn');
+      let selectedTag = null;
+      // 現在activeなタグを取得
+      for (let btn of buttons) {
+        if (btn.classList.contains('active')) {
+        selectedTag = btn.innerText.trim().replace('#', '');
+        }
+        btn.classList.remove('active');
+      }
+      // 選択解除: 同じタグをクリックした場合
+      if (selectedTag === tagName) {
+        currentFilteredPosts = allPosts;
+        currentPage = 1;
+        renderPage();
+        updateTagBadgeHighlight(null);
+        return;
+      }
+      // 新たに選択
+      for (let btn of buttons) {
+      if (btn.innerText.trim().replace('#', '') === tagName) {
+        btn.classList.add('active');
+        }
+      }
+      currentFilteredPosts = allPosts.filter(post => post.getAttribute('data-tags').split(',').includes(tagName));
+      currentPage = 1;
+      renderPage();
+      updateTagBadgeHighlight(tagName);
+  }
+
+  // カード内タグ色付け
+  function updateTagBadgeHighlight(tagName) {
+    const badges = document.getElementsByClassName('tag-badge');
+    for (let badge of badges) {
+      if (tagName && badge.dataset.tag === tagName) {
+        badge.classList.add('active-tag');
+      } else {
+        badge.classList.remove('active-tag');
+      }
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function() {
     const allPosts = Array.from(document.getElementsByClassName('post-item'));
     currentFilteredPosts = allPosts;
     renderPage();
+    updateTagBadgeHighlight(null);
   });
-
-  function filterBy(tagName) {
-    const allPosts = Array.from(document.getElementsByClassName('post-item'));
-    const buttons = document.getElementsByClassName('tag-filter-btn');
-
-    for (let btn of buttons) {
-      btn.classList.remove('active');
-      if (tagName === 'all' && btn.innerText === 'All') btn.classList.add('active');
-      else if (btn.innerText.includes(tagName)) btn.classList.add('active');
-    }
-
-    currentFilteredPosts = (tagName === 'all') 
-      ? allPosts 
-      : allPosts.filter(post => post.getAttribute('data-tags').split(',').includes(tagName));
-
-    currentPage = 1;
-    renderPage();
-  }
 
   function changePage(direction) {
     const maxPage = Math.ceil(currentFilteredPosts.length / itemsPerPage);
