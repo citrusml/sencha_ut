@@ -5,7 +5,7 @@ image: "/assets/images/hanakuiryu.jpg"
 ---
 
 <div class="container my-5 max-width-1200">
-  <h1 class="mb-5">{{ page.title }}</h1>
+  <h1 class="font-shippori mb-5">{{ page.title }}</h1>
 
   <div class="container max-width-1200">
     <div class="tag-container mb-5 text-center">
@@ -17,14 +17,35 @@ image: "/assets/images/hanakuiryu.jpg"
       {% endfor %}
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4" id="blog-posts">
-    {% for post in site.posts %}
+  {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+
+  <div class="row row-cols-1 row-cols-md-3 g-2" id="blog-posts">
+    {% for post in sorted_posts %}
       <div class="col post-item" data-tags="{{ post.tags | join: ',' }}">
         <div class="card h-100 border-0 shadow-sm custom-gallery-card">
-          
-          {% if post.image %}
+
+          {% if post.images and post.images.size > 1 %}
           <div class="gallery-thumbnail">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+            <div class="local-slideshow" data-interval="6000">
+              {% assign first = true %}
+              {% for img in post.images %}
+              <div class="local-slide{% if first %} active{% endif %}">
+                <img src="{{ img | relative_url }}" alt="{{ post.title }}" loading="lazy">
+              </div>
+              {% assign first = false %}
+              {% endfor %}
+              <div class="local-dots"></div>
+            </div>
+          </div>
+          {% elsif post.image or post.images %}
+          {% comment %} 単一画像: post.image を優先し、なければ images の先頭を使用 {% endcomment %}
+          {% if post.image %}
+            {% assign thumb = post.image %}
+          {% else %}
+            {% assign thumb = post.images | first %}
+          {% endif %}
+          <div class="gallery-thumbnail">
+            <img src="{{ thumb | relative_url }}" alt="{{ post.title }}" loading="lazy">
           </div>
           {% endif %}
 
@@ -63,7 +84,7 @@ image: "/assets/images/hanakuiryu.jpg"
 
 <script>
   /* JS部分は元のblog.htmlのロジックを100%継承 */
-  const itemsPerPage = 6; // ギャラリーなので1ページ6〜9枚が見やすいです
+  const itemsPerPage = 12; // ギャラリーなので1ページ6〜9枚が見やすいです
   let currentPage = 1;
   let currentFilteredPosts = [];
 

@@ -3,7 +3,7 @@ layout: default
 image: "/assets/images/hanakuiryu.jpg"
 ---
 
-<div class="top-image text-center mt-2 mb-5 px-3" style="opacity: 0; transition: opacity 2.0s ease-in-out;">
+<div class="top-image text-center mt-2 mb-5 px-3">
   <img src="{{ '/assets/images/slide/slide01.jpg' | relative_url }}" alt="東京大学薫風流煎茶同好会" class="img-fluid shadow-sm custom-top-img" />
 </div>
 
@@ -79,8 +79,8 @@ image: "/assets/images/hanakuiryu.jpg"
         <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
           <div class="responsive-section align-items-center">
             <div class="responsive-image rounded overflow-hidden">
-              <div class="local-slideshow" data-interval="3000">
-                <div class="local-slide"><img src="{{ "/assets/images/slide/お稽古の様子2.jpg" | relative_url }}" alt="普段のお稽古1" loading="lazy"></div>
+              <div class="local-slideshow" data-interval="6000">
+                <div class="local-slide active"><img src="{{ "/assets/images/slide/お稽古の様子2.jpg" | relative_url }}" alt="普段のお稽古1" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/お稽古の様子3.jpg" | relative_url }}" alt="普段のお稽古2" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/お稽古の様子.png" | relative_url }}" alt="普段のお稽古3" loading="lazy"></div>
                 <div class="local-dots"></div>
@@ -104,8 +104,8 @@ image: "/assets/images/hanakuiryu.jpg"
         <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
           <div class="responsive-section align-items-center">
             <div class="responsive-image rounded overflow-hidden">
-              <div class="local-slideshow" data-interval="3000">
-                <div class="local-slide"><img src="{{ "/assets/images/slide/製茶体験3.jpg" | relative_url }}" alt="お茶摘み・製茶体験1" loading="lazy"></div>
+              <div class="local-slideshow" data-interval="6000">
+                <div class="local-slide active"><img src="{{ "/assets/images/slide/製茶体験3.jpg" | relative_url }}" alt="お茶摘み・製茶体験1" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/製茶体験2.jpg" | relative_url }}" alt="お茶摘み・製茶体験2" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/製茶体験.jpg" | relative_url }}" alt="お茶摘み・製茶体験3" loading="lazy"></div>
                 <div class="local-dots"></div>
@@ -126,8 +126,8 @@ image: "/assets/images/hanakuiryu.jpg"
         <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
           <div class="responsive-section align-items-center">
             <div class="responsive-image rounded overflow-hidden">
-              <div class="local-slideshow" data-interval="3000">
-                <div class="local-slide"><img src="{{ "/assets/images/slide/黄檗4.jpg" | relative_url }}" alt="全国煎茶道大会1" loading="lazy"></div>
+              <div class="local-slideshow" data-interval="6000">
+                <div class="local-slide active"><img src="{{ "/assets/images/slide/黄檗4.jpg" | relative_url }}" alt="全国煎茶道大会1" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/黄檗3.jpg" | relative_url }}" alt="全国煎茶道大会2" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/黄檗2.jpg" | relative_url }}" alt="全国煎茶道大会3" loading="lazy"></div>
                 <div class="local-dots"></div>
@@ -148,7 +148,10 @@ image: "/assets/images/hanakuiryu.jpg"
         <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
           <div class="responsive-section align-items-center">
             <div class="responsive-image rounded overflow-hidden">
-              <img src="{{ "/assets/images/slide/駒場祭茶会.png" | relative_url}}" alt="駒場祭茶会">
+              <div class="local-slideshow" data-interval="6000">
+                <div class="local-slide active"><img src="{{ "/assets/images/slide/駒場祭茶会.png" | relative_url}}" alt="駒場祭茶会" loading="lazy"></div>
+                <div class="local-dots"></div>
+              </div>
             </div>
             <div class="responsive-text">
               <h3 class="h5 font-shippori color-accent-dark mb-3">駒場祭茶会</h3>
@@ -165,8 +168,8 @@ image: "/assets/images/hanakuiryu.jpg"
         <div class="bg-accent-soft p-4 my-4 rounded shadow-sm">
           <div class="responsive-section align-items-center">
             <div class="responsive-image rounded overflow-hidden">
-              <div class="local-slideshow" data-interval="3000">
-                <div class="local-slide"><img src="{{ "/assets/images/slide/大煎茶4.jpg" | relative_url }}" alt="東京大煎茶会1" loading="lazy"></div>
+              <div class="local-slideshow" data-interval="6000">
+                <div class="local-slide active"><img src="{{ "/assets/images/slide/大煎茶4.jpg" | relative_url }}" alt="東京大煎茶会1" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/大煎茶3.jpg" | relative_url }}" alt="東京大煎茶会2" loading="lazy"></div>
                 <div class="local-slide"><img src="{{ "/assets/images/slide/大煎茶1.jpg" | relative_url }}" alt="東京大煎茶会3" loading="lazy"></div>
                 <div class="local-dots"></div>
@@ -200,11 +203,7 @@ image: "/assets/images/hanakuiryu.jpg"
   </div>  
 
 <!-- top-imageのフェードイン -->
-<script>
-  window.addEventListener('load', function() {
-    document.querySelector('.top-image').style.opacity = '1';
-  });
-</script>
+
 
   <script>
     const TRANS = 1500, HALF = TRANS / 2, INTERVAL = 8000;
@@ -253,66 +252,4 @@ image: "/assets/images/hanakuiryu.jpg"
     }
 
     window.currentSlide = (val) => gotoSlide(typeof val === 'string' ? parseInt(val, 10) : val);
-  </script>
-
-
-  <script>
-    // ローカルスライドショー初期化（各 .local-slideshow に対して動作）
-    document.addEventListener('DOMContentLoaded', () => {
-      const slideshows = Array.from(document.querySelectorAll('.local-slideshow'));
-      slideshows.forEach((slideshow) => {
-        const slides = Array.from(slideshow.querySelectorAll('.local-slide'));
-        if (!slides.length) return;
-        const dotsContainer = slideshow.querySelector('.local-dots');
-        let idx = 0;
-        let timer = null;
-        const interval = parseInt(slideshow.dataset.interval || '5000', 10);
-
-        // create dots
-        slides.forEach((_, i) => {
-          const d = document.createElement('span');
-          d.className = 'dot';
-          if (i === 0) d.classList.add('active');
-          d.addEventListener('click', () => { show(i); resetTimer(); });
-          dotsContainer.appendChild(d);
-        });
-
-        const dotEls = Array.from(dotsContainer.querySelectorAll('.dot'));
-
-        function show(n) {
-          slides.forEach((s, i) => {
-            const isActive = i === n;
-            s.classList.toggle('active', isActive);
-            // CSS の :first-child ルールが1枚目に常時 opacity:1/z-index:2 を与えるため、
-            // 非アクティブ時はインラインスタイルで上書きしてフラッシュを防ぐ
-            if (i === 0) {
-              if (!isActive) {
-                s.style.opacity = '0';
-                s.style.zIndex = '1';
-              } else {
-                s.style.removeProperty('opacity');
-                s.style.removeProperty('z-index');
-              }
-            }
-          });
-          dotEls.forEach((d, i) => d.classList.toggle('active', i === n));
-          idx = n;
-        }
-
-        function nextSlide() { show((idx + 1) % slides.length); }
-
-        function resetTimer() {
-          if (timer) clearInterval(timer);
-          timer = setInterval(nextSlide, interval);
-        }
-
-        // pause on hover
-        slideshow.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
-        slideshow.addEventListener('mouseleave', () => { resetTimer(); });
-
-        // initial
-        show(0);
-        resetTimer();
-      });
-    });
   </script>

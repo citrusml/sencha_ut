@@ -26,10 +26,18 @@ layout: default
     </div>
   </div>
 
-  {% if page.image %}
-  <div class="mt-4">
-    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item">
-  </div>
+  {% if page.images or page.image %}
+    {% if page.images %}
+      <div class="mt-4 post-images">
+        {% for img in page.images %}
+          <img src="{{ img | relative_url }}" alt="{{ page.title }}" class="photo-item">
+        {% endfor %}
+      </div>
+    {% elsif page.image %}
+      <div class="mt-4">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item">
+      </div>
+    {% endif %}
   {% endif %}
 
   <div class="text-end my-4 pt-4">
