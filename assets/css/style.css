@@ -713,12 +713,6 @@ footer {
   overflow: hidden;
 }
 
-.sidebar-post-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-}
-
-.sidebar-post-link:hover .sidebar-post-thumbnail img,
 .sidebar-post-link:focus-visible .sidebar-post-thumbnail img {
   transform: scale(1.04);
 }
@@ -726,6 +720,17 @@ footer {
 .sidebar-post-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+@media (min-width: 600px) {
+  .sidebar-post-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .sidebar-post-link:hover .sidebar-post-thumbnail img {
+    transform: scale(1.04);
+  }
 }
 
 .sidebar-panel-actions {
