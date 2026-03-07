@@ -249,16 +249,11 @@
     z-index: 2;
   }
 
-  .tag-badge:hover {
-    background: var(--hero-fallback);
-    color: var(--white);
-  }
-
-  @media (max-width: 768px) {
-    .tag-badge:hover {
-      background: var(--white) !important;
-      color: var(--accent) !important;
-    }
+  @media (min-width: 600px) {
+      .tag-badge:hover {
+      background: var(--hero-fallback);
+      color: var(--white);
+    }  
   }
 
   /* 絞り込み中のタグ色付け */
@@ -343,7 +338,7 @@
   }
 
   /* デスクトップではもう少し高さを確保 */
-  @media (min-width: 992px) {
+  @media (min-width: 990px) {
     .slideshow-container {
       height: 85vh;
       /* larger for desktop */
@@ -462,7 +457,7 @@
   }
 
   /* スマホ対応 */
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .custom-top-img {
       height: 80vh; /* スマホの時だけ80vhに縮める！ */
     }
@@ -771,7 +766,7 @@
     text-decoration: underline;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .img-row img {
       max-width: 100%;
     }
