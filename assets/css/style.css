@@ -209,17 +209,11 @@
 
   /* === ギャラリー専用追加スタイル === */
 
-  /* カード全体のホバー設定 */
+  /* カード全体 */
   .custom-gallery-card {
     transition: transform 0.3s ease, background-color 0.3s ease;
     overflow: hidden;
     background-color: var(--white);
-  }
-
-  .custom-gallery-card:hover {
-    transform: translateY(-8px);
-    background-color: color-mix(in srgb, var(--white) 95%, transparent);
-    box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
   }
 
   /* 画像のトリミング */
@@ -228,10 +222,6 @@
     height: 220px;
     object-fit: cover;
     transition: transform 0.5s ease;
-  }
-
-  .custom-gallery-card:hover .gallery-thumbnail img {
-    transform: scale(1.05);
   }
 
   /* タグバッジの装飾 */
@@ -247,13 +237,6 @@
     cursor: pointer;
     position: relative;
     z-index: 2;
-  }
-
-  @media (min-width: 600px) {
-      .tag-badge:hover {
-      background: var(--hero-fallback);
-      color: var(--white);
-    }  
   }
 
   /* 絞り込み中のタグ色付け */
@@ -293,19 +276,42 @@
     transition: background-color 0.15s ease, color 0.15s ease;
   }
 
-  @media (min-width: 600px) {
-    .tag-filter-btn:hover {
-      background: var(--hero-fallback);
-      color: var(--white);
-    }
-  }
-
   .tag-filter-btn.active {
     background-color: var(--accent);
     border-color: var(--accent);
     color: var(--white);
   }
+  
+  @media (min-width: 600px) and (max-width: 800px) {
+    #blog-posts .col {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
 
+  /* ホバーエフェクト（PCのみ、スマホはタップ前提でホバーなし） */
+  @media (min-width: 600px) {
+    .custom-gallery-card:hover {
+      transform: translateY(-8px);
+      background-color: color-mix(in srgb, var(--white) 95%, transparent);
+      box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
+    }
+
+    .custom-gallery-card:hover .gallery-thumbnail img {
+      transform: scale(1.05);
+    }
+
+    .tag-filter-btn:hover {
+      background: var(--hero-fallback);
+      color: var(--white);
+    }
+
+    .tag-badge:hover {
+      background: var(--hero-fallback);
+      color: var(--white);
+    }      
+  }
+  
   /* ページ遷移ボタンは簡素でアニメーションなし */
   .pagination-btn {
     background: transparent;
