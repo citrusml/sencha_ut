@@ -519,6 +519,19 @@ footer {
 
 /* === 6. 共通ユーティリティ === */
 
+/* 投稿ページ内の複数画像レイアウト */
+.post-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.post-images .photo-item {
+  margin: 0;
+  max-width: 100%;
+}
+
 .max-width-1400 {
   max-width: 1400px;
 }
