@@ -686,11 +686,17 @@ footer {
   padding: 0.22rem 0.45rem;
 }
 
-.sidebar-post-tag:hover,
 .sidebar-post-tag:focus-visible {
   color: var(--white);
   background: var(--accent);
   outline: none;
+}
+
+@media (min-width: 600px) {
+  .sidebar-post-tag:hover {
+    color: var(--white);
+    background: var(--accent);
+  }
 }
 
 .sidebar-post-body h3 {
