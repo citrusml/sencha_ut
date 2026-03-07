@@ -44,7 +44,7 @@ img {
 .custom-top-img {
   width: 100%;
   max-width: 1100px;
-  height: 85vh;
+  height: 87vh;
   min-height: 400px;
   object-fit: cover;
   object-position: center;
@@ -71,7 +71,7 @@ img {
 .navbar {
   background-color: var(--color-bg) !important; /* 背景色を強制適用 */
   border-bottom: 1px solid var(--color-border) !important;
-  padding: 1rem 0;
+  padding: 0.6rem 0;
   position: sticky; /* メニューを最前面に固定する設定 */
   top: 0;
   z-index: 9999; /* スライドショーより手前に表示 */
@@ -88,13 +88,23 @@ img {
 .navbar-brand {
   font-family: "Shippori Mincho", serif;
   font-weight: bold;
-  color: var(--accent-dark) !important;
-  font-size: 1.8rem;
+  color: var(--color-text);
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus,
+.navbar-brand:active {
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 .nav-link {
   font-family: "Shippori Mincho", serif;
-  color: var(--color-text) !important;
+  color: var(--color-text);
   font-weight: 500;
   font-size: 1.1rem;
   text-align: right;
@@ -102,6 +112,22 @@ img {
 
 .nav-link:hover {
   color: var(--accent) !important;
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--accent) !important;
+  cursor: default;
+}
+
+.navbar-brand:focus-visible,
+.nav-link:focus-visible,
+.btn-primary:focus-visible,
+.tag-filter-btn:focus-visible,
+.pagination-btn:focus-visible,
+.stretched-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 .navbar-collapse {
@@ -158,9 +184,11 @@ img {
   border-color: var(--accent);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus-visible {
   background-color: var(--hero-fallback);
   border-color: var(--hero-fallback);
+  box-shadow: none;
 }
 
 .btn-logo {
@@ -178,11 +206,23 @@ img {
   user-select: none;
 }
 
-.btn-logo:hover,
-.btn-logo:focus {
+.btn-logo:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 16px rgba(110, 142, 89, 0.1);
-  outline: none;
+}
+
+.btn-logo:focus-visible {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(110, 142, 89, 0.1);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.index-inline-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-color: var(--accent) !important;
+  border-radius: 4px;
 }
 
 /* === 4. ユーティリティ / ギャラリー === */
@@ -276,13 +316,15 @@ img {
 }
 
 @media (min-width: 600px) {
-  .custom-gallery-card:hover {
+  .custom-gallery-card:hover,
+  .custom-gallery-card:has(.stretched-link:focus-visible) {
     transform: translateY(-8px);
     background-color: color-mix(in srgb, var(--white) 95%, transparent);
     box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
   }
 
-  .custom-gallery-card:hover .gallery-thumbnail img {
+  .custom-gallery-card:hover .gallery-thumbnail img,
+  .custom-gallery-card:has(.stretched-link:focus-visible) .gallery-thumbnail img {
     transform: scale(1.05);
   }
 
@@ -320,7 +362,7 @@ img {
 
 @media (max-width: 600px) {
   .custom-top-img {
-    height: 80vh; /* スマホの時だけ80vhに縮める */
+    height: 85vh; /* スマホの時だけ85vhに縮める */
   }
 
   .caption-text {
@@ -486,7 +528,7 @@ img {
 }
 
 .local-dots .dot:focus-visible {
-  outline: 2px solid var(--white);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -576,6 +618,119 @@ footer {
 .post-images .photo-item {
   margin: 0;
   max-width: 100%;
+}
+
+.sidebar-panel {
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebar-post-link {
+  background: var(--white);
+  border: 1px solid var(--color-border);
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.sidebar-post-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-post-thumbnail img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-post-body {
+  padding: 0.6rem 0.65rem;
+}
+
+.sidebar-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-post-meta {
+  font-size: 0.8rem;
+}
+
+.sidebar-post-tag {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--accent);
+  background: var(--white);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.22rem 0.45rem;
+}
+
+.sidebar-post-tag:hover,
+.sidebar-post-tag:focus-visible {
+  color: var(--white);
+  background: var(--accent);
+  outline: none;
+}
+
+.sidebar-post-body h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.sidebar-post-body p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.sidebar-post-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-post-link:hover .sidebar-post-thumbnail img,
+.sidebar-post-link:focus-visible .sidebar-post-thumbnail img {
+  transform: scale(1.04);
+}
+
+.sidebar-post-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.sidebar-panel-actions {
+  margin-top: auto;
+  padding-top: 0.25rem;
 }
 
 .max-width-1400 {
