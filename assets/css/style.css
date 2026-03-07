@@ -84,11 +84,21 @@
   .custom-top-img {
     width: 100%;
     max-width: 1100px;
-    height: 85vh; /* 基本（PCなど）は85vh */
+    height: 85vh;
     min-height: 400px;
     object-fit: cover;
     object-position: center;
     border-radius: 8px;
+  }
+
+  /* トップ画像フェードインアニメーション */
+  .top-image {
+    opacity: 0;
+    animation: fadeInTopImg 2s ease-in-out forwards;
+  }
+  @keyframes fadeInTopImg {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   /* === ナビゲーションバー === */
@@ -682,14 +692,6 @@
     opacity: 0;
     z-index: 1;
     transition: opacity 1500ms ease-in-out;
-  }
-
-
-  /* ensure at least first image is visible if JS fails/hides slides */
-  .local-slide:first-child {
-    display: block;
-    opacity: 1;
-    z-index: 2;
   }
 
   .local-slide.active {
