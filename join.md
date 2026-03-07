@@ -65,7 +65,7 @@ image: "/assets/images/hanakuiryu.jpg"
 
 <div class="d-flex align-items-center mt-2">
   <span class="user-select-all me-2">sencha.shinkan[at]gmail.com</span>
-  <a href="mailto:sencha.shinkan@gmail.com" class="btn_logo" aria-label="メールでのお問い合わせ">
+  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#101;&#110;&#99;&#104;&#97;&#46;&#115;&#104;&#105;&#110;&#107;&#97;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="btn_logo" aria-label="メールでのお問い合わせ">
     <img src="{{ '/assets/images/logos/Email_logo.png' | relative_url }}" alt="メール" width="22" height="22">
   </a>
 </div>

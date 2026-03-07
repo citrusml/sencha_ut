@@ -49,6 +49,7 @@ img {
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
+  user-select: none;
 }
 
 /* トップ画像フェードインアニメーション */
@@ -198,6 +199,7 @@ img {
   height: 220px;
   object-fit: cover;
   transition: transform 0.5s ease;
+  user-select: none;
 }
 
 .tag-badge {
@@ -426,6 +428,7 @@ img {
   max-width: 800px; /* allow larger slides on desktop */
   aspect-ratio: 16/10; /* maintain consistent aspect ratio */
   border-radius: 8px;
+  user-select: none;
 }
 
 .local-slide {
