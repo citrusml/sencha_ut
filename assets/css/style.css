@@ -179,7 +179,6 @@ img {
 
 .btn-logo:hover,
 .btn-logo:focus {
-  background: color-mix(in srgb, var(--accent) 10%, transparent); /* 薄い緑系 */
   transform: scale(1.1);
   box-shadow: 0 4px 16px rgba(110, 142, 89, 0.1);
   outline: none;
