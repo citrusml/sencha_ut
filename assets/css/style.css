@@ -3,300 +3,258 @@
   Sections:
   1. 全体設定 (variables)
   2. レイアウト / 基本 (body, wrapper, img)
-  3. コンポーネント (hero, navbar, cards)
+  3. コンポーネント (hero, navbar, cards, slideshow)
   4. ユーティリティ (短い helper クラス)
   5. ページ固有の補助スタイル
 */
 
-  /* === 全体設定 === */
-  :root {
-    /* カラーパレット */
-    --color-bg: #fcfaf2;
-    /* 生成り色 */
-    --color-text: #4a4a4a;
-    --color-border: #e0dcd0;
-    --accent-dark: #3d4c38;
-    /* 濃い抹茶色 */
-    --accent: #6e8e59;
-    /* 明るい緑 */
-    --hero-fallback: #556b2f;
-    --white: #ffffff;
-  }
-
-  body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: "Zen Maru Gothic", sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-  }
-
-  .wrapper {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* === 共通ユーティリティ（可読性・一貫性を重視） === */
-  /* 最小限のユーティリティのみを定義。命名は短く、既存変数を利用。 */
-  .max-width-1400 {
-    max-width: 1400px;
-  }
-  .max-width-1200 {
-    max-width: 1200px;
-  }
-  .font-shippori {
-    font-family: 'Shippori Mincho', serif;
-  }
-  .color-accent-dark {
-    color: var(--accent-dark) !important;
-  }
-  .border-color-default {
-    border-color: var(--color-border) !important;
-  }
-
-/* カード風淡いお茶色（アクセントカラーの20%）の背景 */
-.bg-accent-soft {
-  background-color: color-mix(in srgb, var(--accent) 5%, transparent 20%);
+/* === 1. 全体設定 === */
+:root {
+  /* カラーパレット */
+  --color-bg: #fcfaf2; /* 生成り色 */
+  --color-text: #4a4a4a;
+  --color-border: #e0dcd0;
+  --accent-dark: #3d4c38; /* 濃い抹茶色 */
+  --accent: #6e8e59; /* 明るい緑 */
+  --hero-fallback: #556b2f;
+  --white: #ffffff;
 }
-/* 品のある写真表示用の共通クラス */
-.photo-item {
-  max-width: 700px;
-  width: 100%; /* 画面が狭いスマホでは自動で縮むようにする */
+
+/* === 2. レイアウト / 基本 === */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Zen Maru Gothic", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
   height: auto;
-  border-radius: 8px; /* ほんのり優しい角丸 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 上品で控えめな影 */
-  user-select: none; /* 写真のテキスト選択を防止 */
-  display: block; /* 画像を独立したブロック要素にする */
-  margin: 1rem auto 1.5rem auto; /* 上に少し、下に広めの余白を取り、左右中央に配置 */
-  border: 1px solid var(--color-border); /* サイトのテーマ設定を利用した上品な枠線 */
 }
-/* === トップページのメイン画像（レスポンシブ対応） === */
-  .custom-top-img {
-    width: 100%;
-    max-width: 1100px;
-    height: 85vh;
-    min-height: 400px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 8px;
-  }
 
-  /* トップ画像フェードインアニメーション */
-  .top-image {
+/* === 3. コンポーネント === */
+
+/* トップページのメイン画像（レスポンシブ対応） */
+.custom-top-img {
+  width: 100%;
+  max-width: 1100px;
+  height: 85vh;
+  min-height: 400px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+/* トップ画像フェードインアニメーション */
+.top-image {
+  opacity: 0;
+  animation: fadeInTopImg 2s ease-in-out forwards;
+}
+
+@keyframes fadeInTopImg {
+  from {
     opacity: 0;
-    animation: fadeInTopImg 2s ease-in-out forwards;
   }
-  @keyframes fadeInTopImg {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  to {
+    opacity: 1;
   }
+}
 
-  /* === ナビゲーションバー === */
-  .navbar {
-    background-color: var(--color-bg) !important;
-    /* 背景色を強制適用 */
-    border-bottom: 1px solid var(--color-border) !important;
-    padding: 1rem 0;
+/* ナビゲーションバー */
+.navbar {
+  background-color: var(--color-bg) !important; /* 背景色を強制適用 */
+  border-bottom: 1px solid var(--color-border) !important;
+  padding: 1rem 0;
+  position: sticky; /* メニューを最前面に固定する設定 */
+  top: 0;
+  z-index: 9999; /* スライドショーより手前に表示 */
+}
 
-    /* メニューを最前面に固定する設定 */
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    /* スライドショーより手前に表示！ */
-  }
+.navbar-logo {
+  height: 55px; /* メニューの高さに合わせて調整 */
+  width: auto;  /* 横幅は自動で調整 */
+  margin-right: 10px; /* 文字との間に少し隙間 */
+  vertical-align: middle; /* 文字と高さを真ん中に揃える */
+  user-select: none;
+}
 
-  /* === ナビゲーションバーのロゴ設定 === */
-  .navbar-logo {
-    height: 55px;
-    /* メニューの高さに合わせて調整してください */
-    width: auto;
-    /* 横幅は自動で調整 */
-    margin-right: 10px;
-    /* 文字との間に少し隙間を空ける */
-    vertical-align: middle;
-    /* 文字と高さを真ん中に揃える */
-    user-select: none;
-  }
+.navbar-brand {
+  font-family: "Shippori Mincho", serif;
+  font-weight: bold;
+  color: var(--accent-dark) !important;
+  font-size: 1.8rem;
+}
 
-  .navbar-brand {
-    font-family: "Shippori Mincho", serif;
-    font-weight: bold;
-    color: var(--accent-dark) !important;
-    font-size: 1.8rem;
-  }
+.nav-link {
+  font-family: "Shippori Mincho", serif;
+  color: var(--color-text) !important;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: right;
+}
 
-  .nav-link {
-    font-family: "Shippori Mincho", serif;
-    color: var(--color-text) !important;
-    font-weight: 500;
-    font-size: 1.1rem;
-    text-align: right;
-  }
+.nav-link:hover {
+  color: var(--accent) !important;
+}
 
-  .nav-link:hover {
-    color: var(--accent) !important;
-  }
+.navbar-collapse {
+  background-color: var(--color-bg);
+}
 
-  /* === ハンバーガーメニューの中身 === */
-  .navbar-collapse {
-    background-color: var(--color-bg);
-  }
-/* === フェードで切り替わるハンバーガーアイコン === */
-  .custom-fade-toggler {
-    position: relative;
-    width: 34px;  /* タップしやすいように少しだけ枠に余裕を持たせる */
-    height: 34px;
-    background: transparent;
-    cursor: pointer;
-  }
+/* フェードで切り替わるハンバーガーアイコン */
+.custom-fade-toggler {
+  position: relative;
+  width: 34px;  /* タップしやすいように少しだけ枠に余裕 */
+  height: 34px;
+  background: transparent;
+  cursor: pointer;
+}
 
-  /* 2つのアイコンを全く同じ位置（ど真ん中）に重ねる */
-  .fade-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 26px;
-    height: 18px;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.1s ease; /* ふわっとフェードさせる魔法 */
-  }
+.fade-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.1s ease; /* ふわっとフェードさせる */
+}
 
-  /* 線の基本デザイン */
-  .toggler-line {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-dark);
-    border-radius: 2px;
-  }
+.toggler-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-dark);
+  border-radius: 2px;
+}
 
-  /* ーーー ここから入れ替え ーーー */
-  /* 初期状態：3本線は見えて、×は透明 */
-  .icon-menu { opacity: 1; }
-  .icon-close { opacity: 0; }
-  /* 展開時（aria-expanded="true"）：3本線が透明になり、×が浮かび上がる */
-  .navbar-toggler[aria-expanded="true"] .icon-menu { opacity: 0; }
-  .navbar-toggler[aria-expanded="true"] .icon-close { opacity: 1; }
+.icon-menu {
+  opacity: 1;
+}
 
-  /* === ボタン === */
-  .btn-primary {
-    background-color: var(--accent);
-    border-color: var(--accent);
-  }
+.icon-close {
+  opacity: 0;
+}
 
-  .btn-primary:hover {
-    background-color: var(--hero-fallback);
-    border-color: var(--hero-fallback);
-  }
-  
-  .btn-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--color-border);
-    border-radius: 50%;
-    background: transparent;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    box-shadow: none;
-    user-select: none;
-  }
-  .btn-logo:hover, .btn-logo:focus {
-    background: color-mix(in srgb, var(--accent) 10%, transparent); /* 薄い緑系 */
-    transform: scale(1.1);
-    box-shadow: 0 4px 16px rgba(110, 142, 89, 0.10);
-    outline: none;
-  }
+.navbar-toggler[aria-expanded="true"] .icon-menu {
+  opacity: 0;
+}
 
-  /* === ギャラリー専用追加スタイル === */
+.navbar-toggler[aria-expanded="true"] .icon-close {
+  opacity: 1;
+}
 
-  /* カード全体 */
-  .custom-gallery-card {
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    overflow: hidden;
-    background-color: var(--white);
-  }
+/* ボタン */
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
 
-  /* 画像のトリミング */
-  .gallery-thumbnail img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
+.btn-primary:hover {
+  background-color: var(--hero-fallback);
+  border-color: var(--hero-fallback);
+}
 
-  /* タグバッジの装飾 */
-  .tag-badge {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--accent);
-    background: var(--white);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 2px 10px;
-    margin-right: 4px;
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
-  }
+.btn-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  box-shadow: none;
+  user-select: none;
+}
 
-  /* 絞り込み中のタグ色付け */
- .active-tag {
-    background-color: var(--accent);
-    color: var(--white);
-    border-color: var(--accent);
-  }
+.btn-logo:hover,
+.btn-logo:focus {
+  background: color-mix(in srgb, var(--accent) 10%, transparent); /* 薄い緑系 */
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(110, 142, 89, 0.1);
+  outline: none;
+}
 
-  /* 元のBlogのスタイルとの競合調整 */
-  .post-item {
-    border-bottom: none;
-    padding: 0;
-  }
+/* === 4. ユーティリティ / ギャラリー === */
 
-  .post-title {
-    font-family: "Shippori Mincho", serif;
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
+.custom-gallery-card {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
+  background-color: var(--white);
+  border: 1px solid var(--color-border) !important;
+}
 
-  .post-tags-display {
-    margin-left: 0;
-  }
+.gallery-thumbnail img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
 
-  /* 既存のボタン等の色調整 (タグフィルターをバッジ風に統一、ページ遷移は簡素化) */
-  .tag-filter-btn {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--accent);
-    background: var(--white);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 6px 12px;
-    margin: 0 6px 6px 0;
-    cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
-  }
+.tag-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--white);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2px 10px;
+  margin-right: 4px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
 
-  .tag-filter-btn.active {
-    background-color: var(--accent);
-    border-color: var(--accent);
-    color: var(--white);
-  }
+.active-tag {
+  background-color: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
 
-  /* === 投稿ページ用：クリックできない表示専用のタグ === */
+.post-item {
+  border-bottom: none;
+  padding: 0;
+}
+
+.post-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.post-tags-display {
+  margin-left: 0;
+}
+
+.tag-filter-btn {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--white);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 6px 12px;
+  margin: 0 6px 6px 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tag-filter-btn.active {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
 .tag-badge-static {
   display: inline-block;
   font-size: 0.75rem;
@@ -306,496 +264,294 @@
   border-radius: 12px;
   padding: 2px 10px;
   margin-right: 4px;
-  cursor: default; /* 指のマークではなく、普通の矢印カーソルのままにする */
+  cursor: default; /* クリック不可 */
 }
-  
-  @media (min-width: 600px) and (max-width: 800px) {
-    #blog-posts .col {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
+
+@media (min-width: 600px) and (max-width: 800px) {
+  #blog-posts .col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 600px) {
+  .custom-gallery-card:hover {
+    transform: translateY(-8px);
+    background-color: color-mix(in srgb, var(--white) 95%, transparent);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
   }
 
-  /* ホバーエフェクト（PCのみ、スマホはタップ前提でホバーなし） */
-  @media (min-width: 600px) {
-    .custom-gallery-card:hover {
-      transform: translateY(-8px);
-      background-color: color-mix(in srgb, var(--white) 95%, transparent);
-      box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
-    }
-
-    .custom-gallery-card:hover .gallery-thumbnail img {
-      transform: scale(1.05);
-    }
-
-    .tag-filter-btn:hover {
-      background: var(--hero-fallback);
-      color: var(--white);
-    }
-
-    .tag-badge:hover {
-      background: var(--hero-fallback);
-      color: var(--white);
-    }      
-  }
-  
-  /* ページ遷移ボタンは簡素でアニメーションなし */
-  .pagination-btn {
-    background: transparent;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: none;
+  .custom-gallery-card:hover .gallery-thumbnail img {
+    transform: scale(1.05);
   }
 
-  .pagination-btn:hover {
-    background: color-mix(in srgb, var(--accent-dark) 3%, transparent);
+  .tag-filter-btn:hover {
+    background: var(--hero-fallback);
+    color: var(--white);
   }
 
-  .pagination-btn:disabled {
-    opacity: 0.5;
-    cursor: default;
+  .tag-badge:hover {
+    background: var(--hero-fallback);
+    color: var(--white);
   }
+}
 
-  /* === スライドショー全体 === */
-  .slideshow-container {
-    position: relative;
-    max-width: 100%;
-    height: 55vh;
-    /* default smaller for mobile */
-    min-height: 300px;
-    margin: 0 auto;
-    overflow: hidden;
-    background-color: var(--color-bg);
-    /* サイトの背景色 */
-  }
+.pagination-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: none;
+}
 
-  /* デスクトップではもう少し高さを確保 */
-  @media (min-width: 990px) {
-    .slideshow-container {
-      height: 85vh;
-      /* larger for desktop */
-      min-height: 600px;
-      /* ensure enough height even on shorter windows */
-    }
-  }
+.pagination-btn:hover {
+  background: color-mix(in srgb, var(--accent-dark) 3%, transparent);
+}
 
-  /* スライド（重ねて配置し、transformで動かす） */
-  .mySlides {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 1;
-    transition: opacity 1500ms ease-in-out;
-    /* 写真同士のクロスディゾルブ */
-  }
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 
-  .mySlides img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* 枠いっぱいに広げる */
-    object-position: center center;
-    display: block;
-    filter: brightness(0.9);
-    /* 少し暗くして文字を浮かせる */
-  }
+/* === 5. コンポーネント / スライドショー === */
 
-  /* 表示中スライド */
-  .mySlides.active {
-    opacity: 1;
-    z-index: 2;
-  }
-
-  /* クロスディゾルブ用オーバーレイ */
-  .fade-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-bg);
-    /* サイト背景を淡く被せる */
-    pointer-events: none;
-    opacity: 0;
-    z-index: 5;
-  }
-
-  /* キャプション帯 */
-  .caption-band {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 0px;
-    height: auto;
-    padding: 12px 16px;
-    box-sizing: border-box;
-    /* 背景（fallback + modern）: 生成り色を半透明にする */
-    background-color: color-mix(in srgb, var(--color-bg) 60%, transparent);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    z-index: 7;
-    /* オーバーレイより前面 */
+@media (max-width: 600px) {
+  .custom-top-img {
+    height: 80vh; /* スマホの時だけ80vhに縮める */
   }
 
   .caption-text {
-    color: var(--color-text);
-    font-family: "Shippori Mincho", serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 0px;
+    font-size: 1.1rem; /* スマホ向けに少し大きく */
+  }
+
+  /* スマホ向け：ナビゲーションバーを1行に収める調整 */
+  .navbar-brand {
+    font-size: 1.3rem;
     white-space: nowrap;
-    /* 改行を禁止する */
+    max-width: calc(100% - 65px);
     overflow: hidden;
-    /* 枠からはみ出た部分を隠す */
     text-overflow: ellipsis;
-    /* はみ出た末尾を「...」にする */
-  }
-
-  /* ドット：中央下側に控えめに配置 */
-  .dot-container {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 60px;
-    text-align: left;
-    padding-left: 16px;
-    background: transparent;
-    z-index: 6;
-    /* キャプションより下だがオーバーレイより前面 */
-    user-select: none;
-  }
-
-  .dot {
-    cursor: pointer;
-    height: 6px;
-    width: 6px;
-    margin: 3px;
-    background-color: color-mix(in srgb, var(--white) 30%, transparent);
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.1s, transform 0.1s;
-  }
-
-  .dot.active,
-  .dot:hover {
-    background-color: color-mix(in srgb, var(--white) 70%, transparent);
-    transform: scale(1.2);
-  }
-
-  /* スマホ対応 */
-  @media (max-width: 600px) {
-    .custom-top-img {
-      height: 80vh; /* スマホの時だけ80vhに縮める！ */
-    }
-    
-    .slideshow-container {
-      height: 55vh;
-      /* スマホでは高さを控えめにする（写真の左右切れを軽減） */
-      background-color: var(--color-bg);
-      /* 背景を生成り色に */
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-
-    .mySlides img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      /* 写真全体を表示（背景が出る）か、お好みで cover のまま高さを調整 */
-      object-position: center center;
-    }
-
-    .caption-text {
-      font-size: 1.1rem;
-      /* スマホに合わせて文字を少し小さく */
-    }
-
-    /* === スマホ向け：ナビゲーションバーを1行に収める調整 === */
-    /* 1. ブランド名（文字とロゴ）のエリアが幅を取りすぎないようにする */
-    .navbar-brand {
-      font-size: 1.3rem;
-      /* スマホでは文字を少し小さく（1.5rem → 1.3rem） */
-      white-space: nowrap;
-      /* 画面が狭くても文字を絶対に改行させない */
-      max-width: calc(100% - 65px);
-      /* 右側のハンバーガーボタン(約60px)の居場所を確保 */
-      overflow: hidden;
-      text-overflow: ellipsis;
-      /* 万が一はみ出た場合は「...」で省略してレイアウト崩れを防ぐ */
-      display: flex;
-      align-items: center;
-    }
-
-    /* 2. スマホ用にロゴも少しだけ小さくする */
-    .navbar-logo {
-      height: 30px;
-      margin-right: 8px;
-    }
-
-    /* 3. コンテナの左右の余白（padding）を少し削って、文字の表示スペースを稼ぐ */
-    .navbar .container-fluid {
-      padding-left: 15px !important;
-      padding-right: 15px !important;
-    }
-  }
-
-  /* iPhone SEなどの小さなスマホ（横幅380px以下）向けの調整 */
-  @media screen and (max-width: 380px) {
-
-    /* 1. サイト全体の「基準サイズ」を小さくする */
-    html {
-      font-size: 13px;
-      /* 標準の16pxから少し下げることで、remを使っている全ての文字が縮小されます */
-    }
-
-    /* 2. 特に改行しやすい見出し（h1）を個別に微調整 */
-    h1,
-    .font-shippori {
-      font-size: 1.5rem !important;
-      /* さらに少し小さくして1行に収まりやすくする */
-      letter-spacing: -0.02em;
-      /* 文字の間隔をわずかに詰めると1行に収まりやすくなります */
-      line-height: 1.3;
-      /* 行間も少し調整 */
-    }
-  }
-
-  /* === レスポンシブな写真と文章のレイアウト === */
-  .responsive-section {
     display: flex;
-    flex-wrap: nowrap;
-    /* prevent wrapping, switch via media query */
-    gap: 2rem;
-    align-items: flex-start;
+    align-items: center;
   }
 
-  /* タイトルを画像上に重ねる */
+  .navbar-logo {
+    height: 30px;
+    margin-right: 8px;
+  }
+
+  .navbar .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  html {
+    font-size: 13px;
+  }
+
+  h1,
+  .font-shippori {
+    font-size: 1.5rem !important;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+}
+
+/* レスポンシブな写真と文章のレイアウト */
+.responsive-section {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.responsive-image {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+  order: 1; /* パソコンでは左に表示 */
+  aspect-ratio: 16/10; /* アスペクト比固定 */
+  overflow: hidden;
+}
+
+.responsive-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-text {
+  flex: 1 1 300px;
+  min-width: 0;
+  order: 2; /* パソコンでは右に表示 */
+}
+
+.responsive-text h3 {
+  font-family: 'Shippori Mincho', serif;
+  color: var(--accent-dark);
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .responsive-section {
+    flex-direction: column;
+  }
+
   .responsive-image {
-    position: relative;
-    flex: 1 1 300px;
-    /* allow shrinking but not below 300px ideally */
-    min-width: 0;
-    /* allow flex items to shrink smaller than content */
-  }
-
-  .image-overlay {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    margin: 0;
-    padding: 0.4rem 0.8rem;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    z-index: 2;
-  }
-
-  .responsive-image {
-    flex: 1;
-    min-width: 300px;
     order: 1;
-    /* パソコンでは左に表示 */
-  }
-
-  .responsive-image {
-    aspect-ratio: 16/10;
-    /* maintain fixed ratio (changed from 16/9) */
-    overflow: hidden;
-    /* clip overflowing image */
-  }
-
-  .responsive-image img {
+    min-width: auto;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* fill container while preserving ratio */
-    max-width: 800px;
-    /* allow larger slides on desktop */
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 16/10;
   }
 
   .responsive-text {
-    flex: 1 1 300px;
-    min-width: 0;
+    flex: 1 1 auto;
     order: 2;
-    /* パソコンでは右に表示 */
+    min-width: auto;
   }
+}
 
-  .responsive-text h3 {
-    font-family: 'Shippori Mincho', serif;
-    color: var(--accent-dark);
-    margin-top: 0;
-  }
+/* ローカルスライドショー（各セクション内） */
+.local-slideshow {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  max-width: 800px; /* allow larger slides on desktop */
+  aspect-ratio: 16/10; /* maintain consistent aspect ratio */
+  border-radius: 8px;
+}
 
-  /* スマホ対応：上に写真、下に文章 */
-  @media (max-width: 900px) {
-    .responsive-section {
-      flex-direction: column;
-    }
+.local-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 1500ms ease-in-out;
+}
 
-    .responsive-image {
-      order: 1;
-      min-width: auto;
-      width: 100%;
-      /* ensure image container stretches */
-      aspect-ratio: 16/10;
-      /* keep ratio on mobile */
-    }
+.local-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
 
-    .responsive-text {
-      flex: 1 1 auto;
-      order: 2;
-      min-width: auto;
-    }
-  }
+.local-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-color: var(--color-border);
+}
 
-  /* === ローカルスライドショー（各セクション内） === */
+.local-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.6rem;
+  z-index: 3;
+}
+
+.local-dots .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.local-dots .dot.active {
+  background: #fff;
+}
+
+@media (max-width: 480px) {
   .local-slideshow {
-    position: relative;
-    overflow: hidden;
-    display: block;
-    max-width: 500px;
-    border: 0.5px solid var(--color-border);   
-  }
-
-  /* local slideshow: overlap slides and cross-fade (like top slideshow) */
-  .local-slideshow {
-    position: relative;
-    overflow: hidden;
-    display: block;
+    max-width: 100%;
     width: 100%;
-    /* fill parent container */
-    max-width: 800px;
-    /* allow larger slides on desktop */
-    aspect-ratio: 16/10;
-    /* maintain consistent aspect ratio */
-    border-radius: 8px;
+    aspect-ratio: auto;
+    min-height: 250px; /* keep taller on mobile too */
   }
 
-  .local-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 1;
-    transition: opacity 1500ms ease-in-out;
-  }
-
-  .local-slide.active {
-    opacity: 1;
-    z-index: 2;
-  }
-
-  .local-slide img {
-    width: 100%;
-    height: 100%;
+  .local-slideshow .local-slide img {
     object-fit: cover;
-    object-position: center center;
-    border-color: var(--color-border);
   }
+}
+/* footer styles */
+footer {
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
 
-  .local-dots {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0.6rem;
-    z-index: 3;
-  }
+.footer-links {
+  display: flex;
+  flex-direction: column; /* 縦並び */
+  align-items: center;
+  gap: 0.5rem; /* 各行の間隔 */
+}
 
-  .local-dots .dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    margin: 0 4px;
-    cursor: pointer;
-  }
+.footer-links > div {
+  margin: 0.2rem 0;
+}
 
-  .local-dots .dot.active {
-    background: #fff;
-  }
+.footer-links a {
+  padding: 0.2rem 0.4rem; /* 各リンクに余白を追加 */
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
 
-  /* 小さい画面ではスライドの幅を柔軟に */
-  @media (max-width: 480px) {
-    .local-slideshow {
-      max-width: 100%;
-      width: 100%;
-      aspect-ratio: auto;
-      min-height: 250px;
-      /* keep taller on mobile too */
-    }
+.footer-links a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
 
-    .local-slideshow .local-slide img {
-      object-fit: cover;
-    }
-  }
+/* === 6. 共通ユーティリティ === */
 
-  /* 横並び画像用 */
-  .img-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
+.max-width-1400 {
+  max-width: 1400px;
+}
 
-  .img-row img {
-    max-width: 48%;
-    height: auto;
-  }
+.max-width-1200 {
+  max-width: 1200px;
+}
 
-  /* footer styles */
-  footer {
-    background-color: var(--color-bg);
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text);
-    font-size: 0.9rem;
-  }
+.font-shippori {
+  font-family: 'Shippori Mincho', serif;
+}
 
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    /* 縦並び */
-    align-items: center;
-    gap: 0.5rem;
-    /* 各行の間隔 */
-  }
+.color-accent-dark {
+  color: var(--accent-dark) !important;
+}
 
-  .footer-links>div {
-    margin: 0.2rem 0;
-  }
+.border-color-default {
+  border-color: var(--color-border) !important;
+}
 
-  .footer-links a {
-    padding: 0.2rem 0.4rem;
-    /* 各リンクに余白を追加 */
-  }
+.bg-accent-soft {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent 20%);
+}
 
-  .footer-links a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .footer-links a:hover {
-    color: var(--accent);
-    text-decoration: underline;
-  }
-
-  @media (max-width: 600px) {
-    .img-row img {
-      max-width: 100%;
-    }
-  }
+.photo-item {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  user-select: none;
+  display: block;
+  margin: 1rem auto 1.5rem auto;
+  border: 1px solid var(--color-border);
+}
