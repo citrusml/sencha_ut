@@ -18,7 +18,7 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-4 px-lg-5 max-width-1400">
       
-      <a class="navbar-brand" href="{{ site.baseurl }}/">
+      <a class="navbar-brand" href="{{ '/' | relative_url }}">
         <img src="{{ '/assets/images/logos/doukoukai_logo_nobg.png' | relative_url }}" alt="ロゴ" class="navbar-logo">
         {{ site.title }}
       </a>
@@ -39,13 +39,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pt-2">
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.baseurl }}/about">煎茶道・薫風流について</a>
+            <a class="nav-link{% if page.url == '/about.html' or page.url == '/about/' %} active{% endif %}"{% unless page.url == '/about.html' or page.url == '/about/' %} href="{{ '/about' | relative_url }}"{% endunless %}{% if page.url == '/about.html' or page.url == '/about/' %} aria-current="page"{% endif %}>煎茶道・薫風流について</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.baseurl }}/gallery">投稿</a>
+            <a class="nav-link{% if page.url == '/gallery.html' or page.url == '/gallery/' %} active{% endif %}"{% unless page.url == '/gallery.html' or page.url == '/gallery/' %} href="{{ '/gallery' | relative_url }}"{% endunless %}{% if page.url == '/gallery.html' or page.url == '/gallery/' %} aria-current="page"{% endif %}>投稿</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.baseurl }}/join">入会</a>
+            <a class="nav-link{% if page.url == '/join.html' or page.url == '/join/' %} active{% endif %}"{% unless page.url == '/join.html' or page.url == '/join/' %} href="{{ '/join' | relative_url }}"{% endunless %}{% if page.url == '/join.html' or page.url == '/join/' %} aria-current="page"{% endif %}>入会</a>
           </li>
         </ul>
       </div>
@@ -95,6 +95,7 @@
       document.querySelectorAll('.local-slideshow').forEach(slideshow => {
         const slides = Array.from(slideshow.querySelectorAll('.local-slide'));
         const dotsContainer = slideshow.querySelector('.local-dots');
+        const isInsideGalleryCard = Boolean(slideshow.closest('.custom-gallery-card'));
         if (!slides.length || !dotsContainer) return;
 
         let idx = slides.findIndex(s => s.classList.contains('active'));
@@ -107,7 +108,9 @@
         let didDrag = false;
         const swipeThreshold = 40;
 
-        slideshow.setAttribute('tabindex', '0');
+        if (!isInsideGalleryCard) {
+          slideshow.setAttribute('tabindex', '0');
+        }
         slideshow.setAttribute('role', 'region');
         slideshow.setAttribute('aria-label', slideshow.dataset.label || '画像スライドショー');
 
