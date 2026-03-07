@@ -89,6 +89,9 @@
   <script>
     // ローカルスライドショー初期化（各 .local-slideshow に対して動作）
     document.addEventListener('DOMContentLoaded', () => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const desktopLikeInput = window.matchMedia('(hover: hover) and (pointer: fine)');
+
       document.querySelectorAll('.local-slideshow').forEach(slideshow => {
         const slides = Array.from(slideshow.querySelectorAll('.local-slide'));
         const dotsContainer = slideshow.querySelector('.local-dots');
@@ -98,13 +101,33 @@
         if (idx < 0) idx = 0;
         let timer = null;
         const interval = parseInt(slideshow.dataset.interval || '5000', 10);
+        let pointerStartX = null;
+        let pointerStartY = null;
+        let pointerId = null;
+        let didDrag = false;
+        const swipeThreshold = 40;
+
+        slideshow.setAttribute('tabindex', '0');
+        slideshow.setAttribute('role', 'region');
+        slideshow.setAttribute('aria-label', slideshow.dataset.label || '画像スライドショー');
 
         slides.forEach((_, i) => {
-          const d = document.createElement('span');
+          const d = document.createElement('button');
           d.className = 'dot';
+          d.type = 'button';
+          d.setAttribute('tabindex', '0');
+          d.setAttribute('aria-label', `${i + 1}枚目を表示`);
           if (i === idx) d.classList.add('active');
           d.addEventListener('click', (event) => {
             event.stopPropagation(); // カード全体のリンク誤爆を防止
+            show(i);
+            resetTimer();
+          });
+          d.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+
+            event.preventDefault();
+            event.stopPropagation();
             show(i);
             resetTimer();
           });
@@ -112,6 +135,10 @@
         });
 
         const dotEls = Array.from(dotsContainer.querySelectorAll('.dot'));
+
+        function canAutoplay() {
+          return slides.length > 1 && !prefersReducedMotion.matches;
+        }
 
         function show(n) {
           slides.forEach((s, i) => s.classList.toggle('active', i === n));
@@ -123,18 +150,119 @@
           show((idx + 1) % slides.length);
         }
 
+        function previousSlide() {
+          show((idx - 1 + slides.length) % slides.length);
+        }
+
+        function stopTimer() {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+
         function resetTimer() {
-          if (timer) clearInterval(timer);
+          stopTimer();
+          if (!canAutoplay()) return;
           timer = setInterval(nextSlide, interval);
         }
 
+        function handleSwipe(deltaX) {
+          if (Math.abs(deltaX) < swipeThreshold || slides.length <= 1) return;
+
+          didDrag = true;
+          if (deltaX < 0) {
+            nextSlide();
+          } else {
+            previousSlide();
+          }
+          resetTimer();
+        }
+
         slideshow.addEventListener('mouseenter', () => {
-          if (timer) clearInterval(timer);
+          stopTimer();
         });
 
         slideshow.addEventListener('mouseleave', () => {
           resetTimer();
         });
+
+        slideshow.addEventListener('focusin', () => {
+          stopTimer();
+        });
+
+        slideshow.addEventListener('focusout', () => {
+          resetTimer();
+        });
+
+        slideshow.addEventListener('keydown', (event) => {
+          if (slides.length <= 1) return;
+
+          if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            previousSlide();
+            resetTimer();
+          }
+
+          if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            nextSlide();
+            resetTimer();
+          }
+        });
+
+        slideshow.addEventListener('pointerdown', (event) => {
+          if (event.pointerType === 'mouse' && desktopLikeInput.matches) return;
+
+          pointerStartX = event.clientX;
+          pointerStartY = event.clientY;
+          pointerId = event.pointerId;
+          didDrag = false;
+          stopTimer();
+        });
+
+        slideshow.addEventListener('pointerup', (event) => {
+          if (pointerId !== event.pointerId || pointerStartX === null || pointerStartY === null) return;
+
+          const deltaX = event.clientX - pointerStartX;
+          const deltaY = event.clientY - pointerStartY;
+
+          if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            handleSwipe(deltaX);
+          }
+
+          pointerStartX = null;
+          pointerStartY = null;
+          pointerId = null;
+          resetTimer();
+        });
+
+        slideshow.addEventListener('pointercancel', () => {
+          pointerStartX = null;
+          pointerStartY = null;
+          pointerId = null;
+          resetTimer();
+        });
+
+        slideshow.addEventListener('click', (event) => {
+          if (!didDrag) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+          didDrag = false;
+        }, true);
+
+        const handleMotionChange = () => {
+          resetTimer();
+        };
+
+        if (typeof prefersReducedMotion.addEventListener === 'function') {
+          prefersReducedMotion.addEventListener('change', handleMotionChange);
+          desktopLikeInput.addEventListener('change', handleMotionChange);
+        } else {
+          prefersReducedMotion.addListener(handleMotionChange);
+          desktopLikeInput.addListener(handleMotionChange);
+        }
 
         resetTimer();
       });
