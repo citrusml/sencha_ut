@@ -21,6 +21,7 @@ image: "/assets/images/hanakuiryu.jpg"
 
   <div class="row row-cols-1 row-cols-md-3 g-2" id="blog-posts">
     {% for post in sorted_posts %}
+      {% assign post_index = forloop.index %}
       <div class="col post-item" data-tags="{{ post.tags | join: ',' }}">
         <div class="card h-100 border-0 shadow-sm custom-gallery-card">
 
@@ -30,7 +31,7 @@ image: "/assets/images/hanakuiryu.jpg"
               {% assign first = true %}
               {% for img in post.images %}
               <div class="local-slide{% if first %} active{% endif %}">
-                <img src="{{ img | relative_url }}" alt="{{ post.title }}" loading="lazy">
+                <img src="{{ img | relative_url }}" alt="{{ post.title }}"{% if post_index <= 6 %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
               </div>
               {% assign first = false %}
               {% endfor %}
@@ -45,7 +46,7 @@ image: "/assets/images/hanakuiryu.jpg"
             {% assign thumb = post.images | first %}
           {% endif %}
           <div class="gallery-thumbnail">
-            <img src="{{ thumb | relative_url }}" alt="{{ post.title }}" loading="lazy">
+            <img src="{{ thumb | relative_url }}" alt="{{ post.title }}"{% if post_index <= 6 %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
           </div>
           {% endif %}
 
