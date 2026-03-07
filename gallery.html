@@ -11,7 +11,7 @@ image: "/assets/images/hanakuiryu.jpg"
     <div class="tag-container mb-5 text-center user-select-none">
       {% for tag in site.tags %}
         {% assign tag_name = tag[0] %}
-        <button class="tag-filter-btn user-select-auto" onclick="filterBy('{{ tag_name }}')">
+        <button class="tag-filter-btn user-select-auto" data-tag="{{ tag_name }}" onclick="filterBy('{{ tag_name }}')">
           #{{ tag_name }}
         </button>
       {% endfor %}
@@ -88,36 +88,55 @@ image: "/assets/images/hanakuiryu.jpg"
   const itemsPerPage = 12; // ギャラリーなので1ページ6〜9枚が見やすいです
   let currentPage = 1;
   let currentFilteredPosts = [];
+  let currentTag = null;
+
+  function getAllPosts() {
+    return Array.from(document.getElementsByClassName('post-item'));
+  }
+
+  function getAllTagButtons() {
+    return Array.from(document.getElementsByClassName('tag-filter-btn'));
+  }
+
+  function setActiveTagButton(tagName) {
+    getAllTagButtons().forEach(button => {
+      button.classList.toggle('active', tagName && button.dataset.tag === tagName);
+    });
+  }
+
+  function updateUrl(tagName) {
+    const url = new URL(window.location.href);
+
+    if (tagName) {
+      url.searchParams.set('tag', tagName);
+    } else {
+      url.searchParams.delete('tag');
+    }
+
+    window.history.replaceState({}, '', url);
+  }
+
+  function applyTagFilter(tagName, updateHistory = true) {
+    const allPosts = getAllPosts();
+    const hasTag = tagName && getAllTagButtons().some(button => button.dataset.tag === tagName);
+
+    currentTag = hasTag ? tagName : null;
+    currentFilteredPosts = currentTag
+      ? allPosts.filter(post => post.getAttribute('data-tags').split(',').includes(currentTag))
+      : allPosts;
+
+    currentPage = 1;
+    setActiveTagButton(currentTag);
+    updateTagBadgeHighlight(currentTag);
+    renderPage();
+
+    if (updateHistory) {
+      updateUrl(currentTag);
+    }
+  }
 
   function filterBy(tagName) {
-      const allPosts = Array.from(document.getElementsByClassName('post-item'));
-      const buttons = document.getElementsByClassName('tag-filter-btn');
-      let selectedTag = null;
-      // 現在activeなタグを取得
-      for (let btn of buttons) {
-        if (btn.classList.contains('active')) {
-        selectedTag = btn.innerText.trim().replace('#', '');
-        }
-        btn.classList.remove('active');
-      }
-      // 選択解除: 同じタグをクリックした場合
-      if (selectedTag === tagName) {
-        currentFilteredPosts = allPosts;
-        currentPage = 1;
-        renderPage();
-        updateTagBadgeHighlight(null);
-        return;
-      }
-      // 新たに選択
-      for (let btn of buttons) {
-      if (btn.innerText.trim().replace('#', '') === tagName) {
-        btn.classList.add('active');
-        }
-      }
-      currentFilteredPosts = allPosts.filter(post => post.getAttribute('data-tags').split(',').includes(tagName));
-      currentPage = 1;
-      renderPage();
-      updateTagBadgeHighlight(tagName);
+      applyTagFilter(currentTag === tagName ? null : tagName);
   }
 
   // カード内タグ色付け
@@ -133,10 +152,15 @@ image: "/assets/images/hanakuiryu.jpg"
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    const allPosts = Array.from(document.getElementsByClassName('post-item'));
-    currentFilteredPosts = allPosts;
-    renderPage();
-    updateTagBadgeHighlight(null);
+    currentFilteredPosts = getAllPosts();
+
+    const initialTag = new URLSearchParams(window.location.search).get('tag');
+    applyTagFilter(initialTag, false);
+  });
+
+  window.addEventListener('popstate', () => {
+    const tagFromUrl = new URLSearchParams(window.location.search).get('tag');
+    applyTagFilter(tagFromUrl, false);
   });
 
   function changePage(direction) {
