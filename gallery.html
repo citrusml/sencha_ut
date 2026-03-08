@@ -4,14 +4,14 @@ title: 投稿
 image: "/assets/images/hanakuiryu.jpg"
 ---
 
-<div class="container my-5 max-width-1200">
+<div class="container my-5 max-width-1200" data-role="gallery-page">
   <h1 class="font-shippori mb-5">{{ page.title }}</h1>
 
   <div class="container max-width-1200">
     <div class="tag-container mb-5 text-center user-select-none">
       {% for tag in site.tags %}
         {% assign tag_name = tag[0] %}
-        <button class="tag-filter-btn user-select-auto" data-tag="{{ tag_name }}" onclick="filterBy('{{ tag_name }}')">
+        <button class="tag-chip tag-chip-button user-select-auto" data-role="tag-filter-control" data-tag="{{ tag_name }}">
           #{{ tag_name }}
         </button>
       {% endfor %}
@@ -53,7 +53,7 @@ image: "/assets/images/hanakuiryu.jpg"
           <div class="card-body">
             <div class="post-tags-display mb-2 user-select-none">
                 {% for tag in post.tags %}
-                  <span class="tag-badge user-select-auto" data-tag="{{ tag }}" onclick="event.stopPropagation(); filterBy('{{ tag }}')">#{{ tag }}</span>
+                  <span class="tag-chip tag-chip-trigger user-select-auto" data-role="tag-badge" data-tag="{{ tag }}">#{{ tag }}</span>
                 {% endfor %}
             </div>
 
@@ -75,9 +75,9 @@ image: "/assets/images/hanakuiryu.jpg"
   </div>
 
     <div id="pagination-controls" class="mt-5 text-center user-select-none">
-      <button id="prevBtn" class="pagination-btn" onclick="changePage(-1)">❮ 前</button>
+      <button id="prevBtn" class="pagination-btn" data-role="pagination-prev">❮ 前</button>
       <span id="pageIndicator" class="mx-3">1</span>
-      <button id="nextBtn" class="pagination-btn" onclick="changePage(1)">後 ❯</button>
+      <button id="nextBtn" class="pagination-btn" data-role="pagination-next">後 ❯</button>
     </div>
   </div>
 </div>
@@ -95,12 +95,12 @@ image: "/assets/images/hanakuiryu.jpg"
   }
 
   function getAllTagButtons() {
-    return Array.from(document.getElementsByClassName('tag-filter-btn'));
+    return Array.from(document.querySelectorAll('[data-role="tag-filter-control"]'));
   }
 
   function setActiveTagButton(tagName) {
     getAllTagButtons().forEach(button => {
-      button.classList.toggle('active', tagName && button.dataset.tag === tagName);
+      button.classList.toggle('is-active', tagName && button.dataset.tag === tagName);
     });
   }
 
@@ -139,19 +139,47 @@ image: "/assets/images/hanakuiryu.jpg"
       applyTagFilter(currentTag === tagName ? null : tagName);
   }
 
+  function handleGalleryClick(event) {
+    const tagControl = event.target.closest('[data-role="tag-filter-control"]');
+    if (tagControl) {
+      filterBy(tagControl.dataset.tag);
+      return;
+    }
+
+    const tagBadge = event.target.closest('[data-role="tag-badge"]');
+    if (tagBadge) {
+      event.preventDefault();
+      event.stopPropagation();
+      filterBy(tagBadge.dataset.tag);
+      return;
+    }
+
+    const previousButton = event.target.closest('[data-role="pagination-prev"]');
+    if (previousButton) {
+      changePage(-1);
+      return;
+    }
+
+    const nextButton = event.target.closest('[data-role="pagination-next"]');
+    if (nextButton) {
+      changePage(1);
+    }
+  }
+
   // カード内タグ色付け
   function updateTagBadgeHighlight(tagName) {
-    const badges = document.getElementsByClassName('tag-badge');
+    const badges = document.querySelectorAll('[data-role="tag-badge"]');
     for (let badge of badges) {
-      if (tagName && badge.dataset.tag === tagName) {
-        badge.classList.add('active-tag');
-      } else {
-        badge.classList.remove('active-tag');
-      }
+      badge.classList.toggle('is-active', tagName && badge.dataset.tag === tagName);
     }
   }
 
   document.addEventListener("DOMContentLoaded", function() {
+    const galleryPage = document.querySelector('[data-role="gallery-page"]');
+    if (galleryPage) {
+      galleryPage.addEventListener('click', handleGalleryClick);
+    }
+
     currentFilteredPosts = getAllPosts();
 
     const initialTag = new URLSearchParams(window.location.search).get('tag');

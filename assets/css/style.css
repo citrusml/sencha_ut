@@ -122,12 +122,13 @@ img {
 .navbar-brand:focus-visible,
 .nav-link:focus-visible,
 .btn-primary:focus-visible,
-.tag-filter-btn:focus-visible,
+.tag-chip-button:focus-visible,
 .pagination-btn:focus-visible,
 .stretched-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 6px;
+  box-shadow: none;
 }
 
 .navbar-collapse {
@@ -258,21 +259,37 @@ img {
   user-select: none;
 }
 
-.tag-badge {
+.tag-chip {
   display: inline-block;
+  position: relative;
+  z-index: 2;
   font-size: 0.75rem;
   color: var(--accent);
   background: var(--white);
   border: 1px solid var(--accent);
-  border-radius: 12px;
-  padding: 2px 10px;
-  margin-right: 4px;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
+  border-radius: 999px;
+  padding: 0.22rem 0.45rem;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.active-tag {
+.tag-chip-link {
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.tag-chip-trigger {
+  cursor: pointer;
+}
+
+.tag-chip-button {
+  font-size: 0.85rem;
+  border-radius: 12px;
+  padding: 6px 12px;
+  margin: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+.tag-chip.is-active {
   background-color: var(--accent);
   color: var(--white);
   border-color: var(--accent);
@@ -293,37 +310,9 @@ img {
 
 .post-tags-display {
   margin-left: 0;
-}
-
-.tag-filter-btn {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: var(--accent);
-  background: var(--white);
-  border: 1px solid var(--accent);
-  border-radius: 12px;
-  padding: 6px 12px;
-  margin: 0 6px 6px 0;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.tag-filter-btn.active {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--white);
-}
-
-.tag-badge-static {
-  display: inline-block;
-  font-size: 0.75rem;
-  color: var(--accent);
-  background: var(--white);
-  border: 1px solid var(--accent);
-  border-radius: 12px;
-  padding: 2px 10px;
-  margin-right: 4px;
-  cursor: default; /* クリック不可 */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 @media (min-width: 600px) and (max-width: 800px) {
@@ -333,7 +322,7 @@ img {
   }
 }
 
- .custom-gallery-card:has(.stretched-link:focus-visible) {
+.custom-gallery-card:has(.stretched-link:focus-visible) {
   z-index: 3;
   transform: translateY(-8px) scale(1.03);
   background-color: color-mix(in srgb, var(--white) 95%, transparent);
@@ -364,12 +353,7 @@ img {
     transform: scale(1.05);
   }
 
-  .tag-filter-btn:hover {
-    background: var(--hero-fallback);
-    color: var(--white);
-  }
-
-  .tag-badge:hover {
+  .tag-chip:hover {
     background: var(--hero-fallback);
     color: var(--white);
   }
@@ -711,30 +695,10 @@ footer {
   font-size: 0.8rem;
 }
 
-.sidebar-post-tag {
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-  font-size: 0.75rem;
-  line-height: 1;
-  color: var(--accent);
-  background: var(--white);
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  padding: 0.22rem 0.45rem;
-}
-
-.sidebar-post-tag:focus-visible {
+.tag-chip-link:focus-visible {
   color: var(--white);
   background: var(--accent);
   outline: none;
-}
-
-@media (min-width: 600px) {
-  .sidebar-post-tag:hover {
-    color: var(--white);
-    background: var(--accent);
-  }
 }
 
 .sidebar-post-body h3 {

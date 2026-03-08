@@ -210,7 +210,7 @@ image: "/assets/images/hanakuiryu.jpg"
               <div class="sidebar-post-header mb-0">
                 <div class="sidebar-post-meta small text-muted mb-0">{{ post.date | date: "%Y.%m.%d" }}</div>
                 {% if post.tags and post.tags.size > 0 %}
-                <a href="{{ '/gallery' | relative_url }}?tag={{ post.tags.first | url_encode }}" class="sidebar-post-tag text-decoration-none">#{{ post.tags.first }}</a>
+                <a href="{{ '/gallery' | relative_url }}?tag={{ post.tags.first | url_encode }}" class="tag-chip tag-chip-link text-decoration-none">#{{ post.tags.first }}</a>
                 {% endif %}
               </div>
               <h3 class="h6 font-shippori color-accent-dark mb-2">{{ post.title }}</h3>
