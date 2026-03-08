@@ -245,7 +245,7 @@ img {
 .custom-gallery-card {
   position: relative;
   z-index: 1;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   background-color: var(--white);
   border: 1px solid var(--color-border) !important;
@@ -324,7 +324,7 @@ img {
 
 .custom-gallery-card:has(.stretched-link:focus-visible) {
   z-index: 3;
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(-8px);
   background-color: color-mix(in srgb, var(--white) 95%, transparent);
   box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
 }
@@ -344,7 +344,7 @@ img {
 
   .custom-gallery-card:hover {
     z-index: 3;
-    transform: translateY(-8px) scale(1.03);
+    transform: translateY(-8px);
     background-color: color-mix(in srgb, var(--white) 95%, transparent);
     box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
   }
@@ -726,14 +726,14 @@ footer {
 }
 
 .sidebar-post-link:has(.stretched-link:focus-visible) {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 600px) {
   .sidebar-post-link:hover
   {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   }
 
