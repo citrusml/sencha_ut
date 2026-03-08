@@ -308,6 +308,10 @@ img {
   font-size: 1.1rem;
 }
 
+.post-tag-list .tag-chip {
+  font-size: 0.85rem;
+}
+
 .post-tags-display {
   margin-left: 0;
   display: flex;

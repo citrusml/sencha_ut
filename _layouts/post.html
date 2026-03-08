@@ -13,7 +13,7 @@ layout: default
   </div>
 
  {% if page.tags %}
-  <div class="mt-2 mb-4 me-3 d-flex flex-wrap gap-1">
+  <div class="post-tag-list mt-2 mb-4 me-3 d-flex flex-wrap gap-1">
     {% for tag in page.tags %}
     <a href="{{ '/gallery' | relative_url }}?tag={{ tag | url_encode }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
     {% endfor %}
