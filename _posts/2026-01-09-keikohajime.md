@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "稽古初め🎍"
+date: 2026-01-09
 tags: [お稽古]
-image: "assets/images/posts/2026-01-09.jpg" 
+image: "/assets/images/posts/2026-01-09.jpg" 
 ---
 本日は新年🎍の稽古初めということで、お茶菓子には花びら餅を頂きました。<br>
 花びら餅の甘い牛蒡があつあつのほうじ茶とよく合っていました。

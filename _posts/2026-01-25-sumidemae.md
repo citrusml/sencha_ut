@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "炭手前"
+date: 2026-01-25
 tags: [お稽古, お手前]
-image: "assets/images/posts/2026-01-25.jpg" 
+image: "/assets/images/posts/2026-01-25.jpg" 
 ---
 1月のお稽古は「炭手前」です。
 
