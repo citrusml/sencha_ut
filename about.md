@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 煎茶道・薫風流について
-image: "/assets/images/hanakuiryu.jpg"
+image: "/assets/images/slide/slide01.jpg"
 ---
 
 <h2 class="mt-5 h4 border-bottom pb-2 border-color-default font-shippori">「煎茶道」とは</h2>
