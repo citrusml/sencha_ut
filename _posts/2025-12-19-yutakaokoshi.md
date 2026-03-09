@@ -1,5 +1,6 @@
 ---
 layout: post
+title: "ゆたかおこし"
 tags: [本日のお菓子]
 image: "assets/images/posts/2025-12-19.jpg" 
 ---

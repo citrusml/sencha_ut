@@ -1,5 +1,6 @@
 ---
 layout: post
+title: "稽古初め🎍"
 tags: [お稽古]
 image: "assets/images/posts/2026-01-09.jpg" 
 ---
