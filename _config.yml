@@ -32,3 +32,4 @@ formurl: "https://forms.gle/eUJz89aFUpFzQWmS8"
 theme: minima
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
