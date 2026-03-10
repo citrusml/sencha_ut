@@ -6,7 +6,7 @@ lang: ja
 author:
   name: 東京大学薫風流煎茶同好会
   twitter: sencha_ut
-logo: "/assets/images/logos/doukoukai_logo_nobg.png"
+logo: "https://sencha-ut.com/assets/images/logos/doukoukai_logo_nobg.png"
 image: "/assets/images/slide/slide01.jpg"
 email: "sencha.shinkan@gmail.com"
 twitter:
