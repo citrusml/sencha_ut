@@ -14,4 +14,4 @@ my-circle-site/
 ├── about.md             # ⑥ 煎茶道について
 ├── activities.md        # ⑦ 活動内容 <- なしにする
 ├── gallery.html         # ⑧ 活動記録・行事紹介
-└── join.md              # ⑨ 入会
+└── join.md              # ⑨ 入会案内
