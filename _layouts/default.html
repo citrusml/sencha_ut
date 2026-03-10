@@ -15,15 +15,6 @@
   <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }} Feed" href="{{ '/feed.xml' | absolute_url }}">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   {% seo title=false %}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "{{ site.title | escape }}",
-    "url": "{{ site.url | append: site.baseurl }}",
-    "logo": "{{ site.logo | absolute_url }}"
-  }
-  </script>
   {% assign social_image_path = page.image | default: site.image %}
   {% if social_image_path %}
     {% assign social_image_url = social_image_path %}
@@ -34,11 +25,19 @@
       {% endunless %}
       {% assign social_image_url = social_image_path | absolute_url %}
     {% endunless %}
-    <meta property="og:image" content="{{ social_image_url }}">
+  {% endif %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{ site.title | escape }}",
+    "url": "{{ site.url | append: site.baseurl }}",
+    "logo": "{{ site.logo | absolute_url }}"
+  }
+  </script>
+  {% if social_image_url %}
     <meta property="og:image:secure_url" content="{{ social_image_url }}">
     <meta property="og:image:alt" content="{{ page.title | default: site.title }}">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ social_image_url }}">
     <meta name="twitter:image:alt" content="{{ page.title | default: site.title }}">
   {% endif %}
 </head>
