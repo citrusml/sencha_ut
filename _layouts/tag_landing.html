@@ -1,0 +1,57 @@
+---
+layout: default
+image: "/assets/images/slide/slide01.jpg"
+---
+
+<div class="container my-5 max-width-1200">
+  {% if page.title %}
+  <h1 class="font-shippori mb-4">{{ page.title }}</h1>
+  {% endif %}
+
+  {% if page.lead %}
+  <p class="lead text-body-secondary mb-4">{{ page.lead }}</p>
+  {% endif %}
+
+  {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag_name" %}
+
+  {% if tagged_posts.size > 0 %}
+  <div class="row row-cols-1 row-cols-md-2 g-3">
+    {% for post in tagged_posts %}
+      {% if post.image %}
+        {% assign thumb = post.image %}
+      {% elsif post.images %}
+        {% assign thumb = post.images | first %}
+      {% else %}
+        {% assign thumb = nil %}
+      {% endif %}
+      <div class="col">
+        <article class="card h-100 border-0 shadow-sm custom-gallery-card">
+          {% if thumb %}
+          <div class="gallery-thumbnail">
+            <img src="{{ thumb | relative_url }}" alt="{{ post.title }}" loading="lazy">
+          </div>
+          {% endif %}
+          <div class="card-body">
+            <div class="post-meta small text-muted mb-1">
+              {{ post.date | date: "%Y.%m.%d" }}
+            </div>
+            <h2 class="h5 post-title">{{ post.title }}</h2>
+            <p class="post-excerpt small text-secondary mb-0">
+              {{ post.content | strip_html | replace: "\n", " " | strip | truncate: 120 }}
+            </p>
+            <a href="{{ post.url | relative_url }}" class="stretched-link" aria-label="{{ post.title }}を読む"></a>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-body-secondary">このテーマに関する活動記録はまだありません。</p>
+  {% endif %}
+
+  <div class="text-end my-4 pt-4">
+    <a href="{{ '/gallery' | relative_url }}" class="inline-accent-link">
+      > 活動記録一覧に戻る
+    </a>
+  </div>
+</div>

@@ -224,7 +224,7 @@ img {
   color: var(--color-text);
   text-decoration: none;
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.1rem;
   font-size: 1.2rem;
 }
 
@@ -275,6 +275,12 @@ img {
 .tag-chip-link {
   flex-shrink: 0;
   line-height: 1;
+}
+
+.featured-topic-link {
+  font-size: 1rem;
+  padding: 0.55rem 1rem;
+  border-width: 1px;
 }
 
 .tag-chip-trigger {

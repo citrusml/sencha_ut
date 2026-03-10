@@ -16,7 +16,13 @@ image: "/assets/images/hanakuiryu.jpg"
  {% if page.tags %}
   <div class="post-tag-list mt-2 mb-4 me-3 d-flex flex-wrap gap-1">
     {% for tag in page.tags %}
+    {% if tag == '駒場祭' %}
+    <a href="{{ '/tags/komabasai/' | relative_url }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
+    {% elsif tag == '新歓' %}
+    <a href="{{ '/tags/shinkan/' | relative_url }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
+    {% else %}
     <a href="{{ '/gallery' | relative_url }}?tag={{ tag | url_encode }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
+    {% endif %}
     {% endfor %}
   </div>
  {% endif %}

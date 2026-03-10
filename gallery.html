@@ -9,6 +9,13 @@ image: "/assets/images/slide/slide01.jpg"
   <h1 class="font-shippori mb-5">{{ page.title }}</h1>
 
   <div class="container max-width-1200">
+    <div class="text-center mb-4 user-select-none">
+      <div class="d-flex justify-content-center flex-wrap gap-2 user-select-auto">
+        <a href="{{ '/tags/komabasai/' | relative_url }}" class="tag-chip tag-chip-link featured-topic-link text-decoration-none">駒場祭の活動記録</a>
+        <a href="{{ '/tags/shinkan/' | relative_url }}" class="tag-chip tag-chip-link featured-topic-link text-decoration-none">新歓の活動記録</a>
+      </div>
+    </div>
+
     <div class="tag-container mb-5 text-center user-select-none">
       {% capture tag_sort_blob %}{% for tag in site.tags %}{% assign tag_count = tag[1] | size %}{% assign tag_count_padded = tag_count | prepend: '0000' | slice: -4, 4 %}{{ tag_count_padded }}::{{ tag[0] }}|||{% endfor %}{% endcapture %}
       {% assign sorted_tag_keys = tag_sort_blob | split: '|||' | sort | reverse %}
