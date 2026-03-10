@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }} Feed" href="{{ '/feed.xml' | absolute_url }}">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   {% seo title=false %}
   <script type="application/ld+json">
@@ -71,7 +72,7 @@
             <a class="nav-link{% if page.url == '/about.html' or page.url == '/about/' %} active{% endif %}"{% unless page.url == '/about.html' or page.url == '/about/' %} href="{{ '/about' | relative_url }}"{% endunless %}{% if page.url == '/about.html' or page.url == '/about/' %} aria-current="page"{% endif %}>煎茶道・薫風流について</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link{% if page.url == '/gallery.html' or page.url == '/gallery/' %} active{% endif %}"{% unless page.url == '/gallery.html' or page.url == '/gallery/' %} href="{{ '/gallery' | relative_url }}"{% endunless %}{% if page.url == '/gallery.html' or page.url == '/gallery/' %} aria-current="page"{% endif %}>投稿</a>
+            <a class="nav-link{% if page.url == '/gallery.html' or page.url == '/gallery/' %} active{% endif %}"{% unless page.url == '/gallery.html' or page.url == '/gallery/' %} href="{{ '/gallery' | relative_url }}"{% endunless %}{% if page.url == '/gallery.html' or page.url == '/gallery/' %} aria-current="page"{% endif %}>活動記録</a>
           </li>
           <li class="nav-item">
             <a class="nav-link{% if page.url == '/join.html' or page.url == '/join/' %} active{% endif %}"{% unless page.url == '/join.html' or page.url == '/join/' %} href="{{ '/join' | relative_url }}"{% endunless %}{% if page.url == '/join.html' or page.url == '/join/' %} aria-current="page"{% endif %}>入会</a>
