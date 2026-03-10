@@ -2,7 +2,7 @@
 layout: post
 title: "ゆたかおこし"
 date: 2025-12-19
-tags: [本日のお菓子]
+tags: [お稽古, 本日のお菓子]
 image: "/assets/images/posts/2025-12-19.jpg" 
 ---
 本日は、愛知県豊橋市の銘菓であるゆたかおこしをいただきました。

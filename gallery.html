@@ -10,11 +10,15 @@ image: "/assets/images/slide/slide01.jpg"
 
   <div class="container max-width-1200">
     <div class="tag-container mb-5 text-center user-select-none">
-      {% for tag in site.tags %}
-        {% assign tag_name = tag[0] %}
+      {% capture tag_sort_blob %}{% for tag in site.tags %}{% assign tag_count = tag[1] | size %}{% assign tag_count_padded = tag_count | prepend: '0000' | slice: -4, 4 %}{{ tag_count_padded }}::{{ tag[0] }}|||{% endfor %}{% endcapture %}
+      {% assign sorted_tag_keys = tag_sort_blob | split: '|||' | sort | reverse %}
+      {% for tag_key in sorted_tag_keys %}
+        {% if tag_key != '' %}
+        {% assign tag_name = tag_key | split: '::' | last %}
         <button class="tag-chip tag-chip-button user-select-auto" data-role="tag-filter-control" data-tag="{{ tag_name }}">
           #{{ tag_name }}
         </button>
+        {% endif %}
       {% endfor %}
   </div>
 
