@@ -44,7 +44,7 @@ image: "/assets/images/slide/slide01.jpg"
 まずは普段のお稽古の様子を見学にいらしてください。<br>
 見学は、授業期間中の木曜日か土曜日の普段のお稽古に、おおよそ一時間ほどご参加いただけます。
 
-新歓の時期には、サークルオリエンテーションでお出しします桜茶に加えて、新入会員が最初に習得する煎茶と玉露を味わっていただけます。
+新歓の時期には、サークルオリエンテーションでお出しします玉露に加えて、新入会員が最初に習得する煎茶と玉露を味わっていただけます。
 
 <div class="text-center my-5">
   <a href="{{ site.formurl }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm" target="_blank" rel="noopener noreferrer">
