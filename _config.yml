@@ -19,8 +19,8 @@ social:
     - https://instagram.com/sencha_ut
 recruitment:
   title: "新歓情報（26年度）"
-  summary: "当同好会はサークルオリエンテーション(4/3(金)、4/5(日))に参加します。"
-  details: "サークルオリエンテーションでは、春ならではの桜茶を提供する予定ですので、ぜひお越しください！"
+  summary: "会員一同ご入会を大歓迎しております！"
+  details: "まずはぜひ、普段のお稽古の見学にいらしてください！"
   form_label: "見学希望フォーム(26年度版)"
 defaults:
   - scope:

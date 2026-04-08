@@ -9,6 +9,7 @@ image: "/assets/images/slide/slide01.jpg"
 
 茶道と聞くと堅苦しいイメージを持つ人も多いかもしれませんが、普段のお稽古は和気あいあいと楽しく行っています。
 お稽古は通常、木曜日の5限後(18時50分〜21時)と土曜日(9時〜17時)に行っております。
+もちろん皆さんそれぞれ学修の都合などもありますから、都合のつく日時を選んでお稽古に励んでいます。
 
 <div class="text-center my-5">
   <span class="h4 color-accent-dark font-shippori">ご入会は学年・時期を問わず<br class="d-md-none">受け付けております！</span>
@@ -42,9 +43,9 @@ image: "/assets/images/slide/slide01.jpg"
 ## 入会までの流れ
 
 まずは普段のお稽古の様子を見学にいらしてください。<br>
-見学は、授業期間中の木曜日か土曜日の普段のお稽古に、おおよそ一時間ほどご参加いただけます。
+見学は、授業期間中の土曜日の普段のお稽古に、おおよそ一時間ほどご参加いただけます。
 
-新歓の時期には、サークルオリエンテーションでお出しします玉露に加えて、新入会員が最初に習得する煎茶と玉露を味わっていただけます。
+新歓の時期には、サークルオリエンテーションでお出ししました玉露に加えて、新入会員が最初に習得する煎茶と玉露を味わっていただけます。
 
 <div class="text-center my-5">
   <a href="{{ site.formurl }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm" target="_blank" rel="noopener noreferrer">
