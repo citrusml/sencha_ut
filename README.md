@@ -57,4 +57,17 @@ git config core.quotepath false       # 日本語のファイル名をそのま�
 よく使うタグ: お知らせ、イベント、新歓、駒場祭、お稽古、お手前、本日のお菓子
 （`新歓` と `駒場祭` は専用の一覧ページに載ります）
 
-画像はスマホの写真をそのまま置かず、長辺 1800px 程度・1枚数百KB 以下に縮小してから追加してください。
+画像はスマホの写真をそのまま置かず、長辺 1800px 程度・1枚数百KB 以下に縮小してから追加してください。同じ日に複数枚あるときは `YYYY-MM-DD_1.jpg`, `_2` のように付けます。
+
+縮小には [ImageMagick](https://imagemagick.org/)（Windows は `winget install ImageMagick.ImageMagick`）を使います。HEIC もこのコマンドで JPEG になります。
+
+```bash
+magick 元の写真.jpg -auto-orient -resize "1800x1800>" -quality 85 assets/images/posts/YYYY-MM-DD.jpg
+```
+
+置いたら位置情報などを確認・削除します（`report` で `(none)` 以外なら `strip` して、もう一度 `report`）。
+
+```bash
+perl tools/strip_metadata.pl report assets/images/posts/YYYY-MM-DD.jpg
+perl tools/strip_metadata.pl strip assets/images/posts/YYYY-MM-DD.jpg
+```
