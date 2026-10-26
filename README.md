@@ -11,7 +11,16 @@ bundle install                          # 初回のみ
 bundle exec jekyll serve --livereload   # http://127.0.0.1:4000/ で確認
 ```
 
-ファイルを保存するとページが自動で更新されます。`_config.yml` を変えたときだけ再起動が必要です。
+ファイルを保存するとページが自動で更新されます。`_config.yml` を変えたときだけ再起動が必要です。下書き（`_drafts/`）も表示するときは `--drafts` を付けます。
+
+## 最初に一度だけする設定
+
+```bash
+git config core.hooksPath .githooks   # コミット前に画像の位置情報などを自動チェック
+git config core.quotepath false       # 日本語のファイル名をそのまま表示
+```
+
+フックは、コミットしようとしている JPEG / PNG に位置情報・撮影日時などが残っていると、コミットを止めて消し方を表示します（Git に付属の Perl で動きます）。
 
 ## フォルダ構成
 

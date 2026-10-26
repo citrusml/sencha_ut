@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "タイトルを入力"
-date: 2026-00-00
-image: "/assets/images/posts/2026-00-00.jpg"
+date: 2026-01-01  # 投稿日に書き換える
+image: "/assets/images/posts/YYYY-MM-DD.jpg"
 tags: [お稽古]
 ---
 （title, date, image, tags を設定して本文を入力）
