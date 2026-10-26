@@ -42,9 +42,9 @@ image: "/assets/images/slide/slide01.jpg"
 
 <div class="row my-3 g-2 text-center">
   <div class="col-md-6">
-    <img src="{{ '/assets/images/お茶の種類1.png' | relative_url }}" alt="お茶の種類1" class="photo-item">
+    <img src="{{ '/assets/images/お茶の種類1.jpg' | relative_url }}" alt="お茶の種類1" class="photo-item">
   </div>
   <div class="col-md-6">
-    <img src="{{ '/assets/images/お茶の種類2.png' | relative_url }}" alt="お茶の種類2" class="photo-item">
+    <img src="{{ '/assets/images/お茶の種類2.jpg' | relative_url }}" alt="お茶の種類2" class="photo-item">
   </div>
 </div>
