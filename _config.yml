@@ -39,6 +39,7 @@ exclude:
   - node_modules/
   - .jekyll-cache/
   - .sass-cache/
+  - tools/
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap

@@ -1,0 +1,13 @@
+# テキストは Git の中では LF で保存し、取り出すときは各 OS の改行にする（Mac と Windows で差分が出ないように）
+* text=auto
+
+# フックはどの OS でも LF でないと動かない
+.githooks/* text eol=lf
+
+# 画像などは改行変換しない
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.ico binary
+*.webp binary

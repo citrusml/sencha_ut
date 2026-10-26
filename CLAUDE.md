@@ -6,7 +6,8 @@
 
 - プレビュー: `bundle exec jekyll serve --livereload` → http://127.0.0.1:4000/
 - ビルド確認: `bundle exec jekyll build`（エラーなしで終わること。Sass の DEPRECATION WARNING は minima 由来なので無視してよい）
-- `--drafts` は付けない（`_drafts/template.md` の日付が仮の `2026-00-00` でビルドが落ちる）
+- 下書きも見るとき: `bundle exec jekyll serve --livereload --drafts`
+- 初回のみ: `git config core.hooksPath .githooks`（コミット前に画像のメタデータを自動チェックするフックを有効にする）と `git config core.quotepath false`（日本語ファイル名をそのまま表示する）
 
 ## 記事（_posts）のルール
 
@@ -23,6 +24,7 @@
 - 大きさの目安は表示サイズの2倍: 記事・about の写真は幅 1400px 以上、トップのスライドは 1600×1000 を覆う大きさ、アイコンは表示 px の4倍程度
 - 使われていない画像は残さない
 - **位置情報などのメタデータを必ず消す**。リポジトリは公開なので、一度コミットした写真は消しても履歴から誰でも取り出せる（2025-11-30 撮影の写真で GPS が履歴に残った前例あり）
+  - pre-commit フック（`.githooks/pre-commit`）が、ステージした JPEG / PNG にメタデータがあるとコミットを止める。フックを無効にして（`--no-verify`）コミットしない
   - 画像を追加・差し替えたら、コミット前に `perl tools/strip_metadata.pl report <ファイル>` で確認し、`(none)` 以外なら `perl tools/strip_metadata.pl strip <ファイル>` で削除して、もう一度 report で `(none)` を確認する
   - 対象は JPEG / PNG。GPS・撮影日時・機種名・コメント等を消す（再圧縮しないので画質は変わらない）。HEIC など他形式はそのまま置かず JPEG に変換してから処理する
   - 縮小・編集ソフトで書き出した後にも処理する（書き出しでメタデータが付き直すことがある）
