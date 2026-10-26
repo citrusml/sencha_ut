@@ -20,6 +20,7 @@
 ## 画像
 
 - 追加前に長辺 1800px 程度・1枚数百KB 以下に縮小する（スマホ写真をそのまま置かない）
+  - 縮小は ImageMagick: `magick 元.jpg -auto-orient -resize "1800x1800>" -quality 85 assets/images/posts/YYYY-MM-DD.jpg`（HEIC もこれで JPEG にする。`-auto-orient` で向きを画素に焼き込む）
 - 写真は JPEG で置く（PNG は透過が必要なロゴ・アイコンだけ）
 - 大きさの目安は表示サイズの2倍: 記事・about の写真は幅 1400px 以上、トップのスライドは 1600×1000 を覆う大きさ、アイコンは表示 px の4倍程度
 - 使われていない画像は残さない
