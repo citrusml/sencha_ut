@@ -20,6 +20,8 @@ social:
     - https://instagram.com/sencha_ut
 # トップページの構造化データ（Organization）に載せる団体情報。空欄の項目は出力しない
 organization:
+  # 団体そのものの説明（上の description はサイトの説明なので使わない）
+  description: 東京大学薫風流煎茶同好会は、東京大学を中心に活動する煎茶道のインカレサークルです。急須で茶葉から日本茶を淹れる煎茶道を、薫風流の先生のご指導のもとで学び、玉露や四季折々のお茶を楽しみながらお稽古に励んでいます。
   founding_date: ""   # 設立年（例: "2010"）
   location: ""        # 活動場所（例: 東京大学〇〇キャンパス）
 recruitment:

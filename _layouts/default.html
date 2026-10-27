@@ -36,7 +36,7 @@
     "name": {{ site.title | jsonify }},
     "url": {{ '/' | absolute_url | jsonify }},
     "logo": {{ site.logo | absolute_url | jsonify }},
-    "description": {{ site.description | jsonify }},
+    "description": {{ site.organization.description | jsonify }},
     {% if org_founding_date != "" %}"foundingDate": {{ org_founding_date | jsonify }},{% endif %}
     {% if org_location != "" %}"location": { "@type": "Place", "name": {{ org_location | jsonify }} },{% endif %}
     "sameAs": {{ site.social.links | jsonify }}
