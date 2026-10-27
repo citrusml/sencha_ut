@@ -39,5 +39,6 @@
 
 - `_config.yml` の `recruitment` / `formurl` は年度ごとに更新する新歓情報
 - `CNAME` は独自ドメイン設定なので変更しない
-- 公開は `main` ブランチへの push で反映される（GitHub Pages の標準ビルド）。push 前にビルドが通ることを確認する
-- 本番の GitHub Pages は Gemfile を使わず Jekyll 3.10 でビルドする。ローカルは Jekyll 4.4 なので、Jekyll 4 でしか動かない書き方やプラグインは使わない
+- 公開は `main` ブランチへの push で反映される。GitHub Actions（`.github/workflows/jekyll.yml`）が Gemfile.lock どおりの Jekyll 4.4 でビルドして公開するので、ローカルと本番は同じ結果になる
+- main 向けのプルリクエストでは、同じワークフローがビルドと全画像のメタデータ確認だけを行う（公開はしない）。失敗したらマージしない
+- Gemfile.lock は Windows 用（x64-mingw-ucrt）と GitHub の Linux 用（x86_64-linux）の両方を持つ。gem を追加・更新したら `bundle lock --add-platform x86_64-linux` で Linux 用が残っていることを確かめる
