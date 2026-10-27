@@ -1,0 +1,68 @@
+# サイトをビルドして GitHub Pages に公開する。
+# - main への push: ビルド → 公開
+# - main 向けのプルリクエスト: ビルドと画像のメタデータ確認だけ（公開はしない）
+# 公開には Settings → Pages → Source を「GitHub Actions」にしておく必要がある。
+name: Build and deploy site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 公開は一度に1つだけ（途中の公開は中断しない）。プルリクエストのビルドは別枠で動かす
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'pages' }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Check image metadata
+        # pre-commit フックと同じスクリプトで、全画像に位置情報などが残っていないか確認する
+        run: |
+          git ls-files -z -- '*.jpg' '*.jpeg' '*.png' '*.JPG' '*.JPEG' '*.PNG' \
+            | xargs -0 perl tools/strip_metadata.pl report > metadata-report.txt
+          if grep '^    ' metadata-report.txt | grep -qvF '(none)'; then
+            cat metadata-report.txt
+            echo "::error::画像にメタデータが残っています。perl tools/strip_metadata.pl strip <ファイル> で消してください"
+            exit 1
+          fi
+          echo "checked $(grep -cv '^    ' metadata-report.txt) images: no metadata"
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+          bundler-cache: true # bundle install（Gemfile.lock どおり）とキャッシュ
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
