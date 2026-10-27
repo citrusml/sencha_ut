@@ -25,15 +25,24 @@
       {% assign social_image_url = social_image_path | absolute_url %}
     {% endunless %}
   {% endif %}
+  {% if page.url == "/" %}
+  {% assign org_founding_date = site.organization.founding_date | strip %}
+  {% assign org_location = site.organization.location | strip %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "{{ site.title | escape }}",
-    "url": "{{ site.url | append: site.baseurl }}",
-    "logo": "{{ site.logo | absolute_url }}"
+    "@id": {{ '/#organization' | absolute_url | jsonify }},
+    "name": {{ site.title | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }},
+    "logo": {{ site.logo | absolute_url | jsonify }},
+    "description": {{ site.description | jsonify }},
+    {% if org_founding_date != "" %}"foundingDate": {{ org_founding_date | jsonify }},{% endif %}
+    {% if org_location != "" %}"location": { "@type": "Place", "name": {{ org_location | jsonify }} },{% endif %}
+    "sameAs": {{ site.social.links | jsonify }}
   }
   </script>
+  {% endif %}
   {% if social_image_url %}
     <meta property="og:image:secure_url" content="{{ social_image_url }}">
     <meta property="og:image:alt" content="{{ page.title | default: site.title }}">
