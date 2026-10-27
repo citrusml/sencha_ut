@@ -5,6 +5,7 @@ baseurl: ""
 lang: ja
 author:
   name: 東京大学薫風流煎茶同好会
+  type: Organization
   twitter: sencha_ut
 logo: "https://sencha-ut.com/assets/images/logos/doukoukai_logo_nobg.png"
 image: "/assets/images/slide/slide01.jpg"
@@ -17,6 +18,10 @@ social:
   links:
     - https://twitter.com/sencha_ut
     - https://instagram.com/sencha_ut
+# トップページの構造化データ（Organization）に載せる団体情報。空欄の項目は出力しない
+organization:
+  founding_date: ""   # 設立年（例: "2010"）
+  location: ""        # 活動場所（例: 東京大学〇〇キャンパス）
 recruitment:
   title: "新歓情報（26年度）"
   summary: "学年を問わず、新入会員を歓迎しております！"

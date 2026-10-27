@@ -1,0 +1,5 @@
+# 記事の author（_config.yml の defaults で sencha_ut）を jekyll-seo-tag が引き当てる
+sencha_ut:
+  name: 東京大学薫風流煎茶同好会
+  type: Organization
+  twitter: sencha_ut
