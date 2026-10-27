@@ -3,7 +3,7 @@ layout: post
 title: "🍵駒場祭茶会のおしらせ🍵"
 date: 2025-11-21
 image: "/assets/images/posts/2025-11-21.jpg"
-tags: [駒場祭, イベント, お知らせ]
+tags: [駒場祭, イベント, ご案内]
 ---
 🍵駒場祭茶会のおしらせ🍵
 

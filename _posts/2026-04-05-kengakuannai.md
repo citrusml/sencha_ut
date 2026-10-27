@@ -3,7 +3,7 @@ layout: post
 title: "【お稽古見学のご案内】"
 date: 2026-04-05
 image: "/assets/images/posts/2026-04-05.jpg"
-tags: [お知らせ]
+tags: [ご案内]
 ---
 【お稽古見学のご案内】
 計二日間のサークルオリエンテーション、皆様おつかれさまでした✨
