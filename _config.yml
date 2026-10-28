@@ -36,7 +36,6 @@ defaults:
     values:
       author: sencha_ut
 formurl: "https://forms.gle/eUJz89aFUpFzQWmS8"
-theme: minima
 exclude:
   - README.md
   - CLAUDE.md
@@ -48,5 +47,6 @@ exclude:
   - .sass-cache/
   - tools/
 plugins:
+  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
