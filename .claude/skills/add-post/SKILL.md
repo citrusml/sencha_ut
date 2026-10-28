@@ -70,7 +70,7 @@ git switch -c post-YYYY-MM-DD origin/main
 
 ## 5. 確認する
 
-- `bundle exec jekyll build` がエラーなしで終わることを確かめる。Sass の DEPRECATION WARNING は無視してよい。
+- `bundle exec jekyll build` がエラーなしで終わることを確かめる。
 - プレビューで記事を表示する。
   - `preview_start` で `jekyll` を起動し、`/YYYY/MM/DD/スラッグ.html` を開く。
   - 4000 番ポートでサーバーがすでに動いていることがある。その場合は、そのサーバーで記事の URL を開く（自動更新つきで同じフォルダを見ている）。

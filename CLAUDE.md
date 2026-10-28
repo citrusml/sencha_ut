@@ -1,11 +1,11 @@
 # CLAUDE.md
 
-東京大学薫風流煎茶同好会の公式サイト（https://sencha-ut.com）。Jekyll 4 + minima テーマ。構成は README.md を参照。
+東京大学薫風流煎茶同好会の公式サイト（https://sencha-ut.com）。Jekyll 4 で、テーマは使わずレイアウトはすべて `_layouts/` の自作。構成は README.md を参照。
 
 ## コマンド
 
 - プレビュー: `bundle exec jekyll serve --livereload` → http://127.0.0.1:4000/
-- ビルド確認: `bundle exec jekyll build`（エラーなしで終わること。Sass の DEPRECATION WARNING は minima 由来なので無視してよい）
+- ビルド確認: `bundle exec jekyll build`（エラーなしで終わること）
 - 下書きも見るとき: `bundle exec jekyll serve --livereload --drafts`
 - 初回のみ: `git config core.hooksPath .githooks`（コミット前に画像のメタデータを自動チェックするフックを有効にする）と `git config core.quotepath false`（日本語ファイル名をそのまま表示する）
 

@@ -1,6 +1,6 @@
 # 東京大学薫風流煎茶同好会 Webサイト
 
-https://sencha-ut.com のソースです。[Jekyll](https://jekyllrb.com/)（テーマ: minima）で作られています。
+https://sencha-ut.com のソースです。[Jekyll](https://jekyllrb.com/)で作られています。テーマは使わず、見た目はすべて `_layouts/` と `assets/css/style.css` で作っています。
 
 ## ローカルでのプレビュー
 
