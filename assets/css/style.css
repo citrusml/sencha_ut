@@ -421,14 +421,15 @@ img {
   }
 }
 
+/* 幅の狭いスマホ（iPhone SE / mini など）: 団体名（12文字）がヘッダーと大見出しで1行に収まる大きさにする。
+   本文やほかの見出しの大きさは変えない */
 @media screen and (max-width: 380px) {
-  html {
-    font-size: 13px;
+  .navbar-brand {
+    font-size: min(1.05rem, 4.8vw);
   }
 
-  h1,
-  .font-shippori {
-    font-size: 1.5rem !important;
+  h1 {
+    font-size: 7vw;
     letter-spacing: -0.02em;
     line-height: 1.3;
   }
