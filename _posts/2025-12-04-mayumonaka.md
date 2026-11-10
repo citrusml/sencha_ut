@@ -2,6 +2,7 @@
 layout: post
 title: "まゆ最中"
 date: 2025-12-04
+image: "/assets/images/posts/2025-12-04_1.jpg"
 images: 
     - "/assets/images/posts/2025-12-04_1.jpg"
     - "/assets/images/posts/2025-12-04_2.jpg"

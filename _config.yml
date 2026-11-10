@@ -3,6 +3,8 @@ description: 東京大学薫風流煎茶同好会の公式サイトです。東�
 url: "https://sencha-ut.com" # ※実際の公開URLに変更してください
 baseurl: "" 
 lang: ja
+# 日時を日本時間で扱う。指定しないと公開時のビルドが UTC になり、当日の朝 9 時より前に公開した記事が「未来の記事」として出ない
+timezone: Asia/Tokyo
 author:
   name: 東京大学薫風流煎茶同好会
   type: Organization
