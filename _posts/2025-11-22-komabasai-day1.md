@@ -2,6 +2,7 @@
 layout: post
 title: "駒場祭1日目"
 date: 2025-11-22
+image: "/assets/images/posts/2025-11-22_1.jpg"
 images: 
     - "/assets/images/posts/2025-11-22_1.jpg"
     - "/assets/images/posts/2025-11-22_2.jpg"

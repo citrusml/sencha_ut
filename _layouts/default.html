@@ -14,7 +14,8 @@
   <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }} Feed" href="{{ '/feed.xml' | absolute_url }}">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   {% seo title=false %}
-  {% assign social_image_path = page.image | default: site.image %}
+  {% comment %} og:image は jekyll-seo-tag が page.image から出す。ここではその補足だけを、page.image があるときに出す {% endcomment %}
+  {% assign social_image_path = page.image %}
   {% if social_image_path %}
     {% assign social_image_url = social_image_path %}
     {% unless social_image_path contains '://' %}
@@ -56,11 +57,11 @@
     <div class="container-fluid px-4 px-lg-5 max-width-1400">
       
       <a class="navbar-brand" href="{{ '/' | relative_url }}">
-        <img src="{{ '/assets/images/logos/doukoukai_logo_nobg.png' | relative_url }}" alt="ロゴ" class="navbar-logo">
+        <img src="{{ '/assets/images/logos/doukoukai_logo_nobg.png' | relative_url }}" alt="" class="navbar-logo">
         {{ site.title }}
       </a>
 
-      <button class="navbar-toggler p-2 border-0 shadow-none custom-fade-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler p-2 border-0 shadow-none custom-fade-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="メニューを開閉">
         <span class="fade-icon icon-menu">
           <span class="toggler-line" style="top: 0px;"></span>
           <span class="toggler-line" style="top: 8px;"></span>

@@ -36,7 +36,7 @@ image: "/assets/images/slide/slide01.jpg"
               {% assign first = true %}
               {% for img in post.images %}
               <div class="local-slide{% if first %} active{% endif %}">
-                <img src="{{ img | relative_url }}" alt="{{ post.title }}"{% if post_index <= 6 %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+                <img src="{{ img | relative_url }}" alt="{{ post.title }}"{% unless first and post_index <= 6 %} loading="lazy"{% endunless %}>
               </div>
               {% assign first = false %}
               {% endfor %}
@@ -51,14 +51,14 @@ image: "/assets/images/slide/slide01.jpg"
             {% assign thumb = post.images | first %}
           {% endif %}
           <div class="gallery-thumbnail">
-            <img src="{{ thumb | relative_url }}" alt="{{ post.title }}"{% if post_index <= 6 %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+            <img src="{{ thumb | relative_url }}" alt="{{ post.title }}"{% if post_index > 6 %} loading="lazy"{% endif %}>
           </div>
           {% endif %}
 
           <div class="card-body">
             <div class="post-tags-display mb-2 user-select-none">
                 {% for tag in post.tags %}
-                  <span class="tag-chip tag-chip-trigger user-select-auto" data-role="tag-badge" data-tag="{{ tag }}">#{{ tag }}</span>
+                  <button type="button" class="tag-chip tag-chip-trigger user-select-auto" data-role="tag-badge" data-tag="{{ tag }}">#{{ tag }}</button>
                 {% endfor %}
             </div>
 
@@ -66,13 +66,13 @@ image: "/assets/images/slide/slide01.jpg"
               {{ post.date | date: "%Y.%m.%d" }}
             </div>
 
-            <h5 class="post-title">{{ post.title }}</h5>
+            <h2 class="h5 post-title">{{ post.title }}</h2>
             
             <div class="post-excerpt small text-secondary">
               {{ post.content | strip_html | truncate: 150 }}
             </div>
             
-            <a href="{{ post.url | relative_url }}" class="stretched-link"></a>
+            <a href="{{ post.url | relative_url }}" class="stretched-link" aria-label="{{ post.title | escape }}を読む"></a>
           </div>
         </div>
       </div>

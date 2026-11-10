@@ -123,6 +123,7 @@ img {
 .nav-link:focus-visible,
 .btn-primary:focus-visible,
 .tag-chip-button:focus-visible,
+.tag-chip-trigger:focus-visible,
 .pagination-btn:focus-visible,
 .stretched-link:focus-visible {
   outline: 2px solid var(--accent);

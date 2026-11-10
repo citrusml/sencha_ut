@@ -2,6 +2,7 @@
 layout: post
 title: "お茶摘み・製茶体験を行いました！"
 date: 2025-04-30
+image: "/assets/images/posts/2025-04-30_1.jpg"
 images: 
     - "/assets/images/posts/2025-04-30_1.jpg"
     - "/assets/images/posts/2025-04-30_2.jpg"
