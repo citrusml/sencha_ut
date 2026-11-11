@@ -53,6 +53,13 @@ img {
   height: auto;
 }
 
+/* 見出しは明朝 */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
 /* 幅の狭いスマホ（iPhone SE / mini など）: 団体名（12文字）が大見出しで1行に収まる大きさにする。
    本文やほかの見出しの大きさは変えない */
 @media (max-width: 380px) {
@@ -355,7 +362,6 @@ footer {
 }
 
 .post-title {
-  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.1rem;
 }
@@ -628,6 +634,21 @@ footer {
 
   .sidebar-post-link:hover .sidebar-post-thumbnail img {
     transform: scale(1.07);
+  }
+}
+
+/* --- 固定ページ（about.md / join.md）: 本文の中見出し「## 見出し」。トップの中見出しと同じ見た目 --- */
+
+.page-body h2 {
+  margin-top: 3rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: calc(1.275rem + 0.3vw); /* Bootstrap の .h4 と同じ大きさ */
+}
+
+@media (min-width: 1200px) {
+  .page-body h2 {
+    font-size: 1.5rem;
   }
 }
 

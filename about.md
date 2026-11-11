@@ -5,7 +5,7 @@ description: 煎茶道とは何か、その歴史と薫風流の由緒。急須�
 image: "/assets/images/slide/slide01.jpg"
 ---
 
-<h2 class="mt-5 h4 border-bottom pb-2 font-shippori">「煎茶道」とは</h2>
+## 「煎茶道」とは
 
 煎茶道とは、江戸時代から続く日本の芸道の一つです。茶筅で粉の抹茶を点てる茶道に対して、**急須**を用いて**茶葉**から日本茶を淹れるお手前を行います。
 
@@ -27,7 +27,7 @@ image: "/assets/images/slide/slide01.jpg"
 </div>
 
 
-<h2 class="mt-5 h4 border-bottom pb-2 font-shippori">「薫風流」とは</h2>
+## 「薫風流」とは
 
 薫風流は、大正七年五月に名古屋で創流された煎茶道の一流派です。新緑の芽吹く初夏の穏やかな風、すなわち**薫風**にその名を由来します。<br class="d-md-none">
 流派の紋である**緑の風車**には、薫風が瑞々しい新緑を吹き抜ける爽やかな様を連想させられます。

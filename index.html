@@ -12,11 +12,11 @@ image: "/assets/images/slide/slide01.jpg"
   <div class="row">
     <div class="col-lg-8 mb-0">
       <section>
-        <h1 class="mb-5 font-shippori color-accent-dark border-bottom pb-3">
+        <h1 class="mb-5 color-accent-dark border-bottom pb-3">
           東京大学薫風流煎茶同好会
         </h1>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 font-shippori">
+        <h2 class="mt-5 h4 border-bottom pb-2">
           同好会について
         </h2>
         <p class="mb-2">東京大学薫風流煎茶同好会は東大を中心としたインカレサークルです。</p>
@@ -31,7 +31,7 @@ image: "/assets/images/slide/slide01.jpg"
         </div>
 
         <div class="bg-accent-soft p-4 my-0 rounded shadow-sm">
-          <h2 class="mt-2 h4 border-bottom font-shippori">
+          <h2 class="mt-2 h4 border-bottom">
             {{ site.recruitment.title }}
           </h2>
           <p class="mt-2 mb-1">{{ site.recruitment.summary }}</p>
@@ -49,7 +49,7 @@ image: "/assets/images/slide/slide01.jpg"
           </div>
         </div>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 font-shippori">
+        <h2 class="mt-5 h4 border-bottom pb-2">
           入会案内
         </h2>
         <p class="callout-text text-center my-4 color-accent-dark font-shippori">
@@ -76,7 +76,7 @@ image: "/assets/images/slide/slide01.jpg"
           </a>
         </div>
 
-        <h2 class="mt-5 h4 border-bottom pb-2 font-shippori">
+        <h2 class="mt-5 h4 border-bottom pb-2">
           活動内容
         </h2>
         <p class="text-body-secondary small mb-4">※全て任意参加です。</p>
@@ -92,7 +92,7 @@ image: "/assets/images/slide/slide01.jpg"
               </div>
             </div>
             <div class="responsive-text">
-              <h3 class="h5 font-shippori color-accent-dark mb-3">普段のお稽古</h3>
+              <h3 class="h5 color-accent-dark mb-3">普段のお稽古</h3>
               <p class="small text-body-secondary mb-2">
                 お稽古は通常、木曜日の4限後(17時10分〜21時)と土曜日(9時〜17時)に行っております。
               </p>
@@ -117,7 +117,7 @@ image: "/assets/images/slide/slide01.jpg"
               </div>
             </div>
             <div class="responsive-text">
-              <h3 class="h5 font-shippori color-accent-dark mb-3">お茶摘み・製茶体験</h3>
+              <h3 class="h5 color-accent-dark mb-3">お茶摘み・製茶体験</h3>
               <p class="small text-body-secondary mb-2">
                 ゴールデンウィーク頃に、お茶摘みと製茶の体験を行います。
               </p>
@@ -139,7 +139,7 @@ image: "/assets/images/slide/slide01.jpg"
               </div>
             </div>
             <div class="responsive-text">
-              <h3 class="h5 font-shippori color-accent-dark mb-3">全国煎茶道大会</h3>
+              <h3 class="h5 color-accent-dark mb-3">全国煎茶道大会</h3>
               <p class="small text-body-secondary mb-2">
                 5月下旬に、京都府宇治市の黄檗山万福寺で開催される全国煎茶道大会に参加します。
               </p>
@@ -159,7 +159,7 @@ image: "/assets/images/slide/slide01.jpg"
               </div>
             </div>
             <div class="responsive-text">
-              <h3 class="h5 font-shippori color-accent-dark mb-3">駒場祭茶会</h3>
+              <h3 class="h5 color-accent-dark mb-3">駒場祭茶会</h3>
               <p class="small text-body-secondary mb-2">
                 11月下旬に、東京大学駒場キャンパスで行われる駒場祭でお茶会を開催します。
               </p>
@@ -186,7 +186,7 @@ image: "/assets/images/slide/slide01.jpg"
               </div>
             </div>
             <div class="responsive-text">
-              <h3 class="h5 font-shippori color-accent-dark mb-3">東京大煎茶会</h3>
+              <h3 class="h5 color-accent-dark mb-3">東京大煎茶会</h3>
               <p class="small text-body-secondary mb-2">
                 11月下旬に、東京都新橋で開催される東京大煎茶会に参加します。
               </p>
@@ -201,7 +201,7 @@ image: "/assets/images/slide/slide01.jpg"
     </div>
     <div class="col-lg-4 mt-4 mt-lg-0">
       <aside class="sidebar-panel bg-accent-soft sticky-top shadow-sm">
-        <h2 class="h4 border-bottom pb-2 font-shippori">最新の活動記録</h2>
+        <h2 class="h4 border-bottom pb-2">最新の活動記録</h2>
         <div class="d-flex flex-column gap-2">
           {% for post in site.posts limit: 2 %}
           <div class="sidebar-post-link position-relative rounded-3 shadow-sm">
@@ -215,7 +215,7 @@ image: "/assets/images/slide/slide01.jpg"
                 <div class="sidebar-post-meta text-body-secondary">{{ post.date | date: "%Y.%m.%d" }}</div>
                 {% if post.tags.size > 0 %}{% include tag-chip.html tag=post.tags.first %}{% endif %}
               </div>
-              <h3 class="font-shippori color-accent-dark mb-2">{{ post.title }}</h3>
+              <h3 class="color-accent-dark mb-2">{{ post.title }}</h3>
               <p class="text-body-secondary mb-0">{{ post.content | strip_html | normalize_whitespace | truncate: 120 }}</p>
             </div>
             <a href="{{ post.url | relative_url }}" class="stretched-link" aria-label="{{ post.title | escape }}を読む"></a>
