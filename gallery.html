@@ -10,6 +10,7 @@ image: "/assets/images/slide/slide01.jpg"
 
   <div class="container max-width-1200">
     <div class="tag-container mb-5 text-center user-select-none">
+      {% comment %} タグを記事の多い順に並べる。Liquid には件数で並べ替える機能がないので、「0012::お稽古」のように件数を4桁にそろえた文字列を作って並べ替え、あとでタグ名だけ取り出す {% endcomment %}
       {% capture tag_sort_blob %}{% for tag in site.tags %}{% assign tag_count = tag[1] | size %}{% assign tag_count_padded = tag_count | prepend: '0000' | slice: -4, 4 %}{{ tag_count_padded }}::{{ tag[0] }}|||{% endfor %}{% endcapture %}
       {% assign sorted_tag_keys = tag_sort_blob | split: '|||' | sort | reverse %}
       {% for tag_key in sorted_tag_keys %}
@@ -22,10 +23,8 @@ image: "/assets/images/slide/slide01.jpg"
       {% endfor %}
   </div>
 
-  {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
-
   <div class="row row-cols-1 row-cols-md-3 g-2" id="blog-posts">
-    {% for post in sorted_posts %}
+    {% for post in site.posts %}
       {% assign post_index = forloop.index %}
       <div class="col post-item" data-tags="{{ post.tags | join: ',' }}">
         <div class="card h-100 border-0 shadow-sm custom-gallery-card">
@@ -89,8 +88,7 @@ image: "/assets/images/slide/slide01.jpg"
 
 
 <script>
-  /* JS部分は元のblog.htmlのロジックを100%継承 */
-  const itemsPerPage = 12; // ギャラリーなので1ページ6〜9枚が見やすいです
+  const itemsPerPage = 12; // 1ページに出す記事の数
   let currentPage = 1;
   let currentFilteredPosts = [];
   let currentTag = null;
