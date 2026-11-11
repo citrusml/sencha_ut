@@ -645,7 +645,6 @@ footer {
 .post-item {
   position: relative;
   z-index: 0;
-  padding: 0;
 }
 
 .post-item:has(.stretched-link:focus-visible) {

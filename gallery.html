@@ -8,35 +8,33 @@ image: "/assets/images/slide/slide01.jpg"
 <div class="container my-5 max-width-1200">
   <h1 class="font-shippori mb-5">{{ page.title }}</h1>
 
-  <div class="container max-width-1200">
-    {% comment %} タグで絞り込むボタン。絞り込みとページ送りの動きは assets/js/gallery.js {% endcomment %}
-    <div id="tag-filter" class="mb-5 text-center">
-      {% comment %} タグを記事の多い順に並べる。Liquid には件数で並べ替える機能がないので、「0012::お稽古」のように件数を4桁にそろえた文字列を作って並べ替え、あとでタグ名だけ取り出す {% endcomment %}
-      {% capture tag_sort_blob %}{% for tag in site.tags %}{% assign tag_count = tag[1] | size %}{% assign tag_count_padded = tag_count | prepend: '0000' | slice: -4, 4 %}{{ tag_count_padded }}::{{ tag[0] }}|||{% endfor %}{% endcapture %}
-      {% assign sorted_tag_keys = tag_sort_blob | split: '|||' | sort | reverse %}
-      {% for tag_key in sorted_tag_keys %}
-        {% if tag_key != '' %}
-        {% assign tag_name = tag_key | split: '::' | last %}
-        <button type="button" class="tag-chip tag-chip-button" data-tag="{{ tag_name }}">#{{ tag_name }}</button>
-        {% endif %}
-      {% endfor %}
-    </div>
+  {% comment %} タグで絞り込むボタン。絞り込みとページ送りの動きは assets/js/gallery.js {% endcomment %}
+  <div id="tag-filter" class="mb-5 text-center">
+    {% comment %} タグを記事の多い順に並べる。Liquid には件数で並べ替える機能がないので、「0012::お稽古」のように件数を4桁にそろえた文字列を作って並べ替え、あとでタグ名だけ取り出す {% endcomment %}
+    {% capture tag_sort_blob %}{% for tag in site.tags %}{% assign tag_count = tag[1] | size %}{% assign tag_count_padded = tag_count | prepend: '0000' | slice: -4, 4 %}{{ tag_count_padded }}::{{ tag[0] }}|||{% endfor %}{% endcapture %}
+    {% assign sorted_tag_keys = tag_sort_blob | split: '|||' | sort | reverse %}
+    {% for tag_key in sorted_tag_keys %}
+      {% if tag_key != '' %}
+      {% assign tag_name = tag_key | split: '::' | last %}
+      <button type="button" class="tag-chip tag-chip-button" data-tag="{{ tag_name }}">#{{ tag_name }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-2" id="post-list">
-      {% for post in site.posts %}
-      {% assign eager = false %}
-      {% if forloop.index <= 6 %}{% assign eager = true %}{% endif %}
-      <div class="col post-item" data-tags="{{ post.tags | join: ',' }}">
-        {% include post-card.html post=post eager=eager %}
-      </div>
-      {% endfor %}
+  <div class="row row-cols-1 row-cols-md-3 g-2" id="post-list">
+    {% for post in site.posts %}
+    {% assign eager = false %}
+    {% if forloop.index <= 6 %}{% assign eager = true %}{% endif %}
+    <div class="col post-item" data-tags="{{ post.tags | join: ',' }}">
+      {% include post-card.html post=post eager=eager %}
     </div>
+    {% endfor %}
+  </div>
 
-    <div class="mt-5 text-center">
-      <button type="button" id="prev-page" class="pagination-btn">❮ 前</button>
-      <span id="page-indicator" class="mx-3">1</span>
-      <button type="button" id="next-page" class="pagination-btn">後 ❯</button>
-    </div>
+  <div class="mt-5 text-center">
+    <button type="button" id="prev-page" class="pagination-btn">❮ 前</button>
+    <span id="page-indicator" class="mx-3">1</span>
+    <button type="button" id="next-page" class="pagination-btn">後 ❯</button>
   </div>
 </div>
 
