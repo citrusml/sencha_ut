@@ -41,6 +41,9 @@
 
 つぎはぎを防ぐための決まり。その場で動く形を足す前に、ここに合う置き場所を使う。
 
+- 見た目は `assets/css/style.css` にだけ書く。HTML に `style=` を書かない。色・画面幅の区切り・Bootstrap の上書きの仕方は、そのファイルの冒頭の「決まり」に従う（`!important` を使わない）
+- Bootstrap のクラス（`mt-4` `d-flex` など）で足りるものは、CSS を足さずにクラスで書く
+- 見出し（h1〜h3）は自動で明朝になるので、書体のクラスを付けない。固定ページ（about.md / join.md）の中見出しは Markdown の `## 見出し` で書く
 - JS は `assets/js/` に置き、使うページだけが `<script type="module" src="…">` で読む。HTML の中に `<script>` で書かない
 - 2か所以上に出てくる部品は `_includes/` に置く。記事カードは `post-card.html`、タグは `tag-chip.html` を必ず使う（同じものを別の形で書き直さない）
 - 記事の一覧やカードに出す写真は、記事の `image`（1枚）を使う
