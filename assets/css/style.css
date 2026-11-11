@@ -24,9 +24,9 @@
   --color-bg: #fcfaf2;      /* 生成り色。ページの地 */
   --color-text: #4a4a4a;    /* 本文 */
   --color-border: #e0dcd0;  /* 罫線、枠 */
-  --accent: #6e8e59;        /* 明るい緑。ボタン、タグ、リンクに触れたときの色 */
-  --accent-strong: #556b2f; /* 濃いめの緑。ボタンやタグに触れたとき */
-  --accent-dark: #3d4c38;   /* 濃い抹茶色。目立たせる見出し、ボタンを押したとき */
+  --accent: #6e8e59;        /* 明るい緑。線や枠、メニューやリンクに触れたときの色 */
+  --accent-strong: #556b2f; /* 濃いめの緑。ボタンとタグ（白と組み合わせても読みやすい濃さ） */
+  --accent-dark: #3d4c38;   /* 濃い抹茶色。目立たせる見出し、ボタンやタグに触れたとき */
   --white: #ffffff;
 
   --font-body: "Zen Maru Gothic", sans-serif;
@@ -254,10 +254,10 @@ footer {
 /* --- ボタン --- */
 
 .btn-primary {
-  --bs-btn-bg: var(--accent);
-  --bs-btn-border-color: var(--accent);
-  --bs-btn-hover-bg: var(--accent-strong);
-  --bs-btn-hover-border-color: var(--accent-strong);
+  --bs-btn-bg: var(--accent-strong);
+  --bs-btn-border-color: var(--accent-strong);
+  --bs-btn-hover-bg: var(--accent-dark);
+  --bs-btn-hover-border-color: var(--accent-dark);
   --bs-btn-active-bg: var(--accent-dark);
   --bs-btn-active-border-color: var(--accent-dark);
   --bs-btn-focus-box-shadow: none;
@@ -296,9 +296,9 @@ footer {
   position: relative;
   z-index: 2; /* カード全体のリンクより手前に出して、押せるようにする */
   font-size: 0.75rem;
-  color: var(--accent);
+  color: var(--accent-strong);
   background: var(--white);
-  border: 1px solid var(--accent);
+  border: 1px solid var(--accent-strong);
   border-radius: 999px;
   padding: 0.22rem 0.45rem;
   text-decoration: none;
@@ -309,7 +309,7 @@ footer {
 
 /* タグはリンクなので、触れたときにリンクの既定の色（青）にならないようにする */
 .tag-chip:hover {
-  color: var(--accent);
+  color: var(--accent-strong);
 }
 
 .tag-chip:focus-visible {
@@ -319,13 +319,13 @@ footer {
 
 /* 絞り込み中のタグ */
 .tag-chip.is-active {
-  background-color: var(--accent);
+  background-color: var(--accent-strong);
   color: var(--white);
 }
 
 @media (hover: hover) {
   .tag-chip:hover {
-    background: var(--accent-strong);
+    background: var(--accent-dark);
     color: var(--white);
   }
 }
