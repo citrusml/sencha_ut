@@ -116,14 +116,11 @@ img {
 
 .nav-link[aria-current="page"] {
   color: var(--accent) !important;
-  cursor: default;
 }
 
 .navbar-brand:focus-visible,
 .nav-link:focus-visible,
 .btn-primary:focus-visible,
-.tag-chip-button:focus-visible,
-.tag-chip-trigger:focus-visible,
 .pagination-btn:focus-visible,
 .stretched-link:focus-visible {
   outline: 2px solid var(--accent);
@@ -270,24 +267,28 @@ img {
   border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 0.22rem 0.45rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.tag-chip-link {
-  flex-shrink: 0;
-  line-height: 1;
+/* タグはリンクなので、触れたときにリンクの既定の色（青）にならないようにする */
+.tag-chip:hover {
+  color: var(--accent);
 }
 
-.tag-chip-trigger {
-  cursor: pointer;
+.tag-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
+/* 活動記録一覧の上に並ぶ、絞り込み用の大きめのタグ */
 .tag-chip-button {
   font-size: 0.85rem;
   border-radius: 12px;
   padding: 6px 12px;
   margin: 0 6px 6px 0;
-  cursor: pointer;
 }
 
 .tag-chip.is-active {
@@ -672,12 +673,6 @@ footer {
 
 .sidebar-post-meta {
   font-size: 0.8rem;
-}
-
-.tag-chip-link:focus-visible {
-  color: var(--white);
-  background: var(--accent);
-  outline: none;
 }
 
 .sidebar-post-body h3 {

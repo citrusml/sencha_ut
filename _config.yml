@@ -18,6 +18,14 @@ social:
   links:
     - https://twitter.com/sencha_ut
     - https://instagram.com/sencha_ut
+# ヘッダーのメニュー。上から順に左から並ぶ
+nav:
+  - title: 煎茶道・薫風流について
+    url: /about
+  - title: 活動記録
+    url: /gallery
+  - title: 入会案内
+    url: /join
 # トップページの構造化データ（Organization）に載せる団体情報。空欄の項目は出力しない
 organization:
   # 団体そのものの説明（上の description はサイトの説明なので使わない）

@@ -204,30 +204,21 @@ image: "/assets/images/slide/slide01.jpg"
         <h2 class="h4 border-bottom pb-2 border-color-default font-shippori">最新の活動記録</h2>
         <div class="sidebar-post-list gap-2 mt-0">
           {% for post in site.posts limit: 2 %}
-          {% if post.image %}
-            {% assign sidebar_thumb = post.image %}
-          {% elsif post.images %}
-            {% assign sidebar_thumb = post.images | first %}
-          {% else %}
-            {% assign sidebar_thumb = nil %}
-          {% endif %}
           <div class="sidebar-post-link position-relative rounded-3 shadow-sm">
-            {% if sidebar_thumb %}
+            {% if post.image %}
             <div class="sidebar-post-thumbnail">
-              <img src="{{ sidebar_thumb | relative_url }}" alt="{{ post.title }}" loading="lazy">
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
             </div>
             {% endif %}
             <div class="sidebar-post-body">
               <div class="sidebar-post-header mb-0">
                 <div class="sidebar-post-meta small text-muted mb-0">{{ post.date | date: "%Y.%m.%d" }}</div>
-                {% if post.tags and post.tags.size > 0 %}
-                <a href="{{ '/gallery' | relative_url }}?tag={{ post.tags.first | url_encode }}" class="tag-chip tag-chip-link text-decoration-none">#{{ post.tags.first }}</a>
-                {% endif %}
+                {% if post.tags.size > 0 %}{% include tag-chip.html tag=post.tags.first %}{% endif %}
               </div>
               <h3 class="h6 font-shippori color-accent-dark mb-2">{{ post.title }}</h3>
-              <p class="small text-body-secondary mb-0">{{ post.content | strip_html | truncate: 70 }}</p>
+              <p class="small text-body-secondary mb-0">{{ post.content | strip_html | normalize_whitespace | truncate: 120 }}</p>
             </div>
-            <a href="{{ post.url | relative_url }}" class="stretched-link" aria-label="{{ post.title }}を読む"></a>
+            <a href="{{ post.url | relative_url }}" class="stretched-link" aria-label="{{ post.title | escape }}を読む"></a>
           </div>
           {% endfor %}
         </div>
@@ -236,5 +227,7 @@ image: "/assets/images/slide/slide01.jpg"
         </div>
       </aside>
     </div>
-  </div>  
+  </div>
 </div>
+
+<script type="module" src="{{ '/assets/js/slideshow.js' | relative_url }}"></script>

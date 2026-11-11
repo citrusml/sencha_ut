@@ -31,16 +31,22 @@ git config core.quotepath false       # 日本語のファイル名をそのま�
 ## フォルダ構成
 
 ```
-├── _config.yml          # サイト全体の設定（タイトル、新歓情報、フォームURL など）
+├── _config.yml          # サイト全体の設定（タイトル、メニュー、新歓情報、フォームURL など）
 ├── _layouts/
-│   ├── default.html     # 全ページ共通のヘッダー・フッター・スライドショー
+│   ├── default.html     # 全ページ共通のヘッダー・フッター
 │   ├── page.html        # 通常ページ（about / join）
 │   ├── post.html        # 活動記録の記事
 │   └── tag_landing.html # タグ別の記事一覧（新歓・駒場祭）
+├── _includes/           # 複数のページで使う部品
+│   ├── post-card.html   # 記事カード（活動記録一覧・タグ別の一覧）
+│   └── tag-chip.html    # タグ1個（リンク先もここで決める）
 ├── _posts/              # 活動記録の記事（YYYY-MM-DD-英数字.md）
 ├── _drafts/             # 下書き・記事テンプレート（公開されない）
 ├── assets/
 │   ├── css/style.css    # デザイン
+│   ├── js/
+│   │   ├── slideshow.js # トップページの写真の切り替え
+│   │   └── gallery.js   # 活動記録一覧の絞り込みとページ送り
 │   └── images/
 │       ├── logos/       # ロゴ・SNSアイコン
 │       ├── posts/       # 記事ごとの画像
