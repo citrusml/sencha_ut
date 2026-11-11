@@ -21,7 +21,7 @@ image: "/assets/images/slide/slide01.jpg"
     {% endfor %}
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-2" id="post-list">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-2">
     {% for post in site.posts %}
     {% assign eager = false %}
     {% if forloop.index <= 6 %}{% assign eager = true %}{% endif %}
