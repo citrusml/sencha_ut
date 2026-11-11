@@ -2,39 +2,30 @@
 layout: default
 ---
 
-<div class="container my-3 max-width-1200">
-  
-  {% if page.title %}
+{% comment %} 活動記録の記事。上からタイトル・日付・タグ・本文・写真の順に出す {% endcomment %}
+<div class="container my-5 max-width-1200">
+
   <h1 class="mb-3">{{ page.title }}</h1>
-  {% endif %}
 
-  <div class="text-body-secondary">
-    {{ page.date | date: "%Y.%m.%d" }}
-  </div>
+  <div class="text-body-secondary">{{ page.date | date: "%Y.%m.%d" }}</div>
 
- {% if page.tags %}
-  <div class="post-tag-list mt-2 mb-4 me-3 d-flex flex-wrap gap-1">
+  {% if page.tags %}
+  <div class="post-tag-list mt-2 mb-4 d-flex flex-wrap gap-1">
     {% for tag in page.tags %}{% include tag-chip.html tag=tag %}{% endfor %}
   </div>
- {% endif %}
+  {% endif %}
 
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      {{ content }}
-    </div>
-  </div>
+  {{ content }}
 
   {% comment %} 写真は images（複数枚）があればそれを並べ、なければ image の1枚を出す {% endcomment %}
   {% if page.images %}
-    <div class="mt-4 post-images">
-      {% for img in page.images %}
-        <img src="{{ img | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
-      {% endfor %}
-    </div>
+  <div class="post-images mt-5">
+    {% for img in page.images %}
+    <img src="{{ img | relative_url }}" alt="{{ page.title | escape }}" class="photo-item" loading="lazy">
+    {% endfor %}
+  </div>
   {% elsif page.image %}
-    <div class="mt-4">
-      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
-    </div>
+  <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" class="photo-item mt-5" loading="lazy">
   {% endif %}
 
   <div class="text-end my-4 pt-4">
