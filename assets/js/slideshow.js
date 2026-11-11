@@ -1,10 +1,10 @@
 // 写真の切り替え（トップページの「活動内容」で使う）。
 //
 // HTML の形:
-//   <div class="local-slideshow" data-interval="6000">   ← data-interval は切り替えの間隔（ミリ秒）
-//     <div class="local-slide active"><img ...></div>
-//     <div class="local-slide"><img ...></div>
-//     <div class="local-dots"></div>                      ← ここに点（ボタン）を作る
+//   <div class="slideshow" data-interval="6000">   ← data-interval は切り替えの間隔（ミリ秒）
+//     <div class="slide active"><img ...></div>
+//     <div class="slide"><img ...></div>
+//     <div class="slideshow-dots"></div>                      ← ここに点（ボタン）を作る
 //   </div>
 //
 // - 一定時間ごとに次の写真へ進む。点・左右キー・スワイプでも切り替えられる
@@ -15,9 +15,9 @@
 const SWIPE_DISTANCE = 40; // これ以上横に動かしたらスワイプとみなす（px）
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-document.querySelectorAll('.local-slideshow').forEach(slideshow => {
-  const slides = [...slideshow.querySelectorAll('.local-slide')];
-  const dotsBox = slideshow.querySelector('.local-dots');
+document.querySelectorAll('.slideshow').forEach(slideshow => {
+  const slides = [...slideshow.querySelectorAll('.slide')];
+  const dotsBox = slideshow.querySelector('.slideshow-dots');
   if (slides.length < 2 || !dotsBox) return;
 
   const interval = Number(slideshow.dataset.interval) || 5000;
