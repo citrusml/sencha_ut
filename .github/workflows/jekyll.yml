@@ -11,10 +11,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# ビルドはリポジトリを読むだけ。公開に必要な権限は deploy ジョブにだけ付ける
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # 公開は一度に1つだけ（途中の公開は中断しない）。プルリクエストのビルドは別枠で動かす
 concurrency:
@@ -59,6 +58,9 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

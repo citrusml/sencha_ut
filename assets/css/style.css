@@ -1,36 +1,51 @@
-/* === style.css 目次 === */
 /*
-  Sections:
-  1. 全体設定 (variables)
-  2. レイアウト / 基本 (body, wrapper, img)
-  3. コンポーネント (hero, navbar, cards, slideshow)
-  4. ユーティリティ (短い helper クラス)
-  5. ページ固有の補助スタイル
+  style.css — サイトの見た目はすべてこのファイルに書く（HTML に style= を書かない）
+
+  目次
+    1. 色と書体（変数）
+    2. 基本
+    3. 共通の部品（ヘッダー、フッター、ボタン、リンク、タグ、写真）
+    4. 記事カード
+    5. スライドショー
+    6. ページごと（トップ、活動記録一覧、記事）
+    7. 「動きを減らす」設定への対応
+
+  決まり
+    - 色は 1 の変数を使う。色の値を直接書かない
+    - Bootstrap の見た目を変えるときは、Bootstrap の変数（--bs-…）に値を入れる。!important で上書きしない
+    - 画面幅で変える指定は、対象のルールのすぐ下に書く。幅の区切りは Bootstrap と同じにする
+        スマホ: (max-width: 575.98px) ／ タブレット以下: (max-width: 991.98px)
+    - カーソルを載せたときの動きは @media (hover: hover) の中に書く（タッチ画面で色が残らないように）
 */
 
-/* === 1. 全体設定 === */
+/* === 1. 色と書体（変数） === */
+
 :root {
-  /* カラーパレット */
-  --color-bg: #fcfaf2; /* 生成り色 */
-  --color-text: #4a4a4a;
-  --color-border: #e0dcd0;
-  --accent-dark: #3d4c38; /* 濃い抹茶色 */
-  --accent: #6e8e59; /* 明るい緑 */
-  --hero-fallback: #556b2f;
+  --color-bg: #fcfaf2;      /* 生成り色。ページの地 */
+  --color-text: #4a4a4a;    /* 本文 */
+  --color-border: #e0dcd0;  /* 罫線、枠 */
+  --accent: #6e8e59;        /* 明るい緑。線や枠、メニューやリンクに触れたときの色 */
+  --accent-strong: #556b2f; /* 濃いめの緑。ボタンとタグ（白と組み合わせても読みやすい濃さ） */
+  --accent-dark: #3d4c38;   /* 濃い抹茶色。目立たせる見出し、ボタンやタグに触れたとき */
   --white: #ffffff;
+
+  --font-body: "Zen Maru Gothic", sans-serif;
+  --font-heading: "Shippori Mincho", serif;
+
+  /* Bootstrap の既定の色と書体を、このサイトのものに差し替える */
+  --bs-body-bg: var(--color-bg);
+  --bs-body-color: var(--color-text);
+  --bs-body-font-family: var(--font-body);
+  --bs-body-line-height: 1.6;
+  --bs-border-color: var(--color-border);
 }
 
-/* === 2. レイアウト / 基本 === */
+/* === 2. 基本 === */
+
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: "Zen Maru Gothic", sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
 }
 
 img {
@@ -38,92 +53,49 @@ img {
   height: auto;
 }
 
-/* === 3. コンポーネント === */
-
-/* トップページのメイン画像（レスポンシブ対応） */
-.custom-top-img {
-  width: 100%;
-  max-width: 1100px;
-  height: 87vh;
-  min-height: 400px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 8px;
-  user-select: none;
+/* 見出しは明朝 */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
 }
 
-/* トップ画像フェードインアニメーション */
-.top-image {
-  opacity: 0;
-  animation: fadeInTopImg 2s ease-in-out forwards;
-}
-
-@keyframes fadeInTopImg {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+/* 幅の狭いスマホ（iPhone SE / mini など）: 団体名（12文字）が大見出しで1行に収まる大きさにする。
+   本文やほかの見出しの大きさは変えない */
+@media (max-width: 380px) {
+  h1 {
+    font-size: 7vw;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
 }
 
-/* ナビゲーションバー */
-.navbar {
-  background-color: var(--color-bg) !important; /* 背景色を強制適用 */
-  border-bottom: 1px solid var(--color-border) !important;
-  padding: 0.6rem 0;
-  position: sticky; /* メニューを最前面に固定する設定 */
-  top: 0;
-  z-index: 9999; /* スライドショーより手前に表示 */
+/* 小さな道具（HTML の class に書いて使う） */
+.max-width-1400 {
+  max-width: 1400px;
 }
 
-.navbar-logo {
-  height: 55px; /* メニューの高さに合わせて調整 */
-  width: auto;  /* 横幅は自動で調整 */
-  margin-right: 10px; /* 文字との間に少し隙間 */
-  vertical-align: middle; /* 文字と高さを真ん中に揃える */
-  user-select: none;
+.max-width-1200 {
+  max-width: 1200px;
 }
 
-.navbar-brand {
-  font-family: "Shippori Mincho", serif;
-  font-weight: bold;
-  color: var(--color-text);
-  font-size: 2rem;
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
+.font-shippori {
+  font-family: var(--font-heading);
 }
 
-.navbar-brand:hover,
-.navbar-brand:focus,
-.navbar-brand:active {
-  color: var(--color-text);
-  text-decoration: none;
+.color-accent-dark {
+  color: var(--accent-dark);
 }
 
-.nav-link {
-  font-family: "Shippori Mincho", serif;
-  color: var(--color-text);
-  font-weight: 500;
-  font-size: 1.1rem;
-  text-align: right;
+/* うすい緑の地（トップの囲み） */
+.bg-accent-soft {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent 20%);
 }
 
-.nav-link:hover {
-  color: var(--accent) !important;
-}
-
-.nav-link[aria-current="page"] {
-  color: var(--accent) !important;
-  cursor: default;
-}
-
+/* キーボードで操作したときの、選択中の枠 */
 .navbar-brand:focus-visible,
 .nav-link:focus-visible,
 .btn-primary:focus-visible,
-.tag-chip-button:focus-visible,
-.tag-chip-trigger:focus-visible,
 .pagination-btn:focus-visible,
 .stretched-link:focus-visible {
   outline: 2px solid var(--accent);
@@ -132,14 +104,77 @@ img {
   box-shadow: none;
 }
 
-.navbar-collapse {
+/* === 3. 共通の部品 === */
+
+/* --- ヘッダー（メニューの項目は _config.yml の nav） --- */
+
+.navbar {
+  --bs-navbar-color: var(--color-text);
+  --bs-navbar-hover-color: var(--accent);
+  --bs-navbar-active-color: var(--accent);
+  --bs-navbar-brand-color: var(--color-text);
+  --bs-navbar-brand-hover-color: var(--color-text);
   background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.6rem 0;
+  position: sticky; /* スクロールしても上に残す */
+  top: 0;
+  z-index: 9999; /* スライドショーより手前 */
 }
 
-/* フェードで切り替わるハンバーガーアイコン */
+/* 左右の余白。576px 以上の分は HTML の px-sm-4 px-lg-5 */
+.navbar > .container-fluid {
+  padding-inline: 15px;
+}
+
+.navbar-brand {
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 55px;
+  width: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: right;
+}
+
+/* スマホ: ロゴと団体名を小さくして1行に収める */
+@media (max-width: 575.98px) {
+  .navbar-brand {
+    font-size: 1.3rem;
+    max-width: calc(100% - 65px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+  }
+
+  .navbar-logo {
+    height: 30px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-brand {
+    font-size: min(1.05rem, 4.8vw);
+  }
+}
+
+/* メニューを開くボタン。三本線と × をフェードで切り替える */
 .custom-fade-toggler {
   position: relative;
-  width: 34px;  /* タップしやすいように少しだけ枠に余裕 */
+  width: 34px;
   height: 34px;
   background: transparent;
   cursor: pointer;
@@ -152,11 +187,12 @@ img {
   width: 26px;
   height: 18px;
   transform: translate(-50%, -50%);
-  transition: opacity 0.1s ease; /* ふわっとフェードさせる */
+  transition: opacity 0.1s ease;
 }
 
 .toggler-line {
   position: absolute;
+  top: 8px;
   left: 0;
   width: 100%;
   height: 2px;
@@ -164,14 +200,23 @@ img {
   border-radius: 2px;
 }
 
-.icon-menu {
-  opacity: 1;
+.icon-menu .toggler-line:nth-child(1) {
+  top: 0;
 }
 
-.icon-close {
-  opacity: 0;
+.icon-menu .toggler-line:nth-child(3) {
+  top: 16px;
 }
 
+.icon-close .toggler-line:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.icon-close .toggler-line:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.icon-close,
 .navbar-toggler[aria-expanded="true"] .icon-menu {
   opacity: 0;
 }
@@ -180,46 +225,45 @@ img {
   opacity: 1;
 }
 
-/* ボタン */
-.btn-primary {
-  background-color: var(--accent);
-  border-color: var(--accent);
+/* --- フッター --- */
+
+footer {
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9rem;
 }
 
-.btn-primary:hover,
-.btn-primary:focus-visible {
-  background-color: var(--hero-fallback);
-  border-color: var(--hero-fallback);
-  box-shadow: none;
-}
-
-.btn-primary:active {
-  background-color: var(--accent-dark) !important;
-  border-color: var(--accent-dark) !important;
-  box-shadow: none;
-}
-
+/* SNS とメールの丸いボタン */
 .btn-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-border);
-  border-radius: 50%;
-  background: transparent;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   width: 40px;
   height: 40px;
-  padding: 0;
-  box-shadow: none;
-  user-select: none;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-logo:hover,
 .btn-logo:focus-visible {
   transform: scale(1.2);
-  box-shadow: 0 4px 16px rgba(110, 142, 89, 0.1);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 10%, transparent);
   outline: none;
 }
+
+/* --- ボタン --- */
+
+.btn-primary {
+  --bs-btn-bg: var(--accent-strong);
+  --bs-btn-border-color: var(--accent-strong);
+  --bs-btn-hover-bg: var(--accent-dark);
+  --bs-btn-hover-border-color: var(--accent-dark);
+  --bs-btn-active-bg: var(--accent-dark);
+  --bs-btn-active-border-color: var(--accent-dark);
+  --bs-btn-focus-box-shadow: none;
+}
+
+/* --- 「> ○○はこちら」の形のリンク。先頭の > はここで付ける --- */
 
 .inline-accent-link {
   color: var(--color-text);
@@ -229,227 +273,251 @@ img {
   font-size: 1.2rem;
 }
 
+.inline-accent-link::before {
+  content: "> ";
+}
+
 .inline-accent-link:hover {
-  color: var(--accent) !important;
+  color: var(--accent);
 }
 
 .inline-accent-link:focus-visible {
   color: var(--accent);
   outline: 2px solid var(--accent);
   outline-offset: 4px;
-  border-color: var(--accent) !important;
+  border-color: var(--accent);
   border-radius: 4px;
 }
 
-/* === 4. ユーティリティ / ギャラリー === */
-
-.custom-gallery-card {
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  background-color: var(--white);
-  border: 1px solid var(--color-border) !important;
-}
-
-.gallery-thumbnail img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  user-select: none;
-}
+/* --- タグ（_includes/tag-chip.html） --- */
 
 .tag-chip {
   display: inline-block;
   position: relative;
-  z-index: 2;
+  z-index: 2; /* カード全体のリンクより手前に出して、押せるようにする */
   font-size: 0.75rem;
-  color: var(--accent);
+  color: var(--accent-strong);
   background: var(--white);
-  border: 1px solid var(--accent);
+  border: 1px solid var(--accent-strong);
   border-radius: 999px;
   padding: 0.22rem 0.45rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.tag-chip-link {
-  flex-shrink: 0;
-  line-height: 1;
+/* タグはリンクなので、触れたときにリンクの既定の色（青）にならないようにする */
+.tag-chip:hover {
+  color: var(--accent-strong);
 }
 
-.featured-topic-link {
-  font-size: 1rem;
-  padding: 0.55rem 1rem;
-  border-width: 1px;
+.tag-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-.tag-chip-trigger {
-  cursor: pointer;
-}
-
-.tag-chip-button {
-  font-size: 0.85rem;
-  border-radius: 12px;
-  padding: 6px 12px;
-  margin: 0 6px 6px 0;
-  cursor: pointer;
-}
-
+/* 絞り込み中のタグ */
 .tag-chip.is-active {
-  background-color: var(--accent);
+  background-color: var(--accent-strong);
   color: var(--white);
-  border-color: var(--accent);
 }
 
-.post-item {
-  position: relative;
-  z-index: 0;
-  border-bottom: none;
-  padding: 0;
-}
-
-.post-title {
-  font-family: "Shippori Mincho", serif;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.post-tag-list .tag-chip {
-  font-size: 0.85rem;
-}
-
-.post-tags-display {
-  margin-left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-@media (min-width: 600px) and (max-width: 800px) {
-  #blog-posts .col {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-.custom-gallery-card:has(.stretched-link:focus-visible) {
-  z-index: 3;
-  transform: translateY(-8px);
-  background-color: color-mix(in srgb, var(--white) 95%, transparent);
-  box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
-}
-
-.post-item:has(.stretched-link:focus-visible) {
-  z-index: 4;
-}
-
-.custom-gallery-card:has(.stretched-link:focus-visible) .gallery-thumbnail img {
-  transform: scale(1.05);
-}
-
-@media (min-width: 600px) {
-  .post-item:has(.custom-gallery-card:hover) {
-    z-index: 4;
-  }
-
-  .custom-gallery-card:hover {
-    z-index: 3;
-    transform: translateY(-8px);
-    background-color: color-mix(in srgb, var(--white) 95%, transparent);
-    box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent) !important;
-  }
-
-  .custom-gallery-card:hover .gallery-thumbnail img {
-    transform: scale(1.05);
-  }
-
+@media (hover: hover) {
   .tag-chip:hover {
-    background: var(--hero-fallback);
+    background: var(--accent-dark);
     color: var(--white);
   }
 }
 
-.pagination-btn {
-  background: transparent;
+/* --- 本文の中の写真 --- */
+
+.photo-item {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  margin: 1rem auto 1.5rem;
   border: 1px solid var(--color-border);
-  color: var(--color-text);
-  padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* === 4. 記事カード（_includes/post-card.html） === */
+
+.post-card {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--bs-box-shadow-sm);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card-thumb img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.post-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* カードを選んだとき（キーボード）と、カーソルを載せたとき: 少し浮かせて写真を拡大する */
+.post-card:has(.stretched-link:focus-visible) {
+  z-index: 3;
+  transform: translateY(-8px);
+  background-color: color-mix(in srgb, var(--white) 95%, transparent);
+  box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent);
+}
+
+.post-card:has(.stretched-link:focus-visible) .post-card-thumb img {
+  transform: scale(1.05);
+}
+
+@media (hover: hover) {
+  .post-card:hover {
+    z-index: 3;
+    transform: translateY(-8px);
+    background-color: color-mix(in srgb, var(--white) 95%, transparent);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-dark) 10%, transparent);
+  }
+
+  .post-card:hover .post-card-thumb img {
+    transform: scale(1.05);
+  }
+}
+
+/* === 5. スライドショー（動きは assets/js/slideshow.js） === */
+
+.slideshow {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  user-select: none;
+  touch-action: pan-y pinch-zoom; /* 横のスワイプは写真の切り替えに使う */
+}
+
+/* 写真は重ねて置き、active が付いた1枚だけ見せる */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 1500ms ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slideshow-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.6rem;
+  z-index: 3;
+}
+
+.slideshow-dots .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  padding: 0;
+  background: color-mix(in srgb, var(--white) 60%, transparent);
+  border: 0;
+  border-radius: 50%;
   cursor: pointer;
-  transition: none;
 }
 
-.pagination-btn:hover {
-  background: color-mix(in srgb, var(--accent-dark) 3%, transparent);
+.slideshow-dots .dot.active {
+  background: var(--white);
 }
 
-.pagination-btn:disabled {
-  opacity: 0.5;
-  cursor: default;
+.slideshow:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
-/* === 5. コンポーネント / スライドショー === */
+.slideshow-dots .dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
-@media (max-width: 600px) {
+@media (max-width: 575.98px) {
+  .slideshow-dots .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+  }
+}
+
+/* === 6. ページごと === */
+
+/* --- トップ: いちばん上の大きな写真 --- */
+
+.top-image {
+  opacity: 0;
+  animation: fadeInTopImg 2s ease-in-out forwards;
+}
+
+@keyframes fadeInTopImg {
+  to {
+    opacity: 1;
+  }
+}
+
+.custom-top-img {
+  width: 100%;
+  max-width: 1100px;
+  height: 87vh;
+  min-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media (max-width: 575.98px) {
   .custom-top-img {
-    height: 85vh; /* スマホの時だけ85vhに縮める */
-  }
-
-  .caption-text {
-    font-size: 1.1rem; /* スマホ向けに少し大きく */
-  }
-
-  /* スマホ向け：ナビゲーションバーを1行に収める調整 */
-  .navbar-brand {
-    font-size: 1.3rem;
-    white-space: nowrap;
-    max-width: calc(100% - 65px);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: flex;
-    align-items: center;
-  }
-
-  .navbar-logo {
-    height: 30px;
-    margin-right: 8px;
-  }
-
-  .navbar .container-fluid {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    height: 85vh;
   }
 }
 
-/* 幅の狭いスマホ（iPhone SE / mini など）: 団体名（12文字）がヘッダーと大見出しで1行に収まる大きさにする。
-   本文やほかの見出しの大きさは変えない */
-@media screen and (max-width: 380px) {
-  .navbar-brand {
-    font-size: min(1.05rem, 4.8vw);
-  }
+/* --- トップ: 呼びかけの一文 --- */
 
-  h1 {
-    font-size: 7vw;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
-  }
+.callout-text {
+  font-size: 1.2rem;
+  font-weight: 300;
 }
 
-/* レスポンシブな写真と文章のレイアウト */
+/* --- トップ: 「活動内容」の、写真と文章を横に並べる欄 --- */
+
 .responsive-section {
   display: flex;
-  flex-wrap: nowrap;
   gap: 2rem;
-  align-items: flex-start;
 }
 
 .responsive-image {
   position: relative;
   flex: 1;
   min-width: 300px;
-  order: 1; /* パソコンでは左に表示 */
-  aspect-ratio: 16/10; /* アスペクト比固定 */
+  aspect-ratio: 16 / 10;
   overflow: hidden;
 }
 
@@ -465,183 +533,176 @@ img {
 .responsive-text {
   flex: 1 1 300px;
   min-width: 0;
-  order: 2; /* パソコンでは右に表示 */
 }
 
-.responsive-text h3 {
-  font-family: 'Shippori Mincho', serif;
-  color: var(--accent-dark);
-  margin-top: 0;
-}
-
-@media (max-width: 991px) {
+/* タブレット以下: 写真を上、文章を下に。写真が低くなりすぎないようにする */
+@media (max-width: 991.98px) {
   .responsive-section {
     flex-direction: column;
   }
 
   .responsive-image {
-    order: 1;
     min-width: auto;
     width: 100%;
-    aspect-ratio: 16/10;
+    min-height: 250px;
+  }
+
+  .responsive-image .slideshow {
+    min-height: 250px;
   }
 
   .responsive-text {
     flex: 1 1 auto;
-    order: 2;
-    min-width: auto;
   }
 }
 
-/* ローカルスライドショー（各セクション内） */
-.local-slideshow {
-  position: relative;
+/* --- トップ: 右側の「最新の活動記録」 --- */
+
+.sidebar-panel {
+  top: 6rem; /* スクロール中、ヘッダーの下に止める */
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+}
+
+.sidebar-post-link {
+  background: var(--white);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-post-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-post-thumbnail img {
   display: block;
-  width: 100%;
-  max-width: 800px; /* allow larger slides on desktop */
-  aspect-ratio: 16/10; /* maintain consistent aspect ratio */
-  border-radius: 8px;
-  user-select: none;
-  touch-action: pan-y pinch-zoom;
-}
-
-.local-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 1;
-  transition: opacity 1500ms ease-in-out;
-}
-
-.local-slide.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-.local-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
-  border-color: var(--color-border);
+  transition: transform 0.3s ease;
 }
 
-.local-dots {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0.6rem;
-  z-index: 3;
+.sidebar-post-body {
+  padding: 0.6rem 0.65rem;
 }
 
-.local-dots .dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 0;
-  border-radius: 50%;
-  margin: 0 4px;
+.sidebar-post-meta {
+  font-size: 0.8rem;
+}
+
+/* タイトルと抜粋は2行まで */
+.sidebar-post-body h3,
+.sidebar-post-body p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.sidebar-post-body h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.sidebar-post-body p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.sidebar-post-link:has(.stretched-link:focus-visible) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-post-link:has(.stretched-link:focus-visible) .sidebar-post-thumbnail img {
+  transform: scale(1.07);
+}
+
+@media (hover: hover) {
+  .sidebar-post-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .sidebar-post-link:hover .sidebar-post-thumbnail img {
+    transform: scale(1.07);
+  }
+}
+
+/* --- 固定ページ（about.md / join.md）: 本文の中見出し「## 見出し」。トップの中見出しと同じ見た目 --- */
+
+.page-body h2 {
+  margin-top: 3rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: calc(1.275rem + 0.3vw); /* Bootstrap の .h4 と同じ大きさ */
+}
+
+@media (min-width: 1200px) {
+  .page-body h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* --- 活動記録一覧（動きは assets/js/gallery.js） --- */
+
+/* 上に並ぶ、絞り込み用の大きめのタグ */
+.tag-chip-button {
+  font-size: 0.85rem;
+  border-radius: 12px;
+  padding: 6px 12px;
+  margin: 0 6px 6px 0;
+}
+
+/* 浮き上がったカードが、隣のカードの下に隠れないようにする */
+.post-item {
+  position: relative;
+  z-index: 0;
+}
+
+.post-item:has(.stretched-link:focus-visible) {
+  z-index: 4;
+}
+
+@media (hover: hover) {
+  .post-item:has(.post-card:hover) {
+    z-index: 4;
+  }
+}
+
+.pagination-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 0;
 }
 
-.local-dots .dot.active {
-  background: #fff;
+.pagination-btn:hover {
+  background: color-mix(in srgb, var(--accent-dark) 3%, transparent);
 }
 
-.local-slideshow:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
-.local-dots .dot:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+/* --- 記事ページ --- */
+
+.post-tag-list .tag-chip {
+  font-size: 0.85rem;
 }
 
-@media (max-width: 480px) {
-  .responsive-image {
-    aspect-ratio: auto;
-    min-height: 250px;
-  }
-
-  .local-slideshow {
-    max-width: 100%;
-    width: 100%;
-    aspect-ratio: auto;
-    min-height: 250px; /* keep taller on mobile too */
-  }
-
-  .local-slideshow .local-slide img {
-    object-fit: cover;
-  }
-
-  .local-dots .dot {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .top-image {
-    opacity: 1;
-    animation: none;
-  }
-
-  .local-slide {
-    transition: none;
-  }
-
-  .gallery-thumbnail img,
-  .custom-gallery-card,
-  .sidebar-post-link,
-  .sidebar-post-thumbnail img,
-  .btn-logo,
-  .fade-icon {
-    transition: none;
-  }
-}
-
-/* footer styles */
-footer {
-  background-color: var(--color-bg);
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text);
-  font-size: 0.9rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column; /* 縦並び */
-  align-items: center;
-  gap: 0.5rem; /* 各行の間隔 */
-}
-
-.footer-links > div {
-  margin: 0.2rem 0;
-}
-
-.footer-links a {
-  padding: 0.2rem 0.4rem; /* 各リンクに余白を追加 */
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-
-/* === 6. 共通ユーティリティ === */
-
-/* 活動記録ページ内の複数画像レイアウト */
+/* 写真が複数あるときは、幅に合わせて横に並べる */
 .post-images {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -654,149 +715,21 @@ footer {
   max-width: 100%;
 }
 
-.sidebar-panel {
-  border-radius: 12px;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
+/* === 7. 「動きを減らす」設定への対応 === */
 
-.sidebar-post-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.sidebar-post-link {
-  background: var(--white);
-  border: 1px solid var(--color-border);
-  color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  overflow: hidden;
-}
-
-.sidebar-post-thumbnail {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.sidebar-post-thumbnail img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.3s ease;
-}
-
-.sidebar-post-body {
-  padding: 0.6rem 0.65rem;
-}
-
-.sidebar-post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.sidebar-post-meta {
-  font-size: 0.8rem;
-}
-
-.tag-chip-link:focus-visible {
-  color: var(--white);
-  background: var(--accent);
-  outline: none;
-}
-
-.sidebar-post-body h3 {
-  font-size: 1.1rem;
-  line-height: 1.35;
-  line-clamp: 2;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.sidebar-post-body p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  line-clamp: 2;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.sidebar-post-link:has(.stretched-link:focus-visible) .sidebar-post-thumbnail img {
-  transform: scale(1.07);
-}
-
-.sidebar-post-link:has(.stretched-link:focus-visible) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-}
-
-@media (min-width: 600px) {
-  .sidebar-post-link:hover
-  {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+@media (prefers-reduced-motion: reduce) {
+  .top-image {
+    opacity: 1;
+    animation: none;
   }
 
-  .sidebar-post-link:hover .sidebar-post-thumbnail img {
-    transform: scale(1.07);
+  .slide,
+  .post-card,
+  .post-card-thumb img,
+  .sidebar-post-link,
+  .sidebar-post-thumbnail img,
+  .btn-logo,
+  .fade-icon {
+    transition: none;
   }
-}
-
-.sidebar-panel-actions {
-  margin-top: auto;
-  padding-top: 0.25rem;
-}
-
-@media (max-width: 991px) {
-  .index-sidebar-column {
-    margin-top: 1.5rem;
-  }
-}
-
-.max-width-1400 {
-  max-width: 1400px;
-}
-
-.max-width-1200 {
-  max-width: 1200px;
-}
-
-.font-shippori {
-  font-family: 'Shippori Mincho', serif;
-}
-
-.color-accent-dark {
-  color: var(--accent-dark) !important;
-}
-
-.border-color-default {
-  border-color: var(--color-border) !important;
-}
-
-.bg-accent-soft {
-  background-color: color-mix(in srgb, var(--accent) 5%, transparent 20%);
-}
-
-.photo-item {
-  max-width: 700px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  user-select: none;
-  display: block;
-  margin: 1rem auto 1.5rem auto;
-  border: 1px solid var(--color-border);
 }

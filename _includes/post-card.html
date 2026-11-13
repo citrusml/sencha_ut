@@ -1,0 +1,21 @@
+{%- comment -%}
+  記事カード。活動記録一覧（gallery.html）とタグ別の一覧（_layouts/tag_landing.html）で使う。
+  使い方: {% include post-card.html post=post %}
+  写真は記事の image（1枚）。画面の上のほうに出るカードは eager=true を付けると、写真をすぐ読み込む。
+{%- endcomment -%}
+<article class="card h-100 post-card">
+  {% if include.post.image %}
+  <div class="post-card-thumb">
+    <img src="{{ include.post.image | relative_url }}" alt="{{ include.post.title | escape }}"{% unless include.eager %} loading="lazy"{% endunless %}>
+  </div>
+  {% endif %}
+  <div class="card-body">
+    <div class="d-flex flex-wrap gap-1 mb-2">
+      {% for tag in include.post.tags %}{% include tag-chip.html tag=tag %}{% endfor %}
+    </div>
+    <div class="small text-body-secondary mb-1">{{ include.post.date | date: "%Y.%m.%d" }}</div>
+    <h2 class="post-title">{{ include.post.title }}</h2>
+    <p class="small text-body-secondary mb-0">{{ include.post.content | strip_html | normalize_whitespace | truncate: 120 }}</p>
+    <a href="{{ include.post.url | relative_url }}" class="stretched-link" aria-label="{{ include.post.title | escape }}を読む"></a>
+  </div>
+</article>

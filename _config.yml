@@ -1,7 +1,7 @@
 title: 東京大学薫風流煎茶同好会
 description: 東京大学薫風流煎茶同好会の公式サイトです。東大を中心とした煎茶道のインカレサークルで、玉露や四季折々のお茶を楽しみながら、和気あいあいとお稽古に励んでいます。煎茶道・薫風流の紹介、入会案内、活動記録を掲載しています。
-url: "https://sencha-ut.com" # ※実際の公開URLに変更してください
-baseurl: "" 
+url: "https://sencha-ut.com"
+baseurl: ""
 lang: ja
 # 日時を日本時間で扱う。指定しないと公開時のビルドが UTC になり、当日の朝 9 時より前に公開した記事が「未来の記事」として出ない
 timezone: Asia/Tokyo
@@ -9,9 +9,7 @@ author:
   name: 東京大学薫風流煎茶同好会
   type: Organization
   twitter: sencha_ut
-logo: "https://sencha-ut.com/assets/images/logos/doukoukai_logo_nobg.png"
-image: "/assets/images/slide/slide01.jpg"
-email: "sencha.shinkan@gmail.com"
+logo: "/assets/images/logos/doukoukai_logo_nobg.png"
 twitter:
   username: sencha_ut
   card: summary_large_image
@@ -20,33 +18,31 @@ social:
   links:
     - https://twitter.com/sencha_ut
     - https://instagram.com/sencha_ut
+# ヘッダーのメニュー。上から順に左から並ぶ
+nav:
+  - title: 煎茶道・薫風流について
+    url: /about
+  - title: 活動記録
+    url: /gallery
+  - title: 入会案内
+    url: /join
 # トップページの構造化データ（Organization）に載せる団体情報。空欄の項目は出力しない
 organization:
   # 団体そのものの説明（上の description はサイトの説明なので使わない）
   description: 東京大学薫風流煎茶同好会は、東京大学を中心に活動する煎茶道のインカレサークルです。急須で茶葉から日本茶を淹れる煎茶道を、薫風流の先生のご指導のもとで学び、玉露や四季折々のお茶を楽しみながらお稽古に励んでいます。
   founding_date: ""   # 設立年（例: "2010"）
   location: ""        # 活動場所（例: 東京大学〇〇キャンパス）
+# 新歓情報と見学フォーム。年度が替わったら更新する（README の「年度が替わったら直すところ」）
 recruitment:
   title: "新歓情報（26年度）"
   summary: "学年を問わず、新入会員を歓迎しております！"
   details: "まずはぜひ、普段のお稽古の見学にいらしてください！"
   form_label: "見学希望フォーム(26年度版)"
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      author: sencha_ut
 formurl: "https://forms.gle/eUJz89aFUpFzQWmS8"
+# Gemfile や vendor/ などは Jekyll が自動で除外するので、ここには書かない
 exclude:
   - README.md
   - CLAUDE.md
-  - Gemfile
-  - Gemfile.lock
-  - vendor/
-  - node_modules/
-  - .jekyll-cache/
-  - .sass-cache/
   - tools/
 plugins:
   - jekyll-feed
