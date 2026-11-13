@@ -66,3 +66,21 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      - name: Notify IndexNow
+        # 公開したことを Bing などの検索エンジンに知らせる（IndexNow）。サイトマップの全 URL を送る
+        # 鍵はリポジトリ直下の <鍵>.txt と同じ値。鍵は公開してよいもので、期限もない
+        # 通知に失敗しても公開はすでに終わっているので、ジョブは失敗にしない
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: 28ccdd4363986894571253eb13378c86
+          SITE: https://sencha-ut.com
+        run: |
+          curl -fsS "$SITE/sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -R . | jq -s . > urls.json
+          jq -n --arg key "$INDEXNOW_KEY" --arg site "$SITE" --slurpfile urls urls.json \
+            '{host: ($site | sub("^https://"; "")), key: $key, keyLocation: "\($site)/\($key).txt", urlList: $urls[0]}' > body.json
+          status=$(curl -sS -o response.txt -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' --data @body.json)
+          echo "sent $(jq length urls.json) URLs, status $status"
+          cat response.txt
+          case "$status" in 200|202) ;; *) echo "::warning::IndexNow への通知に失敗しました（status $status）"; exit 1 ;; esac

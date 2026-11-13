@@ -51,7 +51,8 @@ git config core.quotepath false       # 日本語のファイル名をそのま�
 ├── gallery.html         # 活動記録・行事紹介（記事一覧）
 ├── shinkan.md           # 新歓の活動記録（/tags/shinkan/）
 ├── komabasai.md         # 駒場祭の活動記録（/tags/komabasai/）
-└── CNAME                # 独自ドメイン sencha-ut.com
+├── CNAME                # 独自ドメイン sencha-ut.com
+└── 28ccdd4363986894571253eb13378c86.txt  # IndexNow の鍵（公開時に Bing などへ更新を知らせる。消さない）
 ```
 
 ## 活動記録の書き方
