@@ -24,21 +24,24 @@
 
 ## 画像
 
+縮小とメタデータ削除の手順・コマンドは README の「写真の準備」にある（ここには書かない）。画像を足す・差し替える前に読む。
+
 - 追加前に長辺 1800px 程度・1枚数百KB 以下に縮小する（スマホ写真をそのまま置かない）
-  - 縮小は ImageMagick: `magick 元.jpg -auto-orient -resize "1800x1800>" -quality 85 assets/images/posts/YYYY-MM-DD.jpg`（HEIC もこれで JPEG にする。`-auto-orient` で向きを画素に焼き込む）
-- 写真は JPEG で置く（PNG は透過が必要なロゴ・アイコンだけ）
+- 写真は JPEG で置く（PNG は透過が必要なロゴ・アイコンだけ）。HEIC など他形式はそのまま置かず、JPEG に変換する
 - 大きさの目安は表示サイズの2倍: 記事・about の写真は幅 1400px 以上、トップのスライドは 1600×1000 を覆う大きさ、アイコンは表示 px の4倍程度
+- 置き場所: 記事の写真は `assets/images/posts/`、トップと行事の写真は `slide/`、ロゴとアイコンは `logos/`、固定ページ（about・join・新歓）だけで使う写真は `assets/images/` 直下
 - 使われていない画像は残さない
 - **位置情報などのメタデータを必ず消す**。リポジトリは公開なので、一度コミットした写真は消しても履歴から誰でも取り出せる（2025-11-30 撮影の写真で GPS が履歴に残った前例あり）
   - pre-commit フック（`.githooks/pre-commit`）が、ステージした JPEG / PNG にメタデータがあるとコミットを止める。フックを無効にして（`--no-verify`）コミットしない
-  - 画像を追加・差し替えたら、コミット前に `perl tools/strip_metadata.pl report <ファイル>` で確認し、`(none)` 以外なら `perl tools/strip_metadata.pl strip <ファイル>` で削除して、もう一度 report で `(none)` を確認する
-  - 対象は JPEG / PNG。GPS・撮影日時・機種名・コメント等を消す（再圧縮しないので画質は変わらない）。HEIC など他形式はそのまま置かず JPEG に変換してから処理する
-  - 縮小・編集ソフトで書き出した後にも処理する（書き出しでメタデータが付き直すことがある）
+  - 画像を追加・差し替えたら、コミット前に `tools/strip_metadata.pl` の `report` が `(none)` になるまで `strip` する。縮小・編集ソフトで書き出した後にも行う（書き出しでメタデータが付き直すことがある）
+  - 対象は JPEG / PNG。GPS・撮影日時・機種名・コメント等を消す（再圧縮しないので画質は変わらない）
   - 報告ではどのファイルから何（特に GPS・日時）を消したかを伝える
 
 ## 注意
 
-- `_config.yml` の `recruitment` / `formurl` は年度ごとに更新する新歓情報
+- 年度ごとに更新する箇所（`_config.yml` の `recruitment` / `formurl`、`join.md` のサークル情報、お稽古の日時）は README の「年度が替わったら直すところ」に一覧がある。箇所が増減したらその表を直す
+- `_config.yml` の `formurl` はキー名を変えない（記事 `2026-04-05-kengakuannai.md` の本文が参照している）
+- 手順は README に、規則はこのファイルに書く。同じ内容を2か所に書かない
 - `CNAME` は独自ドメイン設定なので変更しない
 - 公開は `main` ブランチへの push で反映される。GitHub Actions（`.github/workflows/jekyll.yml`）が Gemfile.lock どおりの Jekyll 4.4 でビルドして公開するので、ローカルと本番は同じ結果になる
 - main 向けのプルリクエストでは、同じワークフローがビルドと全画像のメタデータ確認だけを行う（公開はしない）。失敗したらマージしない
