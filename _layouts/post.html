@@ -1,6 +1,5 @@
 ---
 layout: default
-image: "/assets/images/hanakuiryu.jpg"
 ---
 
 <div class="container my-3 max-width-1200">
@@ -15,36 +14,27 @@ image: "/assets/images/hanakuiryu.jpg"
 
  {% if page.tags %}
   <div class="post-tag-list mt-2 mb-4 me-3 d-flex flex-wrap gap-1">
-    {% for tag in page.tags %}
-    {% if tag == '駒場祭' %}
-    <a href="{{ '/tags/komabasai/' | relative_url }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
-    {% elsif tag == '新歓' %}
-    <a href="{{ '/tags/shinkan/' | relative_url }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
-    {% else %}
-    <a href="{{ '/gallery' | relative_url }}?tag={{ tag | url_encode }}" class="tag-chip tag-chip-link text-decoration-none">#{{ tag }}</a>
-    {% endif %}
-    {% endfor %}
+    {% for tag in page.tags %}{% include tag-chip.html tag=tag %}{% endfor %}
   </div>
  {% endif %}
 
   <div class="row justify-content-center">
     <div class="col-lg-12">
-      {{ content }} 
+      {{ content }}
     </div>
   </div>
 
-  {% if page.images or page.image %}
-    {% if page.images %}
-      <div class="mt-4 post-images">
-        {% for img in page.images %}
-          <img src="{{ img | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
-        {% endfor %}
-      </div>
-    {% elsif page.image %}
-      <div class="mt-4">
-        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
-      </div>
-    {% endif %}
+  {% comment %} 写真は images（複数枚）があればそれを並べ、なければ image の1枚を出す {% endcomment %}
+  {% if page.images %}
+    <div class="mt-4 post-images">
+      {% for img in page.images %}
+        <img src="{{ img | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
+      {% endfor %}
+    </div>
+  {% elsif page.image %}
+    <div class="mt-4">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
+    </div>
   {% endif %}
 
   <div class="text-end my-4 pt-4">

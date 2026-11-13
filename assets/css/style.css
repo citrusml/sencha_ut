@@ -116,14 +116,11 @@ img {
 
 .nav-link[aria-current="page"] {
   color: var(--accent) !important;
-  cursor: default;
 }
 
 .navbar-brand:focus-visible,
 .nav-link:focus-visible,
 .btn-primary:focus-visible,
-.tag-chip-button:focus-visible,
-.tag-chip-trigger:focus-visible,
 .pagination-btn:focus-visible,
 .stretched-link:focus-visible {
   outline: 2px solid var(--accent);
@@ -270,30 +267,28 @@ img {
   border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 0.22rem 0.45rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.tag-chip-link {
-  flex-shrink: 0;
-  line-height: 1;
+/* タグはリンクなので、触れたときにリンクの既定の色（青）にならないようにする */
+.tag-chip:hover {
+  color: var(--accent);
 }
 
-.featured-topic-link {
-  font-size: 1rem;
-  padding: 0.55rem 1rem;
-  border-width: 1px;
+.tag-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-.tag-chip-trigger {
-  cursor: pointer;
-}
-
+/* 活動記録一覧の上に並ぶ、絞り込み用の大きめのタグ */
 .tag-chip-button {
   font-size: 0.85rem;
   border-radius: 12px;
   padding: 6px 12px;
   margin: 0 6px 6px 0;
-  cursor: pointer;
 }
 
 .tag-chip.is-active {
@@ -394,10 +389,6 @@ img {
 @media (max-width: 600px) {
   .custom-top-img {
     height: 85vh; /* スマホの時だけ85vhに縮める */
-  }
-
-  .caption-text {
-    font-size: 1.1rem; /* スマホ向けに少し大きく */
   }
 
   /* スマホ向け：ナビゲーションバーを1行に収める調整 */
@@ -616,29 +607,6 @@ footer {
   font-size: 0.9rem;
 }
 
-.footer-links {
-  display: flex;
-  flex-direction: column; /* 縦並び */
-  align-items: center;
-  gap: 0.5rem; /* 各行の間隔 */
-}
-
-.footer-links > div {
-  margin: 0.2rem 0;
-}
-
-.footer-links a {
-  padding: 0.2rem 0.4rem; /* 各リンクに余白を追加 */
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-
 /* === 6. 共通ユーティリティ === */
 
 /* 活動記録ページ内の複数画像レイアウト */
@@ -705,12 +673,6 @@ footer {
 
 .sidebar-post-meta {
   font-size: 0.8rem;
-}
-
-.tag-chip-link:focus-visible {
-  color: var(--white);
-  background: var(--accent);
-  outline: none;
 }
 
 .sidebar-post-body h3 {
