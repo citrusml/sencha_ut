@@ -27,6 +27,8 @@ function render() {
   document.querySelectorAll('.tag-chip[data-tag]').forEach(chip => {
     chip.classList.toggle('is-active', chip.dataset.tag === tag);
   });
+  // 読み上げソフトにも、どのボタンで絞り込んでいるかを伝える
+  filterButtons.forEach(button => button.setAttribute('aria-pressed', button.dataset.tag === tag));
 
   indicator.textContent = lastPage ? `${page} / ${lastPage}` : '記事がありません';
   prevButton.disabled = page <= 1;
