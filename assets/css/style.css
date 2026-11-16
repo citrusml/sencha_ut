@@ -7,14 +7,15 @@
     3. 共通の部品（ヘッダー、フッター、ボタン、リンク、タグ、写真）
     4. 記事カード
     5. スライドショー
-    6. ページごと（トップ、活動記録一覧、記事）
+    6. ページごと（トップ、固定ページ、活動記録一覧、記事）
     7. 「動きを減らす」設定への対応
 
   決まり
-    - 色は 1 の変数を使う。色の値を直接書かない
+    - 色は 1 の変数を使う。色の値を直接書かない（影の黒 rgba(0, 0, 0, …) だけは別）
     - Bootstrap の見た目を変えるときは、Bootstrap の変数（--bs-…）に値を入れる。!important で上書きしない
     - 画面幅で変える指定は、対象のルールのすぐ下に書く。幅の区切りは Bootstrap と同じにする
-        スマホ: (max-width: 575.98px) ／ タブレット以下: (max-width: 991.98px)
+        スマホ: (max-width: 575.98px) ／ タブレット以下: (max-width: 991.98px) ／ 広い画面: (min-width: 1200px)
+        例外は 380px 以下（幅の狭いスマホで団体名を1行に収めるための指定）だけ
     - カーソルを載せたときの動きは @media (hover: hover) の中に書く（タッチ画面で色が残らないように）
 */
 
@@ -89,7 +90,7 @@ h3 {
 
 /* うすい緑の地（トップの囲み） */
 .bg-accent-soft {
-  background-color: color-mix(in srgb, var(--accent) 5%, transparent 20%);
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent);
 }
 
 /* キーボードで操作したときの、選択中の枠 */
@@ -119,7 +120,7 @@ h3 {
   padding: 0.6rem 0;
   position: sticky; /* スクロールしても上に残す */
   top: 0;
-  z-index: 9999; /* スライドショーより手前 */
+  z-index: 9999; /* スライドショーや、トップの右側の欄（sticky-top）より手前 */
 }
 
 /* 左右の余白。576px 以上の分は HTML の px-sm-4 px-lg-5 */
@@ -521,15 +522,6 @@ footer {
   overflow: hidden;
 }
 
-.responsive-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  max-width: 800px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 .responsive-text {
   flex: 1 1 300px;
   min-width: 0;
@@ -556,7 +548,7 @@ footer {
   }
 }
 
-/* --- トップ: 右側の「最新の活動記録」 --- */
+/* --- トップ: 右側の「最新の活動記録」。ここだけは記事カード（4）と別の、小さい形 --- */
 
 .sidebar-panel {
   top: 6rem; /* スクロール中、ヘッダーの下に止める */
@@ -660,22 +652,6 @@ footer {
   border-radius: 12px;
   padding: 6px 12px;
   margin: 0 6px 6px 0;
-}
-
-/* 浮き上がったカードが、隣のカードの下に隠れないようにする */
-.post-item {
-  position: relative;
-  z-index: 0;
-}
-
-.post-item:has(.stretched-link:focus-visible) {
-  z-index: 4;
-}
-
-@media (hover: hover) {
-  .post-item:has(.post-card:hover) {
-    z-index: 4;
-  }
 }
 
 .pagination-btn {

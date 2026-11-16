@@ -45,7 +45,7 @@
 - Bootstrap のクラス（`mt-4` `d-flex` など）で足りるものは、CSS を足さずにクラスで書く
 - 見出し（h1〜h3）は自動で明朝になるので、書体のクラスを付けない。固定ページ（about.md / join.md）の中見出しは Markdown の `## 見出し` で書く
 - JS は `assets/js/` に置き、使うページだけが `<script type="module" src="…">` で読む。HTML の中に `<script>` で書かない
-- 2か所以上に出てくる部品は `_includes/` に置く。記事カードは `post-card.html`、タグは `tag-chip.html` を必ず使う（同じものを別の形で書き直さない）
+- 2か所以上に出てくる部品は `_includes/` に置く。記事カードは `post-card.html`、タグは `tag-chip.html` を必ず使う（同じものを別の形で書き直さない。トップの「最新の活動記録」だけは、幅の狭い欄に合わせた別の形にしてある）
 - 記事の一覧やカードに出す写真は、記事の `image`（1枚）を使う
 - ヘッダーのメニューの項目は `_config.yml` の `nav` に書く
 - タグ別の一覧ページを足すときは、`shinkan.md` と同じ形（`layout: tag_landing` と `tag_name`）のファイルを足す。タグのリンク先は自動で切り替わる
