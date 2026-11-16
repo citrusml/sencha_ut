@@ -43,6 +43,7 @@
 
 /* === 2. 基本 === */
 
+/* 短いページでも、フッターを画面のいちばん下に置く（main に付けた flex-grow-1 と組で働く） */
 body {
   display: flex;
   flex-direction: column;
