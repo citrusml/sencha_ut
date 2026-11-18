@@ -1,6 +1,5 @@
 ---
 layout: default
-image: "/assets/images/hanakuiryu.jpg"
 ---
 
 <div class="container my-3 max-width-1200">
@@ -29,22 +28,21 @@ image: "/assets/images/hanakuiryu.jpg"
 
   <div class="row justify-content-center">
     <div class="col-lg-12">
-      {{ content }} 
+      {{ content }}
     </div>
   </div>
 
-  {% if page.images or page.image %}
-    {% if page.images %}
-      <div class="mt-4 post-images">
-        {% for img in page.images %}
-          <img src="{{ img | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
-        {% endfor %}
-      </div>
-    {% elsif page.image %}
-      <div class="mt-4">
-        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
-      </div>
-    {% endif %}
+  {% comment %} 写真は images（複数枚）があればそれを並べ、なければ image の1枚を出す {% endcomment %}
+  {% if page.images %}
+    <div class="mt-4 post-images">
+      {% for img in page.images %}
+        <img src="{{ img | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
+      {% endfor %}
+    </div>
+  {% elsif page.image %}
+    <div class="mt-4">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="photo-item" loading="lazy">
+    </div>
   {% endif %}
 
   <div class="text-end my-4 pt-4">

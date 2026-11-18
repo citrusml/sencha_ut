@@ -278,12 +278,6 @@ img {
   line-height: 1;
 }
 
-.featured-topic-link {
-  font-size: 1rem;
-  padding: 0.55rem 1rem;
-  border-width: 1px;
-}
-
 .tag-chip-trigger {
   cursor: pointer;
 }
@@ -394,10 +388,6 @@ img {
 @media (max-width: 600px) {
   .custom-top-img {
     height: 85vh; /* スマホの時だけ85vhに縮める */
-  }
-
-  .caption-text {
-    font-size: 1.1rem; /* スマホ向けに少し大きく */
   }
 
   /* スマホ向け：ナビゲーションバーを1行に収める調整 */
@@ -614,29 +604,6 @@ footer {
   border-top: 1px solid var(--color-border);
   color: var(--color-text);
   font-size: 0.9rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column; /* 縦並び */
-  align-items: center;
-  gap: 0.5rem; /* 各行の間隔 */
-}
-
-.footer-links > div {
-  margin: 0.2rem 0;
-}
-
-.footer-links a {
-  padding: 0.2rem 0.4rem; /* 各リンクに余白を追加 */
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-  text-decoration: underline;
 }
 
 /* === 6. 共通ユーティリティ === */
