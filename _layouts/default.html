@@ -4,28 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="icon" type="image/png" sizes="48x48" href="{{ '/favicon.png' | absolute_url }}">
-  <link rel="shortcut icon" href="{{ '/favicon.png' | absolute_url }}">
-  <link rel="apple-touch-icon" href="{{ '/assets/images/logos/doukoukai_logo_nobg.png' | absolute_url }}">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ '/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/logos/doukoukai_logo_nobg.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }} Feed" href="{{ '/feed.xml' | absolute_url }}">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  {% comment %} description・og:image（各ページの image から）・構造化データなどは jekyll-seo-tag が出す {% endcomment %}
   {% seo title=false %}
-  {% comment %} og:image は jekyll-seo-tag が page.image から出す。ここではその補足だけを、page.image があるときに出す {% endcomment %}
-  {% assign social_image_path = page.image %}
-  {% if social_image_path %}
-    {% assign social_image_url = social_image_path %}
-    {% unless social_image_path contains '://' %}
-      {% assign social_image_first_char = social_image_path | slice: 0 %}
-      {% unless social_image_first_char == '/' %}
-        {% assign social_image_path = '/' | append: social_image_path %}
-      {% endunless %}
-      {% assign social_image_url = social_image_path | absolute_url %}
-    {% endunless %}
-  {% endif %}
   {% if page.url == "/" %}
   {% assign org_founding_date = site.organization.founding_date | strip %}
   {% assign org_location = site.organization.location | strip %}
@@ -43,11 +31,6 @@
     "sameAs": {{ site.social.links | jsonify }}
   }
   </script>
-  {% endif %}
-  {% if social_image_url %}
-    <meta property="og:image:secure_url" content="{{ social_image_url }}">
-    <meta property="og:image:alt" content="{{ page.title | default: site.title }}">
-    <meta name="twitter:image:alt" content="{{ page.title | default: site.title }}">
   {% endif %}
 </head>
 
@@ -76,15 +59,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pt-2">
+          {% comment %} メニューの項目は _config.yml の nav に書く。いま開いているページの項目には印（aria-current）を付ける {% endcomment %}
+          {% assign current_url = page.url | replace: '.html', '' %}
+          {% for item in site.nav %}
           <li class="nav-item">
-            <a class="nav-link{% if page.url == '/about.html' or page.url == '/about/' %} active{% endif %}"{% unless page.url == '/about.html' or page.url == '/about/' %} href="{{ '/about' | relative_url }}"{% endunless %}{% if page.url == '/about.html' or page.url == '/about/' %} aria-current="page"{% endif %}>煎茶道・薫風流について</a>
+            <a class="nav-link{% if current_url == item.url %} active{% endif %}" href="{{ item.url | relative_url }}"{% if current_url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link{% if page.url == '/gallery.html' or page.url == '/gallery/' %} active{% endif %}"{% unless page.url == '/gallery.html' or page.url == '/gallery/' %} href="{{ '/gallery' | relative_url }}"{% endunless %}{% if page.url == '/gallery.html' or page.url == '/gallery/' %} aria-current="page"{% endif %}>活動記録</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link{% if page.url == '/join.html' or page.url == '/join/' %} active{% endif %}"{% unless page.url == '/join.html' or page.url == '/join/' %} href="{{ '/join' | relative_url }}"{% endunless %}{% if page.url == '/join.html' or page.url == '/join/' %} aria-current="page"{% endif %}>入会案内</a>
-          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -124,190 +105,5 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <script>
-    // ローカルスライドショー初期化（各 .local-slideshow に対して動作）
-    document.addEventListener('DOMContentLoaded', () => {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const desktopLikeInput = window.matchMedia('(hover: hover) and (pointer: fine)');
-
-      document.querySelectorAll('.local-slideshow').forEach(slideshow => {
-        const slides = Array.from(slideshow.querySelectorAll('.local-slide'));
-        const dotsContainer = slideshow.querySelector('.local-dots');
-        const isInsideGalleryCard = Boolean(slideshow.closest('.custom-gallery-card'));
-        if (!slides.length || !dotsContainer) return;
-
-        let idx = slides.findIndex(s => s.classList.contains('active'));
-        if (idx < 0) idx = 0;
-        let timer = null;
-        const interval = parseInt(slideshow.dataset.interval || '5000', 10);
-        let pointerStartX = null;
-        let pointerStartY = null;
-        let pointerId = null;
-        let didDrag = false;
-        const swipeThreshold = 40;
-
-        if (!isInsideGalleryCard) {
-          slideshow.setAttribute('tabindex', '0');
-        }
-        slideshow.setAttribute('role', 'region');
-        slideshow.setAttribute('aria-label', slideshow.dataset.label || '画像スライドショー');
-
-        slides.forEach((_, i) => {
-          const d = document.createElement('button');
-          d.className = 'dot';
-          d.type = 'button';
-          d.setAttribute('tabindex', '0');
-          d.setAttribute('aria-label', `${i + 1}枚目を表示`);
-          if (i === idx) d.classList.add('active');
-          d.addEventListener('click', (event) => {
-            event.stopPropagation(); // カード全体のリンク誤爆を防止
-            show(i);
-            resetTimer();
-          });
-          d.addEventListener('keydown', (event) => {
-            if (event.key !== 'Enter' && event.key !== ' ') return;
-
-            event.preventDefault();
-            event.stopPropagation();
-            show(i);
-            resetTimer();
-          });
-          dotsContainer.appendChild(d);
-        });
-
-        const dotEls = Array.from(dotsContainer.querySelectorAll('.dot'));
-
-        function canAutoplay() {
-          return slides.length > 1 && !prefersReducedMotion.matches;
-        }
-
-        function show(n) {
-          slides.forEach((s, i) => s.classList.toggle('active', i === n));
-          dotEls.forEach((d, i) => d.classList.toggle('active', i === n));
-          idx = n;
-        }
-
-        function nextSlide() {
-          show((idx + 1) % slides.length);
-        }
-
-        function previousSlide() {
-          show((idx - 1 + slides.length) % slides.length);
-        }
-
-        function stopTimer() {
-          if (timer) {
-            clearInterval(timer);
-            timer = null;
-          }
-        }
-
-        function resetTimer() {
-          stopTimer();
-          if (!canAutoplay()) return;
-          timer = setInterval(nextSlide, interval);
-        }
-
-        function handleSwipe(deltaX) {
-          if (Math.abs(deltaX) < swipeThreshold || slides.length <= 1) return;
-
-          didDrag = true;
-          if (deltaX < 0) {
-            nextSlide();
-          } else {
-            previousSlide();
-          }
-          resetTimer();
-        }
-
-        slideshow.addEventListener('mouseenter', () => {
-          stopTimer();
-        });
-
-        slideshow.addEventListener('mouseleave', () => {
-          resetTimer();
-        });
-
-        slideshow.addEventListener('focusin', () => {
-          stopTimer();
-        });
-
-        slideshow.addEventListener('focusout', () => {
-          resetTimer();
-        });
-
-        slideshow.addEventListener('keydown', (event) => {
-          if (slides.length <= 1) return;
-
-          if (event.key === 'ArrowLeft') {
-            event.preventDefault();
-            previousSlide();
-            resetTimer();
-          }
-
-          if (event.key === 'ArrowRight') {
-            event.preventDefault();
-            nextSlide();
-            resetTimer();
-          }
-        });
-
-        slideshow.addEventListener('pointerdown', (event) => {
-          if (event.pointerType === 'mouse' && desktopLikeInput.matches) return;
-
-          pointerStartX = event.clientX;
-          pointerStartY = event.clientY;
-          pointerId = event.pointerId;
-          didDrag = false;
-          stopTimer();
-        });
-
-        slideshow.addEventListener('pointerup', (event) => {
-          if (pointerId !== event.pointerId || pointerStartX === null || pointerStartY === null) return;
-
-          const deltaX = event.clientX - pointerStartX;
-          const deltaY = event.clientY - pointerStartY;
-
-          if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            handleSwipe(deltaX);
-          }
-
-          pointerStartX = null;
-          pointerStartY = null;
-          pointerId = null;
-          resetTimer();
-        });
-
-        slideshow.addEventListener('pointercancel', () => {
-          pointerStartX = null;
-          pointerStartY = null;
-          pointerId = null;
-          resetTimer();
-        });
-
-        slideshow.addEventListener('click', (event) => {
-          if (!didDrag) return;
-
-          event.preventDefault();
-          event.stopPropagation();
-          didDrag = false;
-        }, true);
-
-        const handleMotionChange = () => {
-          resetTimer();
-        };
-
-        if (typeof prefersReducedMotion.addEventListener === 'function') {
-          prefersReducedMotion.addEventListener('change', handleMotionChange);
-          desktopLikeInput.addEventListener('change', handleMotionChange);
-        } else {
-          prefersReducedMotion.addListener(handleMotionChange);
-          desktopLikeInput.addListener(handleMotionChange);
-        }
-
-        resetTimer();
-      });
-    });
-  </script>
 </body>
 </html>
