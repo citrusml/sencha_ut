@@ -2,7 +2,11 @@
 layout: post
 title: "駒場祭のお菓子「塩味饅頭」"
 date: 2026-11-14
-image: "/assets/images/posts/2026-11-14.jpg"
+image: "/assets/images/posts/2026-11-14_1.jpg"
+images:
+  - "/assets/images/posts/2026-11-14_1.jpg"
+  - "/assets/images/posts/2026-11-14_2.jpg"
+  - "/assets/images/posts/2026-11-14_3.jpg"
 tags: [駒場祭, イベント, ご案内]
 ---
 駒場祭のお茶会では、赤穂名産の「塩味饅頭」をお出しします🍵
