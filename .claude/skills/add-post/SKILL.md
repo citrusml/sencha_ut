@@ -5,7 +5,7 @@ description: sencha-ut のサイト更新用（東京大学薫風流煎茶同好
 
 # 活動記録を追加する
 
-CLAUDE.md の「記事（_posts）のルール」「画像」に従う。ここではその手順と、間違えやすい点を書く。
+CLAUDE.md の「記事（_posts）のルール」「画像」に従う。写真の縮小とメタデータ削除のコマンドは README の「写真の準備」にあるので、先に読む。ここには進める順番と、間違えやすい点だけを書く。
 進めるのは PR の作成まで。**マージはしない**。マージはユーザーの指示を毎回待つ。
 
 ## 1. 受け取るものを確認する
@@ -29,12 +29,8 @@ git switch -c post-YYYY-MM-DD origin/main
   - Discord のリンクには期限がある（URL の `ex=` が期限の UNIX 時刻を16進数で表したもの）。期限がいつかも伝える。
 
 **縮小する**
-- ImageMagick を使う。`magick` が PATH になければ `C:\Program Files\ImageMagick-*\magick.exe` を使う。
-- 横長の写真:
-  ```bash
-  magick 元.jpg -auto-orient -resize "1800x1800>" -quality 80 出力.jpg
-  ```
-- 縦長の写真: 長辺 1800px だと幅が 1400px（記事写真の目安）を下回るので、`"2000x2000>"` にする。
+- README の「写真の準備」のコマンドを使う。`magick` が PATH になければ `C:\Program Files\ImageMagick-*\magick.exe` を使う。
+- 縦長の写真: 長辺 1800px だと幅が 1400px（記事写真の目安）を下回るので、`-resize` を `"2000x2000>"` にする。
 - 縮小後のファイルが元より重くなる、または元がすでに目安の範囲内で画質が下がるだけのときは、元のファイルを使う。
   - どちらを使うか迷ったら、同じ部分を切り出して横に並べた比較画像を作り、見比べて決める。
     ```bash
@@ -44,10 +40,7 @@ git switch -c post-YYYY-MM-DD origin/main
 
 **置いて、メタデータを消す**
 - 置き場所は `assets/images/posts/YYYY-MM-DD.jpg`。同じ日に複数枚なら `_1`, `_2` を付ける。
-- 置いたら、次の順に処理する。
-  1. `perl tools/strip_metadata.pl report <ファイル>` で確認する。
-  2. `(none)` 以外なら `strip` で消す。
-  3. もう一度 `report` して `(none)` を確かめる。
+- 置いたら、README の「写真の準備」の 2 のとおり、`report` が `(none)` になるまで `strip` する。
 - 何を消したか（特に GPS・撮影日時）を報告する。何もなかったときも、そう報告する。
 
 ## 4. 記事ファイルを作る

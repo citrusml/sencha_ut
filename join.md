@@ -37,7 +37,7 @@ image: "/assets/images/slide/slide01.jpg"
 
 <div class="text-center my-4">
   <img src="{{ '/assets/images/お道具.jpg' | relative_url }}" alt="煎茶道具一式" class="photo-item">
-  <p class="text-muted small mt-2">煎茶道具一式</p>
+  <p class="text-body-secondary small mt-2">煎茶道具一式</p>
 </div>
 
 ## 入会までの流れ
@@ -51,7 +51,7 @@ image: "/assets/images/slide/slide01.jpg"
   <a href="{{ site.formurl }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm" target="_blank" rel="noopener noreferrer">
     見学フォームはこちら
   </a>
-  <p class="text-muted small mt-3">
+  <p class="text-body-secondary small mt-3">
     ※日程調整のご連絡は、後日お送りいたします。<br>
     ※見学のお申込みは新歓期以外でも大歓迎ですが、長期休暇期間は活動がないため対応いたしかねます。
   </p>

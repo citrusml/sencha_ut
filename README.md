@@ -31,20 +31,27 @@ git config core.quotepath false       # 日本語のファイル名をそのま�
 ## フォルダ構成
 
 ```
-├── _config.yml          # サイト全体の設定（タイトル、新歓情報、フォームURL など）
+├── _config.yml          # サイト全体の設定（タイトル、メニュー、新歓情報、フォームURL など）
 ├── _layouts/
-│   ├── default.html     # 全ページ共通のヘッダー・フッター・スライドショー
+│   ├── default.html     # 全ページ共通のヘッダー・フッター
 │   ├── page.html        # 通常ページ（about / join）
 │   ├── post.html        # 活動記録の記事
 │   └── tag_landing.html # タグ別の記事一覧（新歓・駒場祭）
+├── _includes/           # 複数のページで使う部品
+│   ├── post-card.html   # 記事カード（活動記録一覧・タグ別の一覧）
+│   └── tag-chip.html    # タグ1個（リンク先もここで決める）
 ├── _posts/              # 活動記録の記事（YYYY-MM-DD-英数字.md）
 ├── _drafts/             # 下書き・記事テンプレート（公開されない）
 ├── assets/
 │   ├── css/style.css    # デザイン
+│   ├── js/
+│   │   ├── slideshow.js # トップページの写真の切り替え
+│   │   └── gallery.js   # 活動記録一覧の絞り込みとページ送り
 │   └── images/
 │       ├── logos/       # ロゴ・SNSアイコン
 │       ├── posts/       # 記事ごとの画像
-│       └── slide/       # トップページのスライド・行事写真
+│       ├── slide/       # トップページのスライド・行事写真
+│       └── （直下）      # 固定ページ（about・join・新歓）だけで使う写真
 ├── index.html           # トップページ
 ├── about.md             # 煎茶道・薫風流について
 ├── join.md              # 入会案内
@@ -59,22 +66,46 @@ git config core.quotepath false       # 日本語のファイル名をそのま�
 
 1. `_drafts/template.md` をコピーして `_posts/YYYY-MM-DD-英数字.md` を作る
 2. `title` / `date` / `image` / `tags` を埋めて本文を書く
-3. 画像は `assets/images/posts/YYYY-MM-DD.jpg` に置き、`image` には `/assets/images/...` と先頭に `/` を付けて書く
+3. 写真を下の「写真の準備」のとおりに用意し、`image` に `/assets/images/posts/YYYY-MM-DD.jpg` と先頭に `/` を付けて書く
+
+写真を複数枚載せるときは `images:` に並べ、`image` にもその1枚目を書きます（`image` がないと、X などで共有したときに写真が出ません。一覧のカードに出るのも `image` の写真です）。
+
+```yaml
+image: "/assets/images/posts/YYYY-MM-DD_1.jpg"
+images:
+  - "/assets/images/posts/YYYY-MM-DD_1.jpg"
+  - "/assets/images/posts/YYYY-MM-DD_2.jpg"
+```
 
 よく使うタグ: ご案内、イベント、新歓、駒場祭、お稽古、お手前、本日のお菓子
 （`新歓` と `駒場祭` は専用の一覧ページに載ります）
 
-画像はスマホの写真をそのまま置かず、長辺 1800px 程度・1枚数百KB 以下に縮小してから追加してください。同じ日に複数枚あるときは `YYYY-MM-DD_1.jpg`, `_2` のように付けます。
+## 写真の準備
 
-縮小には [ImageMagick](https://imagemagick.org/)（Windows は `winget install ImageMagick.ImageMagick`）を使います。HEIC もこのコマンドで JPEG になります。
+記事に限らず、サイトに写真を足すときは必ずこの手順を通します。
+
+**1. 縮小する。** スマホの写真をそのまま置かず、長辺 1800px 程度・1枚数百KB 以下にします。[ImageMagick](https://imagemagick.org/)（Windows は `winget install ImageMagick.ImageMagick`）を使います。HEIC もこのコマンドで JPEG になります。
 
 ```bash
 magick 元の写真.jpg -auto-orient -resize "1800x1800>" -quality 85 assets/images/posts/YYYY-MM-DD.jpg
 ```
 
-置いたら位置情報などを確認・削除します（`report` で `(none)` 以外なら `strip` して、もう一度 `report`）。
+記事の写真のファイル名は日付にします。同じ日に複数枚あるときは `YYYY-MM-DD_1.jpg`, `_2` のように付けます。
+
+**2. 位置情報などを消す。** `report` で確認し、`(none)` 以外なら `strip` して、もう一度 `report` で `(none)` を確かめます。
 
 ```bash
 perl tools/strip_metadata.pl report assets/images/posts/YYYY-MM-DD.jpg
 perl tools/strip_metadata.pl strip assets/images/posts/YYYY-MM-DD.jpg
 ```
+
+リポジトリは公開されているので、一度コミットした写真は、あとで消しても履歴から誰でも取り出せます。縮小や編集のあとにもう一度確認してください（書き出しでメタデータが付き直すことがあります）。
+
+## 年度が替わったら直すところ
+
+| 場所 | 直す内容 |
+|---|---|
+| `_config.yml` の `recruitment` | 新歓情報の見出し（年度）、文面、フォームのボタンの名前 |
+| `_config.yml` の `formurl` | 見学希望フォームの URL |
+| `join.md` の「サークル情報(26年度)」 | 年度、所属人数、会費など |
+| `index.html` と `join.md` | お稽古の曜日と時間（同じ文が2か所にあります） |

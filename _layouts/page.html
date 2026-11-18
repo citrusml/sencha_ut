@@ -1,18 +1,14 @@
 ---
 layout: default
-image: "/assets/images/slide/slide01.jpg"
 ---
 
-<div class="container my-5 max-width-1200">
-  
+{% comment %} about.md / join.md などの固定ページ。本文の中見出し（## 見出し）の見た目は style.css の .page-body h2 {% endcomment %}
+<div class="container my-5 max-width-1200 page-body">
+
   {% if page.title %}
-  <h1 class="font-shippori mb-5">{{ page.title }}</h1>
+  <h1 class="mb-5">{{ page.title }}</h1>
   {% endif %}
 
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      {{ content }}
-    </div>
-  </div>
+  {{ content }}
 
 </div>

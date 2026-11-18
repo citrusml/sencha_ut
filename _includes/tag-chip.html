@@ -1,0 +1,14 @@
+{%- comment -%}
+  タグ1個。使い方: {% include tag-chip.html tag="お稽古" %}
+
+  リンク先は、そのタグ専用の一覧ページ（front matter に tag_name を持つページ。shinkan.md / komabasai.md）が
+  あればそこ、なければ活動記録一覧をそのタグで絞り込んだ状態（/gallery?tag=…）。
+  活動記録一覧のページの中では、assets/js/gallery.js がクリックを受けてその場で絞り込む。
+{%- endcomment -%}
+{%- assign tag_page = site.pages | where: "tag_name", include.tag | first -%}
+{%- if tag_page -%}
+  {%- assign tag_href = tag_page.url | relative_url -%}
+{%- else -%}
+  {%- capture tag_href -%}{{ '/gallery' | relative_url }}?tag={{ include.tag | url_encode }}{%- endcapture -%}
+{%- endif -%}
+<a href="{{ tag_href }}" class="tag-chip" data-tag="{{ include.tag }}">#{{ include.tag }}</a>
