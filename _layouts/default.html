@@ -12,7 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }} Feed" href="{{ '/feed.xml' | absolute_url }}">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  {% comment %} トップは団体名だけだと短すぎる（Bing の指摘）ので「トップページ」を付ける {% endcomment %}
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% elsif page.url == "/" %}{{ site.title }} | トップページ{% else %}{{ site.title }}{% endif %}</title>
   {% seo title=false %}
   {% comment %} og:image は jekyll-seo-tag が page.image から出す。ここではその補足だけを、page.image があるときに出す {% endcomment %}
   {% assign social_image_path = page.image %}
